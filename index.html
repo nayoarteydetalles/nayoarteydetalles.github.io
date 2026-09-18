@@ -17,54 +17,44 @@
 <meta property="og:url" content="https://nayoarteydetalles.netlify.app/">
 <meta property="og:image" content="https://nayoarteydetalles.netlify.app/assets/og.jpg">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Nayo · Arte & Detalles">
-<meta name="twitter:description" content="Velas artesanales que se recuerdan. Bogotá.">
 <meta name="twitter:image" content="https://nayoarteydetalles.netlify.app/assets/og.jpg">
+<!-- MEDICIÓN (opcional): cuando tengas Google Analytics (G-XXXXX) o Meta Pixel, pega aquí sus scripts. -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=Jost:wght@300;400;500;600&display=swap">
 <style>
-:root{
-  --bg:#F0ECE6;--surface:#FAF7F2;--surface2:#F4EFE9;--ink:#38313C;--ink-soft:#6E6672;--ink-faint:#9E97A0;
-  --rosa:#B98E86;--sage:#9DAEA4;--mauve:#A991A6;--champ:#BFA06B;--line:#E2DAD1;--dark:#241F2A;--dark2:#2E2736;
-  --serif:'Cormorant',Georgia,serif;--sans:'Jost','Century Gothic',system-ui,sans-serif;
-  --shadow:0 20px 50px -24px rgba(56,49,60,.35);
-}
+:root{--bg:#F0ECE6;--surface:#FAF7F2;--surface2:#F4EFE9;--ink:#38313C;--ink-soft:#6E6672;--ink-faint:#9E97A0;--rosa:#B98E86;--sage:#9DAEA4;--mauve:#A991A6;--champ:#BFA06B;--line:#E2DAD1;--dark:#241F2A;--serif:'Cormorant',Georgia,serif;--sans:'Jost',system-ui,sans-serif;--shadow:0 20px 50px -24px rgba(56,49,60,.35)}
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-weight:300;line-height:1.7;-webkit-font-smoothing:antialiased;overflow-x:hidden}
-img{max-width:100%;display:block}
-a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}a{color:inherit;text-decoration:none}
 .wrap{max-width:1200px;margin:0 auto;padding:0 28px}
 .eyebrow{font-size:.72rem;letter-spacing:.34em;text-transform:uppercase;font-weight:500;color:var(--rosa)}
 .btn{display:inline-flex;align-items:center;gap:10px;font-family:var(--sans);font-weight:500;font-size:.9rem;letter-spacing:.03em;padding:15px 30px;border-radius:100px;transition:.3s;cursor:pointer;border:1.5px solid transparent}
 .btn-primary{background:var(--ink);color:var(--bg)}.btn-primary:hover{background:var(--rosa);transform:translateY(-2px)}
 .btn-ghost{border-color:var(--ink);color:var(--ink)}.btn-ghost:hover{background:var(--ink);color:var(--bg)}
 .btn-champ{background:var(--champ);color:var(--dark)}.btn-champ:hover{filter:brightness(1.06);transform:translateY(-2px)}
-
-/* NAV */
 header{position:fixed;top:0;left:0;right:0;z-index:50;transition:.4s}
 header.scrolled{background:rgba(240,236,230,.85);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
-nav{display:flex;align-items:center;justify-content:space-between;padding:20px 28px;max-width:1240px;margin:0 auto}
-.logo{font-family:var(--serif);font-weight:500;font-size:1.9rem;letter-spacing:.02em;color:var(--ink);line-height:1;cursor:pointer}
+nav{display:flex;align-items:center;justify-content:space-between;padding:18px 28px;max-width:1240px;margin:0 auto;gap:16px}
+.logo{font-family:var(--serif);font-weight:500;font-size:1.9rem;letter-spacing:.02em;line-height:1;cursor:pointer}
 .logo small{display:block;font-family:var(--sans);font-weight:300;font-size:.52rem;letter-spacing:.42em;text-transform:uppercase;color:var(--ink-soft);margin-top:2px;padding-left:2px}
-.navlinks{display:flex;align-items:center;gap:34px}
+.navlinks{display:flex;align-items:center;gap:32px}
 .navlinks a{font-size:.82rem;letter-spacing:.12em;text-transform:uppercase;font-weight:400;color:var(--ink-soft);transition:.25s;cursor:pointer;position:relative}
 .navlinks a.active,.navlinks a:hover{color:var(--ink)}
 .navlinks a.active::after{content:"";position:absolute;left:0;right:0;bottom:-7px;height:1.5px;background:var(--rosa)}
-.navlinks .btn{padding:11px 22px;font-size:.78rem}
-.navlinks .btn::after{display:none}
+.navlinks .btn{padding:11px 22px;font-size:.78rem}.navlinks .btn::after{display:none}
+.navright{display:flex;align-items:center;gap:18px}
+.cart-btn{position:relative;background:none;border:0;cursor:pointer;color:var(--ink);display:flex}
+.cart-btn svg{width:25px;height:25px;fill:none;stroke:currentColor;stroke-width:1.5}
+.cart-badge{position:absolute;top:-9px;right:-11px;background:var(--rosa);color:#fff;font-size:.6rem;font-weight:600;min-width:18px;height:18px;border-radius:9px;display:none;place-items:center;padding:0 5px}
+.cart-badge.show{display:grid}
 .burger{display:none;flex-direction:column;gap:5px;background:none;border:0;cursor:pointer;padding:6px}
 .burger span{width:26px;height:2px;background:var(--ink);transition:.3s}
-
-/* VIEWS */
-.view{display:none}
-.view.active{display:block;animation:viewin .6s cubic-bezier(.2,.7,.3,1)}
+.view{display:none}.view.active{display:block;animation:viewin .6s cubic-bezier(.2,.7,.3,1)}
 @keyframes viewin{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
-
-/* HERO */
 .hero{position:relative;min-height:100vh;display:flex;align-items:center;padding:120px 0 60px;overflow:hidden}
-.hero::before{content:"";position:absolute;top:-10%;right:-5%;width:60vw;height:60vw;max-width:720px;max-height:720px;background:radial-gradient(closest-side,rgba(185,142,134,.28),transparent 70%);pointer-events:none}
+.hero::before{content:"";position:absolute;top:-10%;right:-5%;width:60vw;height:60vw;max-width:720px;max-height:720px;background:radial-gradient(closest-side,rgba(185,142,134,.28),transparent 70%)}
 .hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:40px;align-items:center;position:relative}
 .hero h1{font-family:var(--serif);font-weight:500;font-size:clamp(3.2rem,7vw,6rem);line-height:.98;margin:.24em 0 .28em}
 .hero h1 em{font-style:italic;color:var(--rosa)}
@@ -79,23 +69,15 @@ nav{display:flex;align-items:center;justify-content:space-between;padding:20px 2
 .dots{position:absolute;bottom:6px;left:50%;transform:translateX(-50%);display:flex;gap:9px}
 .dots i{width:8px;height:8px;border-radius:50%;background:var(--line);transition:.3s;cursor:pointer}
 .dots i.on{background:var(--rosa);width:22px;border-radius:6px}
-
-/* TRUST BAR */
 .trust{border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--surface2)}
 .trust .wrap{display:flex;justify-content:space-around;flex-wrap:wrap;gap:14px;padding:22px 28px}
-.trust b{font-family:var(--serif);font-weight:600;font-size:1.05rem;color:var(--ink)}
-.trust span{font-size:.82rem;color:var(--ink-soft);display:flex;align-items:center;gap:9px}
-
-/* SECTIONS */
+.trust span{font-size:.86rem;color:var(--ink-soft);display:flex;align-items:center;gap:9px}.trust b{font-size:1.05rem}
 .pad{padding:100px 0}
-.sec-head{text-align:center;max-width:640px;margin:0 auto 52px}
+.sec-head{text-align:center;max-width:660px;margin:0 auto 52px}
 .sec-head h2{font-family:var(--serif);font-weight:500;font-size:clamp(2.2rem,4.6vw,3.4rem);line-height:1.06;margin:.24em 0 .3em}
 .sec-head p{color:var(--ink-soft);font-size:1.05rem}
 .rule{width:54px;height:1px;background:var(--champ);margin:16px auto 0}
-
-/* PRODUCT GRID */
 .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:26px}
-.grid.feat{grid-template-columns:repeat(4,1fr)}
 .card{background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:22px 20px 24px;text-align:center;transition:.35s;position:relative;overflow:hidden}
 .card::after{content:"";position:absolute;inset:0;background:radial-gradient(closest-side at 50% 34%,rgba(191,160,107,.16),transparent 70%);opacity:0;transition:.35s;pointer-events:none}
 .card:hover{transform:translateY(-8px);box-shadow:var(--shadow);border-color:transparent}.card:hover::after{opacity:1}
@@ -104,27 +86,20 @@ nav{display:flex;align-items:center;justify-content:space-between;padding:20px 2
 .card:hover .ph img{transform:scale(1.05)}
 .card h3{font-family:var(--serif);font-weight:600;font-size:1.35rem;line-height:1.05}
 .card .desc{font-family:var(--serif);font-style:italic;color:var(--ink-soft);font-size:.98rem;margin-top:2px}
-.card .row{display:flex;align-items:center;justify-content:space-between;margin-top:16px;padding-top:14px;border-top:1px solid var(--line)}
-.card .price{font-family:var(--serif);font-weight:600;font-size:1.32rem;color:var(--ink)}
-.card .pedir{font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;font-weight:500;color:var(--rosa);border:1px solid var(--rosa);border-radius:100px;padding:8px 16px;transition:.25s}
-.card .pedir:hover{background:var(--rosa);color:#fff}
+.card .aroma{font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;color:var(--sage);font-weight:500;margin-top:8px}
+.card .row{display:flex;align-items:center;justify-content:space-between;margin-top:14px;padding-top:14px;border-top:1px solid var(--line)}
+.card .price{font-family:var(--serif);font-weight:600;font-size:1.32rem}
+.card .add{font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;font-weight:600;color:#fff;background:var(--rosa);border:0;border-radius:100px;padding:10px 18px;cursor:pointer;transition:.25s}
+.card .add:hover{background:var(--ink)}
 .card .tag{position:absolute;top:16px;left:16px;font-size:.6rem;letter-spacing:.16em;text-transform:uppercase;color:var(--champ);font-weight:600}
-.card .aroma{font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--sage);font-weight:500;margin-top:8px}
-/* testimonios */
-.testi{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
-.tcard{background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:30px 26px;transition:.35s}
-.tcard:hover{transform:translateY(-6px);box-shadow:var(--shadow);border-color:transparent}
-.tcard .stars{color:var(--champ);letter-spacing:4px;margin-bottom:14px;font-size:.9rem}
-.tcard p{font-family:var(--serif);font-style:italic;font-size:1.18rem;color:var(--ink);line-height:1.42}
-.tcard .who{margin-top:16px;font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft);font-weight:500}
-
-/* FILTER TABS */
-.filters{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-bottom:40px}
-.filters button{font-family:var(--sans);font-size:.8rem;letter-spacing:.08em;text-transform:uppercase;font-weight:400;color:var(--ink-soft);background:var(--surface);border:1px solid var(--line);border-radius:100px;padding:11px 22px;cursor:pointer;transition:.25s}
+.filters{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-bottom:34px}
+.filters button{font-family:var(--sans);font-size:.8rem;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft);background:var(--surface);border:1px solid var(--line);border-radius:100px;padding:11px 22px;cursor:pointer;transition:.25s}
 .filters button.active,.filters button:hover{background:var(--ink);color:var(--bg);border-color:var(--ink)}
-
-/* VIDEO */
-.video{background:linear-gradient(160deg,#2E2736,#241F2A);color:#EFEAE9;border-radius:28px;margin:0 auto;max-width:1140px}
+.occ{display:grid;grid-template-columns:repeat(5,1fr);gap:16px}
+.ocard{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:28px 14px;text-align:center;transition:.3s}
+.ocard:hover{transform:translateY(-6px);box-shadow:var(--shadow);border-color:transparent}
+.ocard .oi{font-size:1.9rem}.ocard h4{font-family:var(--serif);font-weight:600;font-size:1.12rem;margin-top:10px}
+.video{background:linear-gradient(160deg,#2E2736,#241F2A);color:#EFEAE9;border-radius:28px;max-width:1140px;margin:0 auto}
 .video-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center;padding:60px 56px}
 .video .eyebrow{color:var(--champ)}
 .video h2{font-family:var(--serif);font-weight:500;font-size:clamp(2rem,4.2vw,3rem);line-height:1.08;margin:.24em 0 .5em}
@@ -132,279 +107,281 @@ nav{display:flex;align-items:center;justify-content:space-between;padding:20px 2
 .video p{color:#C4BCC4;max-width:44ch;margin-bottom:26px}
 .phone{justify-self:center;position:relative;width:clamp(230px,24vw,300px);aspect-ratio:9/16;border-radius:34px;overflow:hidden;border:2px solid rgba(205,177,131,.45);box-shadow:0 40px 70px -30px rgba(0,0,0,.7)}
 .phone video{width:100%;height:100%;object-fit:cover}
-
-/* PASOS */
-.pasos{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:8px}
-.paso{text-align:center;padding:28px 20px}
-.paso .num{font-family:var(--serif);font-style:italic;font-size:2.4rem;color:var(--champ);line-height:1}
-.paso h4{font-family:var(--serif);font-weight:600;font-size:1.3rem;margin:8px 0 4px}
-.paso p{color:var(--ink-soft);font-size:.94rem}
-
-/* VALORES */
-.vals{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
-.val{text-align:center;padding:26px 16px}
-.val .ic{width:56px;height:56px;margin:0 auto 14px;border-radius:50%;border:1px solid var(--line);display:grid;place-items:center;background:var(--surface);font-size:1.3rem}
-.val h4{font-family:var(--serif);font-weight:600;font-size:1.25rem;margin-bottom:3px}
-.val p{color:var(--ink-soft);font-size:.9rem}
-
-/* NOSOTROS */
+.pasos{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.paso{text-align:center;padding:28px 20px}.paso .num{font-family:var(--serif);font-style:italic;font-size:2.4rem;color:var(--champ);line-height:1}
+.paso h4{font-family:var(--serif);font-weight:600;font-size:1.3rem;margin:8px 0 4px}.paso p{color:var(--ink-soft);font-size:.94rem}
+.info3{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.icard{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:30px 26px;text-align:center}
+.icard .ii{font-size:1.8rem;margin-bottom:10px}.icard h4{font-family:var(--serif);font-weight:600;font-size:1.3rem;margin-bottom:6px}.icard p{color:var(--ink-soft);font-size:.94rem}
+.testi{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.tcard{background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:30px 26px;transition:.35s}
+.tcard:hover{transform:translateY(-6px);box-shadow:var(--shadow);border-color:transparent}
+.tcard .stars{color:var(--champ);letter-spacing:4px;margin-bottom:14px;font-size:.9rem}
+.tcard p{font-family:var(--serif);font-style:italic;font-size:1.18rem;line-height:1.42}
+.tcard .who{margin-top:16px;font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft);font-weight:500}
+.porto{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-top:8px}
+.porto a{border:1px solid var(--line);border-radius:100px;padding:12px 24px;font-size:.9rem;color:var(--ink-soft);background:var(--surface);transition:.25s}
+.porto a:hover{background:var(--ink);color:var(--bg);border-color:var(--ink)}
 .nos-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
-.nos blockquote{font-family:var(--serif);font-style:italic;font-weight:500;font-size:clamp(1.7rem,3.4vw,2.4rem);line-height:1.28;color:var(--ink);border-left:2px solid var(--rosa);padding-left:26px}
+.nos blockquote{font-family:var(--serif);font-style:italic;font-weight:500;font-size:clamp(1.7rem,3.4vw,2.4rem);line-height:1.28;border-left:2px solid var(--rosa);padding-left:26px}
 .nos p{color:var(--ink-soft);margin-bottom:1em;max-width:52ch}
-
-/* CONTACTO / FORM */
+.vals{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
+.val{text-align:center;padding:26px 16px}.val .ic{width:56px;height:56px;margin:0 auto 14px;border-radius:50%;border:1px solid var(--line);display:grid;place-items:center;background:var(--surface);font-size:1.3rem}
+.val h4{font-family:var(--serif);font-weight:600;font-size:1.25rem;margin-bottom:3px}.val p{color:var(--ink-soft);font-size:.9rem}
 .cta-band{background:linear-gradient(160deg,#2E2736,#241F2A);color:#EFEAE9;border-radius:28px;padding:56px}
 .contact-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:50px;align-items:center}
 .contact-info h2{font-family:var(--serif);font-weight:500;font-style:italic;font-size:clamp(2.2rem,4.4vw,3.2rem);line-height:1.05;margin-bottom:.3em}
 .contact-info p{color:#C4BCC4;max-width:40ch;margin-bottom:24px}
-.contact-info .line{display:flex;align-items:center;gap:12px;margin-bottom:12px;font-size:1rem}
-.contact-info .line b{color:var(--champ);letter-spacing:2px;font-weight:500}
+.contact-info .line{display:flex;align-items:center;gap:12px;margin-bottom:12px;font-size:1rem}.contact-info .line b{color:var(--champ);letter-spacing:2px;font-weight:500}
 .form{background:var(--surface);border-radius:20px;padding:34px;box-shadow:var(--shadow)}
 .form label{display:block;font-size:.74rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft);font-weight:500;margin:0 0 7px}
-.form input,.form select,.form textarea{width:100%;font-family:var(--sans);font-size:1rem;color:var(--ink);background:var(--surface2);border:1px solid var(--line);border-radius:12px;padding:14px 16px;margin-bottom:18px;transition:.25s;font-weight:300}
+.form input,.form select,.form textarea{width:100%;font-family:var(--sans);font-size:1rem;color:var(--ink);background:var(--surface2);border:1px solid var(--line);border-radius:12px;padding:14px 16px;margin-bottom:18px;font-weight:300}
 .form input:focus,.form select:focus,.form textarea:focus{outline:none;border-color:var(--rosa);background:#fff}
-.form textarea{resize:vertical;min-height:96px}
-.form .btn{width:100%;justify-content:center;background:var(--ink);color:var(--bg)}
-.form .btn:hover{background:var(--rosa)}
+.form textarea{resize:vertical;min-height:90px}
+.form .btn{width:100%;justify-content:center;background:var(--ink);color:var(--bg)}.form .btn:hover{background:var(--rosa)}
 .form .note{font-size:.78rem;color:var(--ink-faint);text-align:center;margin-top:12px}
-
-/* FLOATING WA */
+.faq{max-width:760px;margin:0 auto}
+.faq details{border-bottom:1px solid var(--line);padding:18px 2px}
+.faq summary{font-family:var(--serif);font-weight:600;font-size:1.2rem;cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:16px}
+.faq summary::-webkit-details-marker{display:none}.faq summary::after{content:"+";color:var(--rosa);font-size:1.5rem;line-height:1}
+.faq details[open] summary::after{content:"–"}
+.faq p{color:var(--ink-soft);margin-top:10px;font-size:.98rem}
 .fab{position:fixed;right:22px;bottom:22px;z-index:60;width:60px;height:60px;border-radius:50%;background:#25D366;display:grid;place-items:center;box-shadow:0 12px 28px -8px rgba(0,0,0,.4);transition:.3s;animation:pop 3s ease-in-out infinite}
-.fab:hover{transform:scale(1.08)}
-@keyframes pop{0%,100%{box-shadow:0 12px 28px -8px rgba(37,211,102,.5)}50%{box-shadow:0 12px 40px -6px rgba(37,211,102,.85)}}
+.fab:hover{transform:scale(1.08)}@keyframes pop{0%,100%{box-shadow:0 12px 28px -8px rgba(37,211,102,.5)}50%{box-shadow:0 12px 40px -6px rgba(37,211,102,.85)}}
 .fab svg{width:32px;height:32px;fill:#fff}
-
-/* FOOTER */
+/* CART */
+.overlay{position:fixed;inset:0;background:rgba(36,31,42,.5);opacity:0;visibility:hidden;transition:.3s;z-index:70}
+.overlay.open{opacity:1;visibility:visible}
+.cart{position:fixed;top:0;right:0;bottom:0;width:min(430px,92vw);background:var(--bg);z-index:80;transform:translateX(100%);transition:.4s cubic-bezier(.2,.7,.3,1);display:flex;flex-direction:column;box-shadow:-20px 0 50px -20px rgba(0,0,0,.4)}
+.cart.open{transform:none}
+.cart-head{display:flex;align-items:center;justify-content:space-between;padding:24px;border-bottom:1px solid var(--line)}
+.cart-head h3{font-family:var(--serif);font-size:1.5rem}
+.cart-close{background:none;border:0;font-size:1.7rem;cursor:pointer;color:var(--ink-soft);line-height:1}
+.cart-body{flex:1;overflow-y:auto;padding:8px 24px}
+.cart-empty{text-align:center;color:var(--ink-faint);padding:70px 20px;font-family:var(--serif);font-style:italic;font-size:1.2rem}
+.citem{display:flex;gap:14px;align-items:center;padding:16px 0;border-bottom:1px solid var(--line)}
+.citem img{width:60px;height:60px;object-fit:contain;filter:drop-shadow(0 6px 6px rgba(56,49,60,.2))}
+.citem .ci-info{flex:1;min-width:0}.citem .ci-name{font-family:var(--serif);font-weight:600;font-size:1.05rem;line-height:1.1}
+.citem .ci-price{font-size:.82rem;color:var(--ink-soft)}
+.citem .ci-qty{display:flex;align-items:center;gap:12px;margin-top:8px}
+.citem .ci-qty button{width:26px;height:26px;border-radius:50%;border:1px solid var(--line);background:var(--surface);cursor:pointer;font-size:1rem;line-height:1;color:var(--ink)}
+.citem .ci-rm{background:none;border:0;color:var(--ink-faint);cursor:pointer;font-size:.68rem;text-transform:uppercase;letter-spacing:.1em;margin-top:4px}
+.cart-foot{padding:22px 24px;border-top:1px solid var(--line);background:var(--surface)}
+.cart-total{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:16px}.cart-total .t{font-family:var(--serif);font-weight:600;font-size:1.7rem}
+.cart-foot .btn{width:100%;justify-content:center;background:#25D366;color:#fff}.cart-foot .btn:hover{filter:brightness(1.06)}
+.cart-foot .note{font-size:.74rem;color:var(--ink-faint);text-align:center;margin-top:10px}
+.toast{position:fixed;bottom:96px;left:50%;transform:translateX(-50%) translateY(20px);background:var(--ink);color:var(--bg);padding:12px 24px;border-radius:100px;font-size:.86rem;opacity:0;transition:.3s;z-index:90;pointer-events:none}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
 footer{background:var(--dark);color:#C4BCC4;padding:56px 0 40px;text-align:center;margin-top:80px}
 footer .fmark{font-family:var(--serif);font-size:2.4rem;color:#EFEAE9;line-height:1}
 footer .fmark small{display:block;font-family:var(--sans);font-weight:300;font-size:.6rem;letter-spacing:.4em;text-transform:uppercase;color:#8F8794;margin-top:6px}
 footer .flinks{display:flex;gap:26px;justify-content:center;margin:24px 0;font-size:.8rem;letter-spacing:.08em;text-transform:uppercase}
 footer .flinks a{cursor:pointer}footer .flinks a:hover{color:#EFEAE9}
 footer .cop{font-size:.74rem;color:#7C7480;margin-top:10px}
-
-.reveal{opacity:0;transform:translateY(24px);transition:.9s cubic-bezier(.2,.7,.3,1)}
-.reveal.in{opacity:1;transform:none}
-
+.reveal{opacity:0;transform:translateY(24px);transition:.9s cubic-bezier(.2,.7,.3,1)}.reveal.in{opacity:1;transform:none}
 @media (max-width:900px){
-  .hero-grid{grid-template-columns:1fr;text-align:center}.hero-cta{justify-content:center}.hero p.lead{margin-inline:auto}
-  .hero-visual{order:-1;height:44vh}
-  .nos-grid,.video-grid,.contact-grid{grid-template-columns:1fr;gap:30px}
-  .video-grid{padding:40px 30px}.cta-band{padding:34px}
-  .nos blockquote{border-left:0;border-top:2px solid var(--rosa);padding:20px 0 0}
-  .grid,.grid.feat{grid-template-columns:repeat(2,1fr)}.vals{grid-template-columns:repeat(2,1fr)}.pasos{grid-template-columns:1fr}.testi{grid-template-columns:1fr}
-  .navlinks{display:none}.navlinks.open{display:flex;position:absolute;top:70px;right:16px;left:16px;flex-direction:column;gap:18px;background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:26px}
-  .burger{display:flex}
+ .hero-grid{grid-template-columns:1fr;text-align:center}.hero-cta{justify-content:center}.hero p.lead{margin-inline:auto}.hero-visual{order:-1;height:44vh}
+ .nos-grid,.video-grid,.contact-grid{grid-template-columns:1fr;gap:30px}.video-grid{padding:40px 30px}.cta-band{padding:34px}
+ .nos blockquote{border-left:0;border-top:2px solid var(--rosa);padding:20px 0 0}
+ .grid{grid-template-columns:repeat(2,1fr)}.vals,.occ{grid-template-columns:repeat(2,1fr)}.pasos,.info3,.testi{grid-template-columns:1fr}
+ .navlinks{display:none}.navlinks.open{display:flex;position:absolute;top:70px;right:16px;left:16px;flex-direction:column;gap:18px;background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:26px}
+ .burger{display:flex}
 }
-@media (max-width:540px){.grid,.grid.feat{grid-template-columns:1fr}.pad{padding:70px 0}.trust .wrap{gap:18px}}
+@media (max-width:540px){.grid{grid-template-columns:1fr}.occ{grid-template-columns:1fr}.pad{padding:70px 0}}
 </style>
 </head>
 <body>
 
-<header id="hd">
-  <nav>
-    <div class="logo" data-go="home">Nayo<small>Arte &amp; Detalles</small></div>
-    <div class="navlinks" id="menu">
-      <a data-go="colecciones">Colecciones</a>
-      <a data-go="nosotros">Nosotros</a>
-      <a data-go="contacto">Contacto</a>
-      <a class="btn btn-primary" data-go="contacto">Pedir ahora</a>
-    </div>
-    <button class="burger" id="burger" aria-label="Menú"><span></span><span></span><span></span></button>
-  </nav>
-</header>
-
-<!-- ============ HOME ============ -->
-<main class="view active" id="v-home">
-  <section class="hero">
-    <div class="wrap hero-grid">
-      <div class="hero-copy">
-        <span class="eyebrow reveal">Velas aromáticas artesanales · Bogotá</span>
-        <h1 class="reveal">Detalles que se <em>recuerdan.</em></h1>
-        <p class="lead reveal">Velas hechas a mano, pensadas para un momento: un regalo, un “gracias”, un “estoy pensando en ti”. No vendemos objetos, entregamos la emoción de sorprender.</p>
-        <div class="hero-cta reveal">
-          <a class="btn btn-primary" data-go="colecciones">Ver colecciones</a>
-          <a class="btn btn-ghost" data-go="contacto">Escríbenos</a>
-        </div>
-      </div>
-      <div class="hero-visual reveal">
-        <div class="glow"></div>
-        <div class="hero-stage" id="stage"></div>
-        <div class="dots" id="dots"></div>
-      </div>
-    </div>
-  </section>
-
-  <section class="trust">
-    <div class="wrap">
-      <span><b>🤍</b> Hecho a mano</span>
-      <span><b>🎁</b> Personalizado</span>
-      <span><b>🚚</b> Envíos en Bogotá</span>
-      <span><b>⏱️</b> Entrega puntual</span>
-    </div>
-  </section>
-
-  <section class="pad">
-    <div class="wrap">
-      <div class="sec-head reveal">
-        <span class="eyebrow">Las más queridas</span>
-        <h2>Nuestras velas destacadas</h2>
-        <div class="rule"></div>
-      </div>
-      <div class="grid feat" id="featured"></div>
-      <div style="text-align:center;margin-top:44px" class="reveal"><a class="btn btn-primary" data-go="colecciones">Ver todas las colecciones</a></div>
-    </div>
-  </section>
-
-  <section class="pad" style="padding-top:0">
-    <div class="wrap">
-      <div class="video">
-        <div class="video-grid">
-          <div class="reveal">
-            <span class="eyebrow">En movimiento</span>
-            <h2>Míralas <em>cobrar vida</em></h2>
-            <p>Nuestras velas tipo acuario son pequeñas obras: gel cristalino con figuras que parecen flotar, como un pedacito de océano en calma dentro de tu hogar.</p>
-            <a class="btn btn-champ" data-go="contacto">Quiero la mía</a>
-          </div>
-          <div class="phone reveal"><video src="assets/acuario-video.mp4" autoplay muted loop playsinline></video></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="pad" style="padding-top:0">
-    <div class="wrap">
-      <div class="sec-head reveal"><span class="eyebrow">Así de fácil</span><h2>Cómo pedir tu detalle</h2><div class="rule"></div></div>
-      <div class="pasos">
-        <div class="paso reveal"><div class="num">01</div><h4>Elige tu vela</h4><p>Explora las colecciones y enamórate de una (o varias).</p></div>
-        <div class="paso reveal"><div class="num">02</div><h4>Escríbenos</h4><p>Cuéntanos por WhatsApp para quién es y personalizamos el detalle.</p></div>
-        <div class="paso reveal"><div class="num">03</div><h4>Recíbela</h4><p>La llevamos a tu puerta en Bogotá, lista para regalar. 🎁</p></div>
-      </div>
-    </div>
-  </section>
-
-  <section class="pad" style="padding-top:0">
-    <div class="wrap">
-      <div class="sec-head reveal">
-        <span class="eyebrow">Lo que dicen</span>
-        <h2>Clientes felices</h2>
-        <p style="font-size:.82rem;color:var(--ink-faint)">✎ Ejemplos — reemplázalos por testimonios reales de tus clientes.</p>
-        <div class="rule"></div>
-      </div>
-      <div class="testi">
-        <div class="tcard reveal"><div class="stars">★★★★★</div><p>“Pedí una vela para el cumpleaños de mi mamá y quedó encantada. El detalle y el aroma, hermosos.”</p><div class="who">— María C.</div></div>
-        <div class="tcard reveal"><div class="stars">★★★★★</div><p>“El empaque y la tarjeta hicieron el regalo perfecto. Además llegó puntual. Volveré a pedir.”</p><div class="who">— Andrés G.</div></div>
-        <div class="tcard reveal"><div class="stars">★★★★★</div><p>“Las velas acuario parecen una obra de arte. Todas me preguntaron dónde las compré.”</p><div class="who">— Camila R.</div></div>
-      </div>
-    </div>
-  </section>
-</main>
-
-<!-- ============ COLECCIONES ============ -->
-<main class="view" id="v-colecciones">
-  <section class="pad" style="padding-top:140px">
-    <div class="wrap">
-      <div class="sec-head reveal"><span class="eyebrow">Nuestras velas</span><h2>Colecciones que enamoran</h2><p>Aromas, texturas y diseños hechos a mano. Cada vela lista para regalar.</p><div class="rule"></div></div>
-      <div class="filters" id="filters"></div>
-      <div class="grid" id="grid"></div>
-    </div>
-  </section>
-</main>
-
-<!-- ============ NOSOTROS ============ -->
-<main class="view" id="v-nosotros">
-  <section class="pad" style="padding-top:140px">
-    <div class="wrap">
-      <div class="sec-head reveal"><span class="eyebrow">¿Qué es Nayo?</span><h2>Detalles con alma</h2><div class="rule"></div></div>
-      <div class="nos-grid" style="margin-bottom:80px">
-        <div class="reveal"><blockquote>“Lo común se compra. Un detalle se recuerda.”</blockquote></div>
-        <div class="reveal">
-          <p>Nayo nace en Bogotá con una idea sencilla y poderosa: convertir un regalo en un recuerdo. En un mercado lleno de lo mismo de siempre, apostamos por lo <strong>hecho a mano</strong> y lo <strong>personal</strong>.</p>
-          <p>Diseñamos velas aromáticas de autor —en vaso, en molde y las llamativas velas tipo acuario— cuidando cada pieza, cada aroma y cada empaque como si el detalle fuera para alguien nuestro.</p>
-        </div>
-      </div>
-      <div class="vals">
-        <div class="val reveal"><div class="ic">🤍</div><h4>Hecho a mano</h4><p>Cada vela se arma a mano. Ningún detalle se siente genérico.</p></div>
-        <div class="val reveal"><div class="ic">✿</div><h4>Personalizado</h4><p>Colores, aromas y mensajes que se adaptan a la ocasión.</p></div>
-        <div class="val reveal"><div class="ic">🕯️</div><h4>Con cariño</h4><p>Belleza en el detalle: desde la vela hasta la tarjeta.</p></div>
-        <div class="val reveal"><div class="ic">✦</div><h4>Puntual</h4><p>Un regalo llega tarde una sola vez. Cumplimos la fecha.</p></div>
-      </div>
-    </div>
-  </section>
-</main>
-
-<!-- ============ CONTACTO ============ -->
-<main class="view" id="v-contacto">
-  <section class="pad" style="padding-top:140px">
-    <div class="wrap">
-      <div class="cta-band">
-        <div class="contact-grid">
-          <div class="contact-info reveal">
-            <span class="eyebrow" style="color:var(--champ)">Haz tu pedido</span>
-            <h2>Regala algo<br>que no se olvida</h2>
-            <p>Cuéntanos para quién es y te ayudamos a crear el detalle perfecto. Envíos en toda Bogotá.</p>
-            <div class="line"><b>WHATSAPP</b> 305 235 2324</div>
-            <div class="line"><b>WHATSAPP</b> 318 860 0666</div>
-            <div class="line"><b>BOGOTÁ</b> Envíos a domicilio</div>
-          </div>
-          <form class="form reveal" id="form">
-            <label>Tu nombre</label>
-            <input id="f-nombre" type="text" placeholder="¿Cómo te llamas?" required>
-            <label>Tu WhatsApp</label>
-            <input id="f-tel" type="tel" placeholder="Ej. 300 123 4567">
-            <label>¿Qué vela te interesa?</label>
-            <select id="f-prod"></select>
-            <label>Mensaje</label>
-            <textarea id="f-msg" placeholder="Cuéntanos para quién es, la ocasión, el aroma… 🤍"></textarea>
-            <button class="btn" type="submit">Enviar por WhatsApp</button>
-            <div class="note">Al enviar se abre WhatsApp con tu mensaje listo. También puedes escribirnos directo.</div>
-          </form>
-        </div>
-      </div>
-    </div>
-  </section>
-</main>
-
-<footer>
-  <div class="wrap">
-    <div class="fmark">Nayo<small>Arte &amp; Detalles</small></div>
-    <div class="flinks">
-      <a data-go="colecciones">Colecciones</a>
-      <a data-go="nosotros">Nosotros</a>
-      <a data-go="contacto">Contacto</a>
-    </div>
-    <div class="cop">Detalles hechos a mano que se recuerdan · Velas · Resina · Globos · Anchetas · Bogotá 2026</div>
+<header id="hd"><nav>
+  <div class="logo" data-go="home">Nayo<small>Arte &amp; Detalles</small></div>
+  <div class="navlinks" id="menu">
+    <a data-go="colecciones">Colecciones</a>
+    <a data-go="nosotros">Nosotros</a>
+    <a data-go="contacto">Contacto</a>
+    <a class="btn btn-primary" data-go="colecciones">Comprar</a>
   </div>
-</footer>
+  <div class="navright">
+    <button class="cart-btn" id="cartBtn" aria-label="Carrito">
+      <svg viewBox="0 0 24 24"><circle cx="9" cy="20" r="1.4"/><circle cx="18" cy="20" r="1.4"/><path d="M2 3h3l2.4 12.4a1.6 1.6 0 001.6 1.3h8.6a1.6 1.6 0 001.6-1.2L21 7H6"/></svg>
+      <span class="cart-badge" id="cartBadge">0</span>
+    </button>
+    <button class="burger" id="burger" aria-label="Menú"><span></span><span></span><span></span></button>
+  </div>
+</nav></header>
 
-<script type="application/ld+json">
-{"@context":"https://schema.org","@type":"Store","name":"Nayo · Arte & Detalles","description":"Velas aromáticas artesanales hechas a mano en Bogotá. Detalles que se recuerdan.","url":"https://nayoarteydetalles.netlify.app/","image":"https://nayoarteydetalles.netlify.app/assets/og.jpg","telephone":"+573052352324","areaServed":"Bogotá, Colombia","address":{"@type":"PostalAddress","addressLocality":"Bogotá","addressCountry":"CO"}}
-</script>
+<!-- HOME -->
+<main class="view active" id="v-home">
+  <section class="hero"><div class="wrap hero-grid">
+    <div>
+      <span class="eyebrow reveal">Velas aromáticas artesanales · Bogotá</span>
+      <h1 class="reveal">Detalles que se <em>recuerdan.</em></h1>
+      <p class="lead reveal">Velas hechas a mano, pensadas para un momento: un regalo, un “gracias”, un “estoy pensando en ti”. No vendemos objetos, entregamos la emoción de sorprender.</p>
+      <div class="hero-cta reveal"><a class="btn btn-primary" data-go="colecciones">Ver colecciones</a><a class="btn btn-ghost" data-go="contacto">Escríbenos</a></div>
+    </div>
+    <div class="hero-visual reveal"><div class="glow"></div><div class="hero-stage" id="stage"></div><div class="dots" id="dots"></div></div>
+  </div></section>
 
-<a class="fab" id="fab" href="https://wa.me/573052352324?text=Hola%20Nayo%2C%20quiero%20hacer%20un%20pedido" target="_blank" aria-label="WhatsApp">
+  <section class="trust"><div class="wrap">
+    <span><b>🤍</b> Hecho a mano</span><span><b>🎁</b> Personalizado</span><span><b>🚚</b> Envíos en Bogotá</span><span><b>⏱️</b> Entrega puntual</span>
+  </div></section>
+
+  <section class="pad"><div class="wrap">
+    <div class="sec-head reveal"><span class="eyebrow">Las más queridas</span><h2>Nuestras velas destacadas</h2><div class="rule"></div></div>
+    <div class="grid" id="featured"></div>
+    <div style="text-align:center;margin-top:44px" class="reveal"><a class="btn btn-primary" data-go="colecciones">Ver todas las colecciones</a></div>
+  </div></section>
+
+  <section class="pad" style="padding-top:0"><div class="wrap">
+    <div class="sec-head reveal"><span class="eyebrow">Para cada momento</span><h2>Regala por ocasión</h2><p>¿No sabes cuál elegir? Cuéntanos la ocasión y te ayudamos.</p><div class="rule"></div></div>
+    <div class="occ" id="occ"></div>
+  </div></section>
+
+  <section class="pad" style="padding-top:0"><div class="wrap"><div class="video"><div class="video-grid">
+    <div class="reveal"><span class="eyebrow">En movimiento</span><h2>Míralas <em>cobrar vida</em></h2><p>Nuestras velas tipo acuario son pequeñas obras: gel cristalino con figuras que parecen flotar, como un pedacito de océano en calma.</p><a class="btn btn-champ" data-go="colecciones">Ver la colección Acuario</a></div>
+    <div class="phone reveal"><video src="assets/acuario-video.mp4" autoplay muted loop playsinline></video></div>
+  </div></div></div></section>
+
+  <section class="pad" style="padding-top:0"><div class="wrap">
+    <div class="sec-head reveal"><span class="eyebrow">Así de fácil</span><h2>Cómo pedir tu detalle</h2><div class="rule"></div></div>
+    <div class="pasos">
+      <div class="paso reveal"><div class="num">01</div><h4>Elige tu vela</h4><p>Agrega al carrito las que te enamoren.</p></div>
+      <div class="paso reveal"><div class="num">02</div><h4>Envía el pedido</h4><p>Con un toque se arma tu pedido y se abre WhatsApp.</p></div>
+      <div class="paso reveal"><div class="num">03</div><h4>Recíbela</h4><p>Coordinamos pago y envío en Bogotá. 🎁</p></div>
+    </div>
+  </div></section>
+
+  <section class="pad" style="padding-top:0"><div class="wrap">
+    <div class="sec-head reveal"><span class="eyebrow">Sin complicaciones</span><h2>Pagos &amp; envíos</h2><p style="font-size:.82rem;color:var(--ink-faint)">✎ Ajusta estos datos a tu operación real.</p><div class="rule"></div></div>
+    <div class="info3">
+      <div class="icard reveal"><div class="ii">💳</div><h4>Pago fácil</h4><p>Contraentrega, transferencia, Nequi o Daviplata. Confirmamos al hacer el pedido.</p></div>
+      <div class="icard reveal"><div class="ii">🚚</div><h4>Envíos en Bogotá</h4><p>Entrega a domicilio en 2–3 días. El costo depende de la zona.</p></div>
+      <div class="icard reveal"><div class="ii">🎁</div><h4>Personalizado</h4><p>Elige colores, aroma, mensaje y empaque. Ideal para regalar.</p></div>
+    </div>
+  </div></section>
+
+  <section class="pad" style="padding-top:0"><div class="wrap">
+    <div class="sec-head reveal"><span class="eyebrow">Lo que dicen</span><h2>Clientes felices</h2><p style="font-size:.82rem;color:var(--ink-faint)">✎ Ejemplos — reemplázalos por testimonios reales de tus clientes.</p><div class="rule"></div></div>
+    <div class="testi">
+      <div class="tcard reveal"><div class="stars">★★★★★</div><p>“Pedí una vela para el cumpleaños de mi mamá y quedó encantada. El detalle y el aroma, hermosos.”</p><div class="who">— María C.</div></div>
+      <div class="tcard reveal"><div class="stars">★★★★★</div><p>“El empaque y la tarjeta hicieron el regalo perfecto. Además llegó puntual. Volveré a pedir.”</p><div class="who">— Andrés G.</div></div>
+      <div class="tcard reveal"><div class="stars">★★★★★</div><p>“Las velas acuario parecen una obra de arte. Todas me preguntaron dónde las compré.”</p><div class="who">— Camila R.</div></div>
+    </div>
+  </div></section>
+
+  <section class="pad" style="padding-top:0"><div class="wrap">
+    <div class="sec-head reveal"><span class="eyebrow">No solo velas</span><h2>También hacemos</h2><p>Detalles para cada sorpresa. Escríbenos y lo armamos a tu gusto.</p><div class="rule"></div></div>
+    <div class="porto reveal">
+      <a href="https://wa.me/573052352324?text=Hola%20Nayo%2C%20me%20interesan%20las%20velas%20arom%C3%A1ticas" target="_blank">🕯️ Velas aromáticas</a>
+      <a href="https://wa.me/573052352324?text=Hola%20Nayo%2C%20me%20interesa%20resina%20(esferos%2Fllaveros)" target="_blank">✨ Resina (esferos, llaveros)</a>
+      <a href="https://wa.me/573052352324?text=Hola%20Nayo%2C%20me%20interesa%20decoraci%C3%B3n%20con%20globos" target="_blank">🎈 Decoración con globos</a>
+      <a href="https://wa.me/573052352324?text=Hola%20Nayo%2C%20me%20interesan%20anchetas%20y%20desayunos" target="_blank">🎁 Anchetas &amp; desayunos</a>
+    </div>
+  </div></section>
+</main>
+
+<!-- COLECCIONES -->
+<main class="view" id="v-colecciones"><section class="pad" style="padding-top:140px"><div class="wrap">
+  <div class="sec-head reveal"><span class="eyebrow">Nuestras velas</span><h2>Colecciones que enamoran</h2><p>Aromas, texturas y diseños hechos a mano. Cada vela lista para regalar.</p><div class="rule"></div>
+    <div style="margin-top:22px"><a class="btn btn-ghost" href="assets/Catalogo-Nayo.pdf" download>⬇ Descargar catálogo (PDF)</a></div>
+  </div>
+  <div class="filters" id="filters"></div>
+  <div class="grid" id="grid"></div>
+</div></section></main>
+
+<!-- NOSOTROS -->
+<main class="view" id="v-nosotros"><section class="pad" style="padding-top:140px"><div class="wrap">
+  <div class="sec-head reveal"><span class="eyebrow">¿Qué es Nayo?</span><h2>Detalles con alma</h2><div class="rule"></div></div>
+  <div class="nos-grid" style="margin-bottom:80px">
+    <div class="reveal"><blockquote>“Lo común se compra. Un detalle se recuerda.”</blockquote></div>
+    <div class="reveal"><p>Nayo nace en Bogotá con una idea sencilla y poderosa: convertir un regalo en un recuerdo. En un mercado lleno de lo mismo de siempre, apostamos por lo <strong>hecho a mano</strong> y lo <strong>personal</strong>.</p><p>Diseñamos velas aromáticas de autor —en vaso, en molde y las llamativas velas tipo acuario— cuidando cada pieza, cada aroma y cada empaque como si el detalle fuera para alguien nuestro.</p></div>
+  </div>
+  <div class="vals">
+    <div class="val reveal"><div class="ic">🤍</div><h4>Hecho a mano</h4><p>Cada vela se arma a mano. Ningún detalle se siente genérico.</p></div>
+    <div class="val reveal"><div class="ic">✿</div><h4>Personalizado</h4><p>Colores, aromas y mensajes que se adaptan a la ocasión.</p></div>
+    <div class="val reveal"><div class="ic">🕯️</div><h4>Con cariño</h4><p>Belleza en el detalle: desde la vela hasta la tarjeta.</p></div>
+    <div class="val reveal"><div class="ic">✦</div><h4>Puntual</h4><p>Un regalo llega tarde una sola vez. Cumplimos la fecha.</p></div>
+  </div>
+</div></section></main>
+
+<!-- CONTACTO -->
+<main class="view" id="v-contacto"><section class="pad" style="padding-top:140px"><div class="wrap">
+  <div class="cta-band"><div class="contact-grid">
+    <div class="contact-info reveal">
+      <span class="eyebrow" style="color:var(--champ)">Haz tu pedido</span>
+      <h2>Regala algo<br>que no se olvida</h2>
+      <p>Cuéntanos para quién es y te ayudamos a crear el detalle perfecto. Envíos en toda Bogotá.</p>
+      <div class="line"><b>WHATSAPP</b> 305 235 2324</div>
+      <div class="line"><b>WHATSAPP</b> 318 860 0666</div>
+      <div class="line"><b>BOGOTÁ</b> Envíos a domicilio</div>
+    </div>
+    <form class="form reveal" id="form">
+      <label>Tu nombre</label><input id="f-nombre" type="text" placeholder="¿Cómo te llamas?" required>
+      <label>Tu WhatsApp</label><input id="f-tel" type="tel" placeholder="Ej. 300 123 4567">
+      <label>¿Qué vela te interesa?</label><select id="f-prod"></select>
+      <label>Mensaje</label><textarea id="f-msg" placeholder="Cuéntanos para quién es, la ocasión, el aroma… 🤍"></textarea>
+      <button class="btn" type="submit">Enviar por WhatsApp</button>
+      <div class="note">Al enviar se abre WhatsApp con tu mensaje listo.</div>
+    </form>
+  </div></div>
+
+  <div style="margin-top:80px">
+    <div class="sec-head reveal"><span class="eyebrow">Dudas frecuentes</span><h2>Preguntas frecuentes</h2><div class="rule"></div></div>
+    <div class="faq reveal">
+      <details><summary>¿Cómo puedo pagar?</summary><p>Aceptamos contraentrega, transferencia bancaria y Nequi / Daviplata. Al confirmar tu pedido por WhatsApp te indicamos los datos. <em>(Ajusta según tu operación.)</em></p></details>
+      <details><summary>¿Hacen envíos?</summary><p>Sí, hacemos envíos a domicilio en toda Bogotá. El tiempo de entrega es de 2 a 3 días y el costo depende de la zona.</p></details>
+      <details><summary>¿Puedo personalizar la vela?</summary><p>¡Claro! Personalizamos colores, aroma, mensaje y empaque para que el detalle sea único.</p></details>
+      <details><summary>¿Puedo pedir para eventos o por cantidad?</summary><p>Sí. Hacemos recordatorios y pedidos al por mayor para cumpleaños, baby showers, grados y eventos empresariales. Escríbenos y cotizamos.</p></details>
+      <details><summary>¿Cómo cuido mi vela?</summary><p>En el primer encendido déjala 1–2 horas para que la cera funda parejo, recorta el pabilo antes de cada uso y nunca la dejes encendida sin supervisión.</p></details>
+    </div>
+  </div>
+</div></section></main>
+
+<footer><div class="wrap">
+  <div class="fmark">Nayo<small>Arte &amp; Detalles</small></div>
+  <div class="flinks"><a data-go="colecciones">Colecciones</a><a data-go="nosotros">Nosotros</a><a data-go="contacto">Contacto</a></div>
+  <div class="cop">Detalles hechos a mano que se recuerdan · Velas · Resina · Globos · Anchetas · Bogotá 2026</div>
+</div></footer>
+
+<div class="overlay" id="overlay"></div>
+<aside class="cart" id="cart" aria-label="Carrito">
+  <div class="cart-head"><h3>Tu pedido</h3><button class="cart-close" id="cartClose" aria-label="Cerrar">×</button></div>
+  <div class="cart-body" id="cartBody"></div>
+  <div class="cart-foot">
+    <div class="cart-total"><span>Total</span><span class="t" id="cartTotal">$ 0</span></div>
+    <button class="btn" id="checkout">Enviar pedido por WhatsApp</button>
+    <div class="note">Sin pago en línea: coordinamos pago y envío por WhatsApp. 🤍</div>
+  </div>
+</aside>
+
+<a class="fab" href="https://wa.me/573052352324?text=Hola%20Nayo%2C%20quiero%20hacer%20un%20pedido" target="_blank" aria-label="WhatsApp">
   <svg viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163a11.867 11.867 0 01-1.587-5.945C.16 5.335 5.495 0 12.05 0a11.817 11.817 0 018.413 3.488 11.824 11.824 0 013.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 01-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884a9.86 9.86 0 001.51 5.26l-.999 3.648 3.978-1.315zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
 </a>
+<div class="toast" id="toast"></div>
 
 <script>
+const WA='573052352324';
 const PRODUCTS=[
- {k:'acuario-rubi',n:'Acuario · Rubí',d:'El océano en tono rubí',p:'36.000',t:'Acuario',cat:'acuario',a:'Frutos rojos'},
- {k:'acuario-conchas',n:'Acuario · Conchas',d:'Un pedacito de océano en casa',p:'36.000',t:'Acuario',cat:'acuario',a:'Brisa marina'},
- {k:'acuario-piedritas',n:'Acuario · Piedritas',d:'Tesoros del fondo del mar',p:'36.000',t:'Acuario',cat:'acuario',a:'Océano fresco'},
- {k:'dulce-antojo',n:'Dulce Antojo',d:'Un capricho dulce para consentirte',p:'30.000',t:'Dulces',cat:'dulces',a:'Vainilla dulce'},
- {k:'dulce-encanto',n:'Dulce Encanto',d:'Flores que perfuman y enamoran',p:'30.000',t:'Dulces',cat:'dulces',a:'Floral suave'},
- {k:'frambuesa',n:'Frambuesa Silvestre',d:'El dulce aroma de la frambuesa',p:'17.000',t:'Dulces',cat:'dulces',a:'Frambuesa'},
- {k:'jardin-secreto',n:'Jardín Secreto',d:'Un jardín que perfuma tus momentos',p:'38.000',t:'Jardín',cat:'jardin',a:'Jardín floral'},
- {k:'petit-jardin',n:'Petit Jardin',d:'Un pequeño jardín para regalar',p:'50.000',t:'Jardín',cat:'jardin',a:'Flores frescas'},
- {k:'ramo-rosas',n:'Ramo de Rosas',d:'Un ramo que nunca se marchita',p:'42.000',t:'Jardín',cat:'jardin',a:'Rosas'},
- {k:'cerveza',n:'Cerveza',d:'Un brindis que se enciende',p:'45.000',t:'Especial',cat:'especial',a:'Cítricos y cebada'},
+ {k:'acuario-rubi',n:'Acuario · Rubí',d:'El océano en tono rubí',p:36000,t:'Acuario',cat:'acuario',a:'Frutos rojos'},
+ {k:'acuario-conchas',n:'Acuario · Conchas',d:'Un pedacito de océano en casa',p:36000,t:'Acuario',cat:'acuario',a:'Brisa marina'},
+ {k:'acuario-piedritas',n:'Acuario · Piedritas',d:'Tesoros del fondo del mar',p:36000,t:'Acuario',cat:'acuario',a:'Océano fresco'},
+ {k:'dulce-antojo',n:'Dulce Antojo',d:'Un capricho dulce para consentirte',p:30000,t:'Dulces',cat:'dulces',a:'Vainilla dulce'},
+ {k:'dulce-encanto',n:'Dulce Encanto',d:'Flores que perfuman y enamoran',p:30000,t:'Dulces',cat:'dulces',a:'Floral suave'},
+ {k:'frambuesa',n:'Frambuesa Silvestre',d:'El dulce aroma de la frambuesa',p:17000,t:'Dulces',cat:'dulces',a:'Frambuesa'},
+ {k:'jardin-secreto',n:'Jardín Secreto',d:'Un jardín que perfuma tus momentos',p:38000,t:'Jardín',cat:'jardin',a:'Jardín floral'},
+ {k:'petit-jardin',n:'Petit Jardin',d:'Un pequeño jardín para regalar',p:50000,t:'Jardín',cat:'jardin',a:'Flores frescas'},
+ {k:'ramo-rosas',n:'Ramo de Rosas',d:'Un ramo que nunca se marchita',p:42000,t:'Jardín',cat:'jardin',a:'Rosas'},
+ {k:'cerveza',n:'Cerveza',d:'Un brindis que se enciende',p:45000,t:'Especial',cat:'especial',a:'Cítricos y cebada'},
 ];
-const wa=n=>`https://wa.me/573052352324?text=${encodeURIComponent('Hola Nayo 🤍 me interesa la vela '+n)}`;
-const cardHTML=p=>`<article class="card reveal" data-cat="${p.cat}"><span class="tag">${p.t}</span>
-  <div class="ph"><img src="assets/productos/${p.k}.png" alt="${p.n}" loading="lazy"></div>
-  <h3>${p.n}</h3><div class="desc">${p.d}</div><div class="aroma">🌸 ${p.a}</div>
-  <div class="row"><span class="price">$ ${p.p}</span><a class="pedir" href="${wa(p.n)}" target="_blank">Pedir</a></div></article>`;
+const P=k=>PRODUCTS.find(x=>x.k===k);
+const money=n=>'$ '+new Intl.NumberFormat('es-CO').format(n);
+const img=k=>`assets/productos/${k}.webp`;
 
-// featured (4) + full grid
-document.getElementById('featured').innerHTML=['acuario-rubi','dulce-antojo','petit-jardin','jardin-secreto'].map(k=>cardHTML(PRODUCTS.find(p=>p.k===k))).join('');
+// ----- render products -----
+const cardHTML=p=>`<article class="card reveal" data-cat="${p.cat}"><span class="tag">${p.t}</span>
+  <div class="ph"><img src="${img(p.k)}" alt="${p.n}" loading="lazy"></div>
+  <h3>${p.n}</h3><div class="desc">${p.d}</div><div class="aroma">🌸 ${p.a} · Personalizable</div>
+  <div class="row"><span class="price">${money(p.p)}</span><button class="add" data-add="${p.k}">+ Agregar</button></div></article>`;
+document.getElementById('featured').innerHTML=['acuario-rubi','dulce-antojo','petit-jardin','jardin-secreto'].map(k=>cardHTML(P(k))).join('');
 document.getElementById('grid').innerHTML=PRODUCTS.map(cardHTML).join('');
 
 // filters
@@ -412,26 +389,52 @@ const CATS=[['todas','Todas'],['acuario','Acuario'],['dulces','Dulces'],['jardin
 document.getElementById('filters').innerHTML=CATS.map((c,i)=>`<button data-f="${c[0]}" class="${i===0?'active':''}">${c[1]}</button>`).join('');
 document.querySelectorAll('#filters button').forEach(b=>b.onclick=()=>{
   document.querySelectorAll('#filters button').forEach(x=>x.classList.remove('active'));b.classList.add('active');
-  const f=b.dataset.f;
-  document.querySelectorAll('#grid .card').forEach(c=>{c.style.display=(f==='todas'||c.dataset.cat===f)?'':'none';});
+  const f=b.dataset.f;document.querySelectorAll('#grid .card').forEach(c=>c.style.display=(f==='todas'||c.dataset.cat===f)?'':'none');
 });
+// occasions
+const OCC=[['🎂','Cumpleaños'],['💞','Aniversario'],['🌻','Amor y Amistad'],['🤍','Solo porque sí'],['🏢','Empresarial']];
+document.getElementById('occ').innerHTML=OCC.map(o=>`<a class="ocard reveal" href="https://wa.me/${WA}?text=${encodeURIComponent('Hola Nayo 🤍 quiero un regalo para '+o[1])}" target="_blank"><div class="oi">${o[0]}</div><h4>${o[1]}</h4></a>`).join('');
+// form select
+document.getElementById('f-prod').innerHTML='<option value="">No estoy segura/o — ayúdenme a elegir</option>'+PRODUCTS.map(p=>`<option>${p.n} — ${money(p.p)}</option>`).join('');
 
-// select options
-document.getElementById('f-prod').innerHTML='<option value="">No estoy segura/o — ayúdenme a elegir</option>'+PRODUCTS.map(p=>`<option>${p.n} — $${p.p}</option>`).join('');
+// ----- CART -----
+let CART={};try{CART=JSON.parse(localStorage.getItem('nayo_cart'))||{}}catch(e){CART={}}
+const save=()=>localStorage.setItem('nayo_cart',JSON.stringify(CART));
+const cart=document.getElementById('cart'),overlay=document.getElementById('overlay');
+function openCart(){cart.classList.add('open');overlay.classList.add('open')}
+function closeCart(){cart.classList.remove('open');overlay.classList.remove('open')}
+document.getElementById('cartBtn').onclick=openCart;
+document.getElementById('cartClose').onclick=closeCart;overlay.onclick=closeCart;
+function addToCart(k){CART[k]=(CART[k]||0)+1;save();renderCart();toast(P(k).n+' agregada ✓')}
+function setQty(k,q){if(q<=0)delete CART[k];else CART[k]=q;save();renderCart()}
+document.body.addEventListener('click',e=>{const b=e.target.closest('[data-add]');if(b){addToCart(b.dataset.add)}});
+function renderCart(){
+  const keys=Object.keys(CART);const badge=document.getElementById('cartBadge');
+  const count=keys.reduce((s,k)=>s+CART[k],0);badge.textContent=count;badge.classList.toggle('show',count>0);
+  const body=document.getElementById('cartBody');
+  if(!keys.length){body.innerHTML='<div class="cart-empty">Tu carrito está vacío.<br>Agrega tus velas favoritas 🕯️</div>';document.getElementById('cartTotal').textContent=money(0);return}
+  let total=0;
+  body.innerHTML=keys.map(k=>{const p=P(k),q=CART[k];total+=p.p*q;return `<div class="citem"><img src="${img(k)}" alt=""><div class="ci-info"><div class="ci-name">${p.n}</div><div class="ci-price">${money(p.p)} c/u</div><div class="ci-qty"><button data-q="${k}|${q-1}">−</button><span>${q}</span><button data-q="${k}|${q+1}">+</button></div><button class="ci-rm" data-q="${k}|0">Quitar</button></div><div style="font-family:var(--serif);font-weight:600">${money(p.p*q)}</div></div>`}).join('');
+  document.getElementById('cartTotal').textContent=money(total);
+}
+document.getElementById('cartBody').addEventListener('click',e=>{const b=e.target.closest('[data-q]');if(b){const[k,q]=b.dataset.q.split('|');setQty(k,+q)}});
+document.getElementById('checkout').onclick=()=>{
+  const keys=Object.keys(CART);if(!keys.length){toast('Tu carrito está vacío');return}
+  let total=0,lines=keys.map(k=>{const p=P(k),q=CART[k];total+=p.p*q;return `• ${q}× ${p.n} — ${money(p.p*q)}`}).join('\n');
+  const msg=`Hola Nayo 🤍 quiero hacer este pedido:\n\n${lines}\n\nTotal: ${money(total)}\n\n¿Me confirmas disponibilidad y el envío? 🙏`;
+  window.open(`https://wa.me/${WA}?text=${encodeURIComponent(msg)}`,'_blank');
+};
+// toast
+let tT;function toast(m){const t=document.getElementById('toast');t.textContent=m;t.classList.add('show');clearTimeout(tT);tT=setTimeout(()=>t.classList.remove('show'),1900)}
 
-// ROUTER (tabs within same page)
+// ----- router -----
 function go(name){
   document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));
   document.getElementById('v-'+name).classList.add('active');
   document.querySelectorAll('.navlinks a').forEach(a=>a.classList.toggle('active',a.dataset.go===name));
-  history.replaceState(null,'',name==='home'?'#':'#'+name);
-  window.scrollTo({top:0,behavior:'instant'});
-  menu.classList.remove('open');
-  requestAnimationFrame(mark);
+  history.replaceState(null,'',name==='home'?'#':'#'+name);window.scrollTo(0,0);menu.classList.remove('open');requestAnimationFrame(mark);
 }
 document.querySelectorAll('[data-go]').forEach(el=>el.addEventListener('click',()=>go(el.dataset.go)));
-
-// nav bg + burger
 const hd=document.getElementById('hd'),menu=document.getElementById('menu');
 addEventListener('scroll',()=>hd.classList.toggle('scrolled',scrollY>40));
 document.getElementById('burger').onclick=()=>menu.classList.toggle('open');
@@ -439,31 +442,24 @@ document.getElementById('burger').onclick=()=>menu.classList.toggle('open');
 // hero rotator
 const HERO=['dulce-antojo','acuario-conchas','petit-jardin','jardin-secreto','ramo-rosas'];
 const stage=document.getElementById('stage'),dots=document.getElementById('dots');
-stage.innerHTML=HERO.map((k,i)=>`<img class="hero-img ${i===0?'show':''}" src="assets/productos/${k}.png" alt="">`).join('');
+stage.innerHTML=HERO.map((k,i)=>`<img class="hero-img ${i===0?'show':''}" src="${img(k)}" alt="">`).join('');
 dots.innerHTML=HERO.map((_,i)=>`<i class="${i===0?'on':''}" data-i="${i}"></i>`).join('');
 let hi=0;const imgs=[...stage.children],dts=[...dots.children];
-function setHero(i){imgs[hi].classList.remove('show');dts[hi].classList.remove('on');hi=i;imgs[hi].classList.add('show');dts[hi].classList.add('on');}
-let heroTimer=setInterval(()=>setHero((hi+1)%HERO.length),4500);
-dts.forEach(d=>d.onclick=()=>{clearInterval(heroTimer);setHero(+d.dataset.i);heroTimer=setInterval(()=>setHero((hi+1)%HERO.length),4500);});
+function setHero(i){imgs[hi].classList.remove('show');dts[hi].classList.remove('on');hi=i;imgs[hi].classList.add('show');dts[hi].classList.add('on')}
+let hT=setInterval(()=>setHero((hi+1)%HERO.length),4500);
+dts.forEach(d=>d.onclick=()=>{clearInterval(hT);setHero(+d.dataset.i);hT=setInterval(()=>setHero((hi+1)%HERO.length),4500)});
 
-// contact form -> WhatsApp
-document.getElementById('form').addEventListener('submit',e=>{
-  e.preventDefault();
+// form -> whatsapp
+document.getElementById('form').addEventListener('submit',e=>{e.preventDefault();
   const n=f_nombre.value.trim(),tel=f_tel.value.trim(),prod=f_prod.value,msg=f_msg.value.trim();
-  let t=`Hola Nayo 🤍 soy ${n||'—'}.`;
-  if(prod) t+=` Me interesa: ${prod}.`;
-  if(msg) t+=` ${msg}`;
-  if(tel) t+=` (Mi WhatsApp: ${tel})`;
-  window.open('https://wa.me/573052352324?text='+encodeURIComponent(t),'_blank');
+  let t=`Hola Nayo 🤍 soy ${n||'—'}.`;if(prod)t+=` Me interesa: ${prod}.`;if(msg)t+=` ${msg}`;if(tel)t+=` (Mi WhatsApp: ${tel})`;
+  window.open(`https://wa.me/${WA}?text=${encodeURIComponent(t)}`,'_blank');
 });
-
 // reveal
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12});
 function mark(){document.querySelectorAll('.view.active .reveal:not(.in)').forEach(el=>io.observe(el))}
-mark();
-// initial route from hash
-const h=location.hash.replace('#','');
-if(h && document.getElementById('v-'+h)) go(h);
+renderCart();mark();
+const h=location.hash.replace('#','');if(h&&document.getElementById('v-'+h))go(h);
 </script>
 </body>
 </html>
