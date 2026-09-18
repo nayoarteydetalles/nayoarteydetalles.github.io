@@ -191,6 +191,46 @@ nav{display:flex;align-items:center;justify-content:space-between;padding:18px 2
 .reccard:hover .recimg img{transform:scale(1.05)}
 .recname{font-family:var(--serif);font-weight:600;font-size:1.06rem;line-height:1.08}
 .recprice{color:var(--ink-soft);font-size:.92rem;margin-top:4px}
+/* BADGES */
+.card .badge{position:absolute;top:14px;right:14px;font-size:.57rem;letter-spacing:.1em;text-transform:uppercase;font-weight:600;color:#fff;background:var(--rosa);border-radius:100px;padding:5px 11px;z-index:2}
+.card .badge.new{background:var(--sage)}.card .badge.nav{background:var(--champ);color:var(--dark)}
+.pdp-badge{display:inline-block;font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;font-weight:600;color:#fff;background:var(--rosa);border-radius:100px;padding:6px 13px;margin-bottom:10px}
+.pdp-badge.new{background:var(--sage)}.pdp-badge.nav{background:var(--champ);color:var(--dark)}
+/* PERSONALIZACIÓN */
+.pz{border-top:1px solid var(--line);margin-top:6px;padding-top:22px}
+.pz h4{font-family:var(--sans);font-weight:600;font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink);margin-bottom:16px}
+.pz .lbl{font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:9px}
+.pz .opts{display:flex;flex-wrap:wrap;gap:9px;margin-bottom:18px}
+.chip{border:1.5px solid var(--line);background:var(--surface);border-radius:100px;padding:9px 15px;font-size:.83rem;color:var(--ink-soft);cursor:pointer;transition:.2s;display:inline-flex;align-items:center;gap:8px}
+.chip:hover{border-color:var(--rosa)}
+.chip.on{border-color:var(--ink);background:var(--ink);color:var(--bg)}
+.chip .sw{width:13px;height:13px;border-radius:50%;box-shadow:inset 0 0 0 1px rgba(0,0,0,.15)}
+.pz .ded{width:100%;font-family:var(--sans);font-size:.95rem;color:var(--ink);background:var(--surface2);border:1px solid var(--line);border-radius:12px;padding:13px 15px;font-weight:300}
+.pz .ded:focus{outline:none;border-color:var(--rosa);background:#fff}
+.citem .ci-note{font-size:.7rem;color:var(--champ);margin-top:4px;font-style:italic;line-height:1.3}
+/* QUIZ */
+.quiz{position:fixed;inset:0;z-index:85;display:none;align-items:center;justify-content:center;padding:20px;background:rgba(36,31,42,.55)}
+.quiz.open{display:flex}
+.quiz-card{background:var(--bg);border-radius:24px;max-width:520px;width:100%;padding:40px 36px;box-shadow:var(--shadow);position:relative;animation:viewin .4s cubic-bezier(.2,.7,.3,1)}
+.quiz-card .qclose{position:absolute;top:16px;right:20px;background:none;border:0;font-size:1.7rem;cursor:pointer;color:var(--ink-soft);line-height:1}
+.qprog{font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--champ);font-weight:600;margin-bottom:10px}
+.qq{font-family:var(--serif);font-weight:600;font-size:1.7rem;line-height:1.1}
+.qopts{display:grid;gap:10px;margin-top:22px}
+.qopt{border:1.5px solid var(--line);background:var(--surface);border-radius:14px;padding:15px 18px;text-align:left;cursor:pointer;font-size:1rem;color:var(--ink);transition:.2s;display:flex;align-items:center;gap:13px;font-family:var(--sans)}
+.qopt:hover{border-color:var(--rosa);background:var(--surface2);transform:translateX(4px)}
+.qopt .qi{font-size:1.3rem}
+.quiz-result{text-align:center}
+.quiz-result .rimg{height:180px;display:flex;align-items:center;justify-content:center;margin:8px 0}
+.quiz-result .rimg img{max-height:180px;object-fit:contain;filter:drop-shadow(0 16px 14px rgba(56,49,60,.24))}
+.quiz-result h3{font-family:var(--serif);font-weight:600;font-size:1.6rem;line-height:1.05}
+.quiz-result .rp{color:var(--ink-soft);font-size:.9rem;margin:5px 0 0}
+.quiz-result .rprice{font-family:var(--serif);font-weight:600;font-size:1.45rem;margin:8px 0 20px}
+.quiz-result .btns{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+/* MICRO-INTERACCIONES */
+@keyframes bump{0%{transform:scale(1)}40%{transform:scale(1.45)}100%{transform:scale(1)}}
+.cart-badge.bump{animation:bump .45s}
+.card .add:active,.btn:active{transform:scale(.95)}
+.hero-visual{transition:transform .25s ease-out;will-change:transform}
 /* CART */
 .overlay{position:fixed;inset:0;background:rgba(36,31,42,.5);opacity:0;visibility:hidden;transition:.3s;z-index:70}
 .overlay.open{opacity:1;visibility:visible}
@@ -259,7 +299,7 @@ footer .cop{font-size:.74rem;color:#7C7480;margin-top:10px}
       <span class="eyebrow reveal">Velas aromáticas artesanales · Bogotá</span>
       <h1 class="reveal">Detalles que se <em>recuerdan.</em></h1>
       <p class="lead reveal">Velas hechas a mano, pensadas para un momento: un regalo, un “gracias”, un “estoy pensando en ti”. No vendemos objetos, entregamos la emoción de sorprender.</p>
-      <div class="hero-cta reveal"><a class="btn btn-primary" data-go="colecciones">Ver colecciones</a><a class="btn btn-ghost" data-go="contacto">Escríbenos</a></div>
+      <div class="hero-cta reveal"><a class="btn btn-primary" data-go="colecciones">Ver colecciones</a><a class="btn btn-ghost" data-quiz>✨ Ayúdame a elegir</a></div>
     </div>
     <div class="hero-visual reveal"><div class="glow"></div><div class="hero-stage" id="stage"></div><div class="dots" id="dots"></div></div>
   </div></section>
@@ -275,7 +315,8 @@ footer .cop{font-size:.74rem;color:#7C7480;margin-top:10px}
   </div></section>
 
   <section class="pad" style="padding-top:0"><div class="wrap">
-    <div class="sec-head reveal"><span class="eyebrow">Para cada momento</span><h2>Regala por ocasión</h2><p>¿No sabes cuál elegir? Cuéntanos la ocasión y te ayudamos.</p><div class="rule"></div></div>
+    <div class="sec-head reveal"><span class="eyebrow">Para cada momento</span><h2>Regala por ocasión</h2><p>¿No sabes cuál elegir? Responde 3 preguntas y te recomendamos la vela perfecta.</p><div class="rule"></div>
+      <div style="margin-top:20px"><a class="btn btn-champ" data-quiz>✨ Ayúdame a elegir mi regalo</a></div></div>
     <div class="occ" id="occ"></div>
   </div></section>
 
@@ -415,6 +456,10 @@ footer .cop{font-size:.74rem;color:#7C7480;margin-top:10px}
 <a class="fab" href="https://wa.me/573052352324?text=Hola%20Nayo%2C%20quiero%20hacer%20un%20pedido" target="_blank" aria-label="WhatsApp">
   <svg viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163a11.867 11.867 0 01-1.587-5.945C.16 5.335 5.495 0 12.05 0a11.817 11.817 0 018.413 3.488 11.824 11.824 0 013.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 01-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884a9.86 9.86 0 001.51 5.26l-.999 3.648 3.978-1.315zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
 </a>
+<div class="quiz" id="quiz"><div class="quiz-card">
+  <button class="qclose" id="quizClose" aria-label="Cerrar">×</button>
+  <div id="quizBody"></div>
+</div></div>
 <div class="toast" id="toast"></div>
 
 <script>
@@ -435,12 +480,33 @@ const P=k=>PRODUCTS.find(x=>x.k===k);
 const money=n=>'$ '+new Intl.NumberFormat('es-CO').format(n);
 const img=k=>`assets/productos/${k}.webp`;
 const waLink=t=>`https://wa.me/${WA}?text=${encodeURIComponent(t)}`;
+const BADGES={'acuario-rubi':['Más vendida',''],'petit-jardin':['Nueva','new'],'ramo-rosas':['Edición Navidad','nav']};
+const COLORS=[['A elección',''],['Rosa arcilla','#B98E86'],['Verde sage','#9DAEA4'],['Malva','#A991A6'],['Champán','#BFA06B'],['Blanco','#F3EFE9']];
+const AROMAS=['Vainilla','Frutos rojos','Floral','Cítricos','Lavanda','Coco','Canela'];
+let NOTES={};try{NOTES=JSON.parse(localStorage.getItem('nayo_notes'))||{}}catch(e){NOTES={}}
+const saveNotes=()=>localStorage.setItem('nayo_notes',JSON.stringify(NOTES));
+function noteStr(k){const n=NOTES[k];if(!n)return'';const p=[];if(n.color)p.push(n.color);if(n.aroma)p.push('aroma '+n.aroma);if(n.msg)p.push('“'+n.msg+'”');return p.join(' · ')}
+function bumpBadge(){const b=document.getElementById('cartBadge');b.classList.remove('bump');void b.offsetWidth;b.classList.add('bump')}
+let PSEL={color:'A elección',aroma:'',msg:''};
 
 // ----- PRODUCT DETAIL -----
 let PQTY=1;
 function setPQ(n){PQTY=Math.max(1,n);const el=document.getElementById('pqv');if(el)el.textContent=PQTY}
 function openProduct(k){
   const p=P(k);if(!p)return;PQTY=1;
+  const cur=NOTES[p.k]||{};
+  PSEL={color:cur.color||'A elección',aroma:cur.aroma||p.a,msg:cur.msg||''};
+  const colorChips=COLORS.map(c=>`<button class="chip ${PSEL.color===c[0]?'on':''}" data-czc="${c[0]}">${c[1]?`<span class="sw" style="background:${c[1]}"></span>`:''}${c[0]}</button>`).join('');
+  const aromaList=[p.a,...AROMAS.filter(a=>a.toLowerCase()!==p.a.toLowerCase())];
+  const aromaChips=aromaList.map(a=>`<button class="chip ${PSEL.aroma===a?'on':''}" data-cza="${a}">${a}</button>`).join('');
+  const pzHTML=`<div class="pz">
+    <h4>🎨 Personaliza tu vela</h4>
+    <div class="lbl">Color</div><div class="opts" id="pz-color">${colorChips}</div>
+    <div class="lbl">Aroma</div><div class="opts" id="pz-aroma">${aromaChips}</div>
+    <div class="lbl">Dedicatoria (opcional)</div>
+    <input class="ded" id="pz-msg" maxlength="80" placeholder="Ej. Feliz cumpleaños, mamá 🤍" value="${(PSEL.msg||'').replace(/"/g,'&quot;')}">
+  </div>`;
+  const badge=BADGES[p.k]?`<span class="pdp-badge ${BADGES[p.k][1]}">${BADGES[p.k][0]}</span>`:'';
   const feats=[
     ['Aroma','🌸 '+p.a+' — <em>personalizable a tu gusto</em>'],
     ['Hecha a mano','Cada pieza se elabora artesanalmente en Bogotá 🤍'],
@@ -451,6 +517,7 @@ function openProduct(k){
   document.getElementById('pdp').innerHTML=`
     <div class="pdp-media reveal"><span class="mtag">${p.t}</span><img src="${img(p.k)}" alt="${p.n}"></div>
     <div class="pdp-info reveal">
+      ${badge?badge+'<br>':''}
       <div class="cat">Colección ${p.t}</div>
       <h1>${p.n}</h1>
       <div class="sub">${p.d}</div>
@@ -462,7 +529,8 @@ function openProduct(k){
         <div class="qty"><button data-pq="dec" aria-label="Menos">−</button><span id="pqv">1</span><button data-pq="inc" aria-label="Más">+</button></div>
         <button class="btn btn-primary" data-addq="${p.k}">Agregar al carrito</button>
       </div>
-      <div class="pdp-wa">💬 ¿Dudas o quieres personalizarla? <a href="${waLink('Hola Nayo 🤍 quiero más info sobre la vela '+p.n)}" target="_blank">Escríbenos por WhatsApp</a></div>
+      ${pzHTML}
+      <div class="pdp-wa">💬 ¿Dudas o quieres personalizarla aún más? <a href="${waLink('Hola Nayo 🤍 quiero más info sobre la vela '+p.n)}" target="_blank">Escríbenos por WhatsApp</a></div>
       <ul class="pdp-feats">${feats.map(f=>`<li><b>${f[0]}</b><span>${f[1]}</span></li>`).join('')}</ul>
     </div>`;
   let recs=PRODUCTS.filter(x=>x.cat===p.cat&&x.k!==k);
@@ -473,7 +541,7 @@ function openProduct(k){
 }
 
 // ----- render products -----
-const cardHTML=p=>`<article class="card reveal" data-cat="${p.cat}" data-openp="${p.k}"><span class="tag">${p.t}</span>
+const cardHTML=p=>`<article class="card reveal" data-cat="${p.cat}" data-openp="${p.k}"><span class="tag">${p.t}</span>${BADGES[p.k]?`<span class="badge ${BADGES[p.k][1]}">${BADGES[p.k][0]}</span>`:''}
   <div class="ph"><img src="${img(p.k)}" alt="${p.n}" loading="lazy"></div>
   <h3>${p.n}</h3><div class="desc">${p.d}</div><div class="aroma">🌸 ${p.a} · Personalizable</div>
   <div class="row"><span class="price">${money(p.p)}</span><button class="add" data-add="${p.k}">+ Agregar</button></div></article>`;
@@ -502,11 +570,21 @@ function closeCart(){cart.classList.remove('open');overlay.classList.remove('ope
 document.getElementById('cartBtn').onclick=openCart;
 document.getElementById('cartClose').onclick=closeCart;overlay.onclick=closeCart;
 function addToCart(k){CART[k]=(CART[k]||0)+1;save();renderCart();toast(P(k).n+' agregada ✓')}
-function setQty(k,q){if(q<=0)delete CART[k];else CART[k]=q;save();renderCart()}
+function setQty(k,q){if(q<=0){delete CART[k];delete NOTES[k];saveNotes()}else CART[k]=q;save();renderCart()}
 document.body.addEventListener('click',e=>{
-  const add=e.target.closest('[data-add]');if(add){e.stopPropagation();addToCart(add.dataset.add);return}
+  const add=e.target.closest('[data-add]');if(add){e.stopPropagation();addToCart(add.dataset.add);bumpBadge();return}
+  const czc=e.target.closest('[data-czc]');if(czc){PSEL.color=czc.dataset.czc;czc.parentElement.querySelectorAll('.chip').forEach(x=>x.classList.remove('on'));czc.classList.add('on');return}
+  const cza=e.target.closest('[data-cza]');if(cza){PSEL.aroma=cza.dataset.cza;cza.parentElement.querySelectorAll('.chip').forEach(x=>x.classList.remove('on'));cza.classList.add('on');return}
   const pq=e.target.closest('[data-pq]');if(pq){setPQ(pq.dataset.pq==='inc'?PQTY+1:PQTY-1);return}
-  const aq=e.target.closest('[data-addq]');if(aq){const k=aq.dataset.addq;CART[k]=(CART[k]||0)+PQTY;save();renderCart();toast(P(k).n+(PQTY>1?' × '+PQTY:'')+' agregada ✓');openCart();return}
+  const aq=e.target.closest('[data-addq]');if(aq){const k=aq.dataset.addq;
+    const mi=document.getElementById('pz-msg');if(mi)PSEL.msg=mi.value.trim();
+    const nt={};if(PSEL.color&&PSEL.color!=='A elección')nt.color=PSEL.color;if(PSEL.aroma)nt.aroma=PSEL.aroma;if(PSEL.msg)nt.msg=PSEL.msg;
+    if(Object.keys(nt).length)NOTES[k]=nt;else delete NOTES[k];saveNotes();
+    CART[k]=(CART[k]||0)+PQTY;save();renderCart();bumpBadge();toast(P(k).n+(PQTY>1?' × '+PQTY:'')+' agregada ✓');openCart();return}
+  const qz=e.target.closest('[data-quiz]');if(qz){openQuiz();return}
+  const qo=e.target.closest('[data-qo]');if(qo){answerQuiz(qo.dataset.qo);return}
+  const qv=e.target.closest('[data-qview]');if(qv){closeQuiz();openProduct(qv.dataset.qview);return}
+  const qa=e.target.closest('[data-qadd]');if(qa){addToCart(qa.dataset.qadd);bumpBadge();closeQuiz();openCart();return}
   const op=e.target.closest('[data-openp]');if(op){openProduct(op.dataset.openp)}
 });
 function renderCart(){
@@ -515,13 +593,13 @@ function renderCart(){
   const body=document.getElementById('cartBody');
   if(!keys.length){body.innerHTML='<div class="cart-empty">Tu carrito está vacío.<br>Agrega tus velas favoritas 🕯️</div>';document.getElementById('cartTotal').textContent=money(0);return}
   let total=0;
-  body.innerHTML=keys.map(k=>{const p=P(k),q=CART[k];total+=p.p*q;return `<div class="citem"><img src="${img(k)}" alt=""><div class="ci-info"><div class="ci-name">${p.n}</div><div class="ci-price">${money(p.p)} c/u</div><div class="ci-qty"><button data-q="${k}|${q-1}">−</button><span>${q}</span><button data-q="${k}|${q+1}">+</button></div><button class="ci-rm" data-q="${k}|0">Quitar</button></div><div style="font-family:var(--serif);font-weight:600">${money(p.p*q)}</div></div>`}).join('');
+  body.innerHTML=keys.map(k=>{const p=P(k),q=CART[k];total+=p.p*q;return `<div class="citem"><img src="${img(k)}" alt=""><div class="ci-info"><div class="ci-name">${p.n}</div><div class="ci-price">${money(p.p)} c/u</div>${noteStr(k)?`<div class="ci-note">✎ ${noteStr(k)}</div>`:''}<div class="ci-qty"><button data-q="${k}|${q-1}">−</button><span>${q}</span><button data-q="${k}|${q+1}">+</button></div><button class="ci-rm" data-q="${k}|0">Quitar</button></div><div style="font-family:var(--serif);font-weight:600">${money(p.p*q)}</div></div>`}).join('');
   document.getElementById('cartTotal').textContent=money(total);
 }
 document.getElementById('cartBody').addEventListener('click',e=>{const b=e.target.closest('[data-q]');if(b){const[k,q]=b.dataset.q.split('|');setQty(k,+q)}});
 document.getElementById('checkout').onclick=()=>{
   const keys=Object.keys(CART);if(!keys.length){toast('Tu carrito está vacío');return}
-  let total=0,lines=keys.map(k=>{const p=P(k),q=CART[k];total+=p.p*q;return `• ${q}× ${p.n} — ${money(p.p*q)}`}).join('\n');
+  let total=0,lines=keys.map(k=>{const p=P(k),q=CART[k];total+=p.p*q;const ns=noteStr(k);return `• ${q}× ${p.n} — ${money(p.p*q)}${ns?`\n   ↳ ${ns}`:''}`}).join('\n');
   const msg=`Hola Nayo 🤍 quiero hacer este pedido:\n\n${lines}\n\nTotal: ${money(total)}\n\n¿Me confirmas disponibilidad y el envío? 🙏`;
   window.open(`https://wa.me/${WA}?text=${encodeURIComponent(msg)}`,'_blank');
 };
@@ -559,6 +637,40 @@ document.getElementById('form').addEventListener('submit',e=>{e.preventDefault()
   let t=`Hola Nayo 🤍 soy ${n||'—'}.`;if(prod)t+=` Me interesa: ${prod}.`;if(msg)t+=` ${msg}`;if(tel)t+=` (Mi WhatsApp: ${tel})`;
   window.open(`https://wa.me/${WA}?text=${encodeURIComponent(t)}`,'_blank');
 });
+// ----- QUIZ: Ayúdame a elegir -----
+const QUIZ_Q=[
+ {key:'occ',prog:'Paso 1 de 3',q:'¿Para qué ocasión es?',opts:[['🎂','Cumpleaños','cumple'],['💞','Aniversario / Amor','amor'],['🏢','Detalle empresarial','empresa'],['🤍','Solo porque sí','porque']]},
+ {key:'budget',prog:'Paso 2 de 3',q:'¿Cuál es tu presupuesto?',opts:[['💸','Hasta $20.000','low'],['💵','Entre $20.000 y $40.000','mid'],['✨','Más de $40.000','high']]},
+ {key:'aroma',prog:'Paso 3 de 3',q:'¿Qué aroma prefieres?',opts:[['🍰','Dulce','dulces'],['🌸','Floral','jardin'],['🌊','Fresco / marino','acuario'],['🍺','Algo especial','especial']]},
+];
+let QANS={},QI=0;const quizEl=document.getElementById('quiz');
+function openQuiz(){QANS={};QI=0;renderQuiz();quizEl.classList.add('open')}
+function closeQuiz(){quizEl.classList.remove('open')}
+function renderQuiz(){const s=QUIZ_Q[QI];document.getElementById('quizBody').innerHTML=`<div class="qprog">${s.prog}</div><div class="qq">${s.q}</div><div class="qopts">${s.opts.map(o=>`<button class="qopt" data-qo="${o[2]}"><span class="qi">${o[0]}</span> ${o[1]}</button>`).join('')}</div>`}
+function answerQuiz(v){QANS[QUIZ_Q[QI].key]=v;QI++;if(QI<QUIZ_Q.length)renderQuiz();else quizResult()}
+function quizResult(){
+  let pool=PRODUCTS.filter(p=>p.cat===QANS.aroma);if(!pool.length)pool=PRODUCTS.slice();
+  const inb=p=>QANS.budget==='low'?p.p<=20000:QANS.budget==='mid'?(p.p>20000&&p.p<=40000):p.p>40000;
+  let m=pool.filter(inb);if(!m.length)m=pool;
+  const p=m.sort((a,b)=>a.p-b.p)[QANS.budget==='high'?m.length-1:0];
+  document.getElementById('quizBody').innerHTML=`<div class="quiz-result">
+    <div class="qprog">Tu match ideal 🤍</div>
+    <div class="rimg"><img src="${img(p.k)}" alt="${p.n}"></div>
+    <h3>${p.n}</h3><div class="rp">🌸 ${p.a} · Colección ${p.t}</div><div class="rprice">${money(p.p)}</div>
+    <div class="btns"><button class="btn btn-ghost" data-qview="${p.k}">Ver detalle</button><button class="btn btn-primary" data-qadd="${p.k}">Agregar al carrito 🎁</button></div>
+  </div>`;
+}
+document.getElementById('quizClose').onclick=closeQuiz;
+quizEl.addEventListener('click',e=>{if(e.target===quizEl)closeQuiz()});
+addEventListener('keydown',e=>{if(e.key==='Escape')closeQuiz()});
+
+// hero parallax (micro-interacción, solo en escritorio con mouse)
+const heroSec=document.querySelector('.hero'),heroVis=document.querySelector('.hero-visual');
+if(heroSec&&heroVis&&matchMedia('(hover:hover)').matches){
+  heroSec.addEventListener('mousemove',e=>{const r=heroSec.getBoundingClientRect();const dx=(e.clientX-r.left)/r.width-.5,dy=(e.clientY-r.top)/r.height-.5;heroVis.style.transform=`translate(${dx*18}px,${dy*18}px)`});
+  heroSec.addEventListener('mouseleave',()=>heroVis.style.transform='');
+}
+
 // reveal
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12});
 function mark(){document.querySelectorAll('.view.active .reveal:not(.in)').forEach(el=>io.observe(el))}
