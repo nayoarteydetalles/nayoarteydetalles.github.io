@@ -197,16 +197,26 @@ nav{display:flex;align-items:center;justify-content:space-between;padding:18px 2
 .pdp-badge{display:inline-block;font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;font-weight:600;color:#fff;background:var(--rosa);border-radius:100px;padding:6px 13px;margin-bottom:10px}
 .pdp-badge.new{background:var(--sage)}.pdp-badge.nav{background:var(--champ);color:var(--dark)}
 /* PERSONALIZACIÓN */
-.pz{border-top:1px solid var(--line);margin-top:6px;padding-top:22px}
-.pz h4{font-family:var(--sans);font-weight:600;font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink);margin-bottom:16px}
-.pz .lbl{font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:9px}
-.pz .opts{display:flex;flex-wrap:wrap;gap:9px;margin-bottom:18px}
-.chip{border:1.5px solid var(--line);background:var(--surface);border-radius:100px;padding:9px 15px;font-size:.83rem;color:var(--ink-soft);cursor:pointer;transition:.2s;display:inline-flex;align-items:center;gap:8px}
-.chip:hover{border-color:var(--rosa)}
-.chip.on{border-color:var(--ink);background:var(--ink);color:var(--bg)}
-.chip .sw{width:13px;height:13px;border-radius:50%;box-shadow:inset 0 0 0 1px rgba(0,0,0,.15)}
-.pz .ded{width:100%;font-family:var(--sans);font-size:.95rem;color:var(--ink);background:var(--surface2);border:1px solid var(--line);border-radius:12px;padding:13px 15px;font-weight:300}
+.pz{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:20px 22px 22px;margin:4px 0 22px}
+.pz-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
+.pz-top h4{font-family:var(--serif);font-weight:600;font-size:1.16rem;color:var(--ink);display:flex;align-items:center;gap:8px}
+.pz-top .free{font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:var(--sage);font-weight:600;background:rgba(157,174,164,.16);padding:5px 11px;border-radius:100px}
+.pz-row{margin-bottom:16px}.pz-row:last-child{margin-bottom:0}
+.pz-row .rlbl{display:flex;justify-content:space-between;align-items:baseline;font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:11px}
+.pz-row .rlbl b{color:var(--ink);font-weight:500;font-size:.82rem;letter-spacing:.01em;text-transform:none;font-family:var(--serif)}
+.swatches{display:flex;gap:13px;flex-wrap:wrap}
+.sw-dot{width:32px;height:32px;border-radius:50%;cursor:pointer;position:relative;box-shadow:inset 0 0 0 1px rgba(56,49,60,.14);transition:.2s;background:var(--surface2)}
+.sw-dot:hover{transform:scale(1.12)}
+.sw-dot.on{box-shadow:0 0 0 2px var(--surface),0 0 0 4px var(--ink)}
+.sw-dot.any{background:conic-gradient(from 20deg,#B98E86,#BFA06B,#9DAEA4,#A991A6,#B98E86)}
+.sw-dot.any::after{content:"✎";position:absolute;inset:0;display:grid;place-items:center;font-size:.72rem;color:#fff;text-shadow:0 1px 2px rgba(0,0,0,.45)}
+.aromas{display:flex;gap:8px;flex-wrap:wrap}
+.apill{border:1px solid var(--line);background:var(--bg);border-radius:100px;padding:7px 14px;font-size:.8rem;color:var(--ink-soft);cursor:pointer;transition:.2s}
+.apill:hover{border-color:var(--rosa);color:var(--ink)}
+.apill.on{background:var(--ink);border-color:var(--ink);color:var(--bg)}
+.pz .ded{width:100%;font-family:var(--sans);font-size:.92rem;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:12px 14px;font-weight:300}
 .pz .ded:focus{outline:none;border-color:var(--rosa);background:#fff}
+.pz .ded::placeholder{color:var(--ink-faint)}
 .citem .ci-note{font-size:.7rem;color:var(--champ);margin-top:4px;font-style:italic;line-height:1.3}
 /* QUIZ */
 .quiz{position:fixed;inset:0;z-index:85;display:none;align-items:center;justify-content:center;padding:20px;background:rgba(36,31,42,.55)}
@@ -496,15 +506,14 @@ function openProduct(k){
   const p=P(k);if(!p)return;PQTY=1;
   const cur=NOTES[p.k]||{};
   PSEL={color:cur.color||'A elección',aroma:cur.aroma||p.a,msg:cur.msg||''};
-  const colorChips=COLORS.map(c=>`<button class="chip ${PSEL.color===c[0]?'on':''}" data-czc="${c[0]}">${c[1]?`<span class="sw" style="background:${c[1]}"></span>`:''}${c[0]}</button>`).join('');
+  const colorDots=COLORS.map(c=>`<button class="sw-dot ${c[1]?'':'any'} ${PSEL.color===c[0]?'on':''}" data-czc="${c[0]}" title="${c[0]}" aria-label="Color ${c[0]}"${c[1]?` style="background:${c[1]}"`:''}></button>`).join('');
   const aromaList=[p.a,...AROMAS.filter(a=>a.toLowerCase()!==p.a.toLowerCase())];
-  const aromaChips=aromaList.map(a=>`<button class="chip ${PSEL.aroma===a?'on':''}" data-cza="${a}">${a}</button>`).join('');
+  const aromaPills=aromaList.map(a=>`<button class="apill ${PSEL.aroma===a?'on':''}" data-cza="${a}">${a}</button>`).join('');
   const pzHTML=`<div class="pz">
-    <h4>🎨 Personaliza tu vela</h4>
-    <div class="lbl">Color</div><div class="opts" id="pz-color">${colorChips}</div>
-    <div class="lbl">Aroma</div><div class="opts" id="pz-aroma">${aromaChips}</div>
-    <div class="lbl">Dedicatoria (opcional)</div>
-    <input class="ded" id="pz-msg" maxlength="80" placeholder="Ej. Feliz cumpleaños, mamá 🤍" value="${(PSEL.msg||'').replace(/"/g,'&quot;')}">
+    <div class="pz-top"><h4>🎨 Hazla tuya</h4><span class="free">Sin costo extra</span></div>
+    <div class="pz-row"><div class="rlbl">Color <b id="pz-colorname">${PSEL.color}</b></div><div class="swatches" id="pz-color">${colorDots}</div></div>
+    <div class="pz-row"><div class="rlbl">Aroma <b id="pz-aromaname">${PSEL.aroma}</b></div><div class="aromas" id="pz-aroma">${aromaPills}</div></div>
+    <div class="pz-row"><div class="rlbl">Dedicatoria <b style="color:var(--ink-faint);font-weight:400;font-family:var(--sans)">opcional</b></div><input class="ded" id="pz-msg" maxlength="80" placeholder="Ej. Feliz cumpleaños, mamá 🤍" value="${(PSEL.msg||'').replace(/"/g,'&quot;')}"></div>
   </div>`;
   const badge=BADGES[p.k]?`<span class="pdp-badge ${BADGES[p.k][1]}">${BADGES[p.k][0]}</span>`:'';
   const feats=[
@@ -525,11 +534,11 @@ function openProduct(k){
       <div class="pdp-price">${money(p.p)}</div>
       <div class="pdp-aroma">🌸 Aroma ${p.a} · Personalizable</div>
       <p class="pdp-desc">Una vela pensada para regalar y recordar. La personalizamos en color, aroma, mensaje y empaque para que tu detalle sea único. Envíos a domicilio en Bogotá.</p>
+      ${pzHTML}
       <div class="pdp-buy">
         <div class="qty"><button data-pq="dec" aria-label="Menos">−</button><span id="pqv">1</span><button data-pq="inc" aria-label="Más">+</button></div>
         <button class="btn btn-primary" data-addq="${p.k}">Agregar al carrito</button>
       </div>
-      ${pzHTML}
       <div class="pdp-wa">💬 ¿Dudas o quieres personalizarla aún más? <a href="${waLink('Hola Nayo 🤍 quiero más info sobre la vela '+p.n)}" target="_blank">Escríbenos por WhatsApp</a></div>
       <ul class="pdp-feats">${feats.map(f=>`<li><b>${f[0]}</b><span>${f[1]}</span></li>`).join('')}</ul>
     </div>`;
@@ -573,8 +582,8 @@ function addToCart(k){CART[k]=(CART[k]||0)+1;save();renderCart();toast(P(k).n+' 
 function setQty(k,q){if(q<=0){delete CART[k];delete NOTES[k];saveNotes()}else CART[k]=q;save();renderCart()}
 document.body.addEventListener('click',e=>{
   const add=e.target.closest('[data-add]');if(add){e.stopPropagation();addToCart(add.dataset.add);bumpBadge();return}
-  const czc=e.target.closest('[data-czc]');if(czc){PSEL.color=czc.dataset.czc;czc.parentElement.querySelectorAll('.chip').forEach(x=>x.classList.remove('on'));czc.classList.add('on');return}
-  const cza=e.target.closest('[data-cza]');if(cza){PSEL.aroma=cza.dataset.cza;cza.parentElement.querySelectorAll('.chip').forEach(x=>x.classList.remove('on'));cza.classList.add('on');return}
+  const czc=e.target.closest('[data-czc]');if(czc){PSEL.color=czc.dataset.czc;czc.parentElement.querySelectorAll('.sw-dot').forEach(x=>x.classList.remove('on'));czc.classList.add('on');const cn=document.getElementById('pz-colorname');if(cn)cn.textContent=PSEL.color;return}
+  const cza=e.target.closest('[data-cza]');if(cza){PSEL.aroma=cza.dataset.cza;cza.parentElement.querySelectorAll('.apill').forEach(x=>x.classList.remove('on'));cza.classList.add('on');const an=document.getElementById('pz-aromaname');if(an)an.textContent=PSEL.aroma;return}
   const pq=e.target.closest('[data-pq]');if(pq){setPQ(pq.dataset.pq==='inc'?PQTY+1:PQTY-1);return}
   const aq=e.target.closest('[data-addq]');if(aq){const k=aq.dataset.addq;
     const mi=document.getElementById('pz-msg');if(mi)PSEL.msg=mi.value.trim();
