@@ -162,10 +162,11 @@ nav{display:flex;align-items:center;justify-content:space-between;padding:18px 2
 /* PRODUCT DETAIL (PDP) */
 .pdp-crumb{font-size:.74rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:22px}
 .pdp-crumb a{cursor:pointer;color:var(--ink-soft)}.pdp-crumb a:hover{color:var(--rosa)}
-.pdp{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:start}
+.pdp{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:stretch}
+.pdp-info{display:flex;flex-direction:column}
 .pdp-media{position:relative;background:var(--surface);border:1px solid var(--line);border-radius:24px;padding:22px;display:flex;align-items:center;justify-content:center;min-height:400px;overflow:hidden}
 .pdp-media::after{content:"";position:absolute;inset:0;background:radial-gradient(closest-side at 50% 44%,rgba(255,255,255,.55),rgba(191,160,107,.12) 52%,transparent 74%);pointer-events:none}
-.pdp-media img{max-height:510px;width:100%;object-fit:contain;filter:drop-shadow(0 30px 30px rgba(56,49,60,.26));position:relative}
+.pdp-media img{max-height:100%;max-width:100%;width:auto;object-fit:contain;filter:drop-shadow(0 30px 30px rgba(56,49,60,.26));position:relative}
 .pdp-media .mtag{position:absolute;top:20px;left:20px;font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;color:var(--champ);font-weight:600;z-index:2}
 .pdp-info .cat{font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;color:var(--champ);font-weight:600}
 .pdp-info h1{font-family:var(--serif);font-weight:600;font-size:clamp(2.2rem,4.4vw,3rem);line-height:1.04;margin:6px 0 4px}
@@ -175,7 +176,7 @@ nav{display:flex;align-items:center;justify-content:space-between;padding:18px 2
 .pdp-price{font-family:var(--serif);font-weight:600;font-size:2rem;margin:14px 0 6px}
 .pdp-aroma{font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;color:var(--sage);font-weight:500}
 .pdp-desc{color:var(--ink-soft);margin:18px 0 24px;max-width:48ch}
-.pdp-buy{display:flex;gap:14px;align-items:center;flex-wrap:wrap;margin-bottom:14px}
+.pdp-buy{display:flex;gap:14px;align-items:center;flex-wrap:wrap;margin-top:auto;padding-top:22px}
 .qty{display:flex;align-items:center;border:1.5px solid var(--line);border-radius:100px;overflow:hidden;background:var(--surface)}
 .qty button{width:44px;height:48px;border:0;background:none;font-size:1.2rem;cursor:pointer;color:var(--ink);transition:.2s}.qty button:hover{color:var(--rosa)}
 .qty span{min-width:36px;text-align:center;font-weight:500}
@@ -529,12 +530,12 @@ function openProduct(k){
       <div class="pdp-stars">★★★★★ <small>Hecha a mano · Bogotá</small></div>
       <div class="pdp-price">${money(p.p)}</div>
       <p class="pdp-desc">Una vela pensada para regalar y recordar. La personalizamos en color, aroma, mensaje y empaque para que tu detalle sea único. Envíos a domicilio en Bogotá.</p>
-      <div class="pdp-buy">
-        <div class="qty"><button data-pq="dec" aria-label="Menos">−</button><span id="pqv">1</span><button data-pq="inc" aria-label="Más">+</button></div>
-        <button class="btn btn-primary" data-addq="${p.k}">Agregar al carrito</button>
-      </div>
       <div class="pdp-config reveal">${configHTML}</div>
       <div class="pdp-wa">💬 ¿Dudas o quieres personalizarla aún más? <a href="${waLink('Hola Nayo 🤍 quiero más info sobre la vela '+p.n)}" target="_blank">Escríbenos por WhatsApp</a></div>
+      <div class="pdp-buy">
+        <div class="qty"><button data-pq="dec" aria-label="Menos">−</button><span id="pqv">1</span><button data-pq="inc" aria-label="Más">+</button></div>
+        <button class="btn btn-primary" data-addq="${p.k}">Agregar</button>
+      </div>
     </div>`;
   let recs=PRODUCTS.filter(x=>x.cat===p.cat&&x.k!==k);
   recs=recs.concat(PRODUCTS.filter(x=>x.cat!==p.cat&&x.k!==k));
