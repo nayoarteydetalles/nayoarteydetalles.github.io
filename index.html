@@ -198,11 +198,11 @@ nav{display:flex;align-items:center;justify-content:space-between;padding:18px 2
 .pdp-badge{display:inline-block;font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;font-weight:600;color:#fff;background:var(--rosa);border-radius:100px;padding:6px 13px;margin-bottom:10px}
 .pdp-badge.new{background:var(--sage)}.pdp-badge.nav{background:var(--champ);color:var(--dark)}
 /* PERSONALIZACIÓN (módulo full-width) */
-.pdp-config{grid-column:1/-1;background:var(--surface);border:1px solid var(--line);border-radius:22px;padding:28px 32px 30px;margin-top:10px}
-.pc-head{display:flex;align-items:center;gap:14px;margin-bottom:24px}
-.pc-head h3{font-family:var(--serif);font-weight:600;font-size:1.4rem}
-.pc-head .free{font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:var(--sage);font-weight:600;background:rgba(157,174,164,.16);padding:6px 12px;border-radius:100px}
-.pz-grid{display:grid;grid-template-columns:auto minmax(170px,.9fr) minmax(230px,1.3fr);gap:34px;align-items:start}
+.pdp-config{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:20px 22px 22px;margin:10px 0 22px}
+.pc-head{display:flex;align-items:center;gap:12px;margin-bottom:18px}
+.pc-head h3{font-family:var(--serif);font-weight:600;font-size:1.18rem}
+.pc-head .free{font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;color:var(--sage);font-weight:600;background:rgba(157,174,164,.16);padding:5px 11px;border-radius:100px}
+.pz-grid{display:flex;flex-direction:column;gap:16px}
 .pz-cell .rlbl{display:flex;justify-content:space-between;align-items:baseline;font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:13px}
 .pz-cell .rlbl b{color:var(--ink);font-weight:500;font-size:.82rem;letter-spacing:.01em;text-transform:none;font-family:var(--serif)}
 .pz-cell .rlbl b.opt{color:var(--ink-faint);font-weight:400;font-family:var(--sans);font-size:.64rem}
@@ -517,12 +517,6 @@ function openProduct(k){
       <div class="pz-cell"><div class="rlbl">Dedicatoria <b class="opt">opcional</b></div><input class="ded" id="pz-msg" maxlength="80" placeholder="Ej. Feliz cumpleaños, mamá 🤍" value="${(PSEL.msg||'').replace(/"/g,'&quot;')}"></div>
     </div>`;
   const badge=BADGES[p.k]?`<span class="pdp-badge ${BADGES[p.k][1]}">${BADGES[p.k][0]}</span>`:'';
-  const feats=[
-    ['Aroma','🌸 '+p.a+' — <em>personalizable a tu gusto</em>'],
-    ['Hecha a mano','Cada pieza se elabora artesanalmente en Bogotá 🤍'],
-    ['Empaque','Lista para regalar, con tarjeta dedicable incluida 🎁'],
-    ['Ideal para','Cumpleaños, aniversarios, agradecimientos y detalles corporativos'],
-  ];
   document.getElementById('pdp-cat').textContent=p.n;
   document.getElementById('pdp').innerHTML=`
     <div class="pdp-media reveal"><span class="mtag">${p.t}</span><img src="${img(p.k)}" alt="${p.n}"></div>
@@ -535,14 +529,13 @@ function openProduct(k){
       <div class="pdp-price">${money(p.p)}</div>
       <div class="pdp-aroma">🌸 Aroma ${p.a} · Personalizable</div>
       <p class="pdp-desc">Una vela pensada para regalar y recordar. La personalizamos en color, aroma, mensaje y empaque para que tu detalle sea único. Envíos a domicilio en Bogotá.</p>
+      <div class="pdp-config reveal">${configHTML}</div>
       <div class="pdp-buy">
         <div class="qty"><button data-pq="dec" aria-label="Menos">−</button><span id="pqv">1</span><button data-pq="inc" aria-label="Más">+</button></div>
         <button class="btn btn-primary" data-addq="${p.k}">Agregar al carrito</button>
       </div>
       <div class="pdp-wa">💬 ¿Dudas o quieres personalizarla aún más? <a href="${waLink('Hola Nayo 🤍 quiero más info sobre la vela '+p.n)}" target="_blank">Escríbenos por WhatsApp</a></div>
-      <ul class="pdp-feats">${feats.map(f=>`<li><b>${f[0]}</b><span>${f[1]}</span></li>`).join('')}</ul>
-    </div>
-    <div class="pdp-config reveal">${configHTML}</div>`;
+    </div>`;
   let recs=PRODUCTS.filter(x=>x.cat===p.cat&&x.k!==k);
   recs=recs.concat(PRODUCTS.filter(x=>x.cat!==p.cat&&x.k!==k));
   recs=recs.slice(0,4);
