@@ -34,6 +34,7 @@ img{max-width:100%;display:block}a{color:inherit;text-decoration:none}
 .btn-primary{background:var(--ink);color:var(--bg)}.btn-primary:hover{background:var(--rosa);transform:translateY(-2px)}
 .btn-ghost{border-color:var(--ink);color:var(--ink)}.btn-ghost:hover{background:var(--ink);color:var(--bg)}
 .btn-champ{background:var(--champ);color:var(--dark)}.btn-champ:hover{filter:brightness(1.06);transform:translateY(-2px)}
+.btn-rosa{background:var(--rosa);color:#fff}.btn-rosa:hover{background:var(--ink);transform:translateY(-2px)}
 header{position:fixed;top:0;left:0;right:0;z-index:50;transition:.4s}
 header.scrolled{background:rgba(240,236,230,.85);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
 nav{display:flex;align-items:center;justify-content:space-between;padding:18px 28px;max-width:1240px;margin:0 auto;gap:16px}
@@ -196,27 +197,25 @@ nav{display:flex;align-items:center;justify-content:space-between;padding:18px 2
 .card .badge.new{background:var(--sage)}.card .badge.nav{background:var(--champ);color:var(--dark)}
 .pdp-badge{display:inline-block;font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;font-weight:600;color:#fff;background:var(--rosa);border-radius:100px;padding:6px 13px;margin-bottom:10px}
 .pdp-badge.new{background:var(--sage)}.pdp-badge.nav{background:var(--champ);color:var(--dark)}
-/* PERSONALIZACIÓN */
-.pz{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:20px 22px 22px;margin:4px 0 22px}
-.pz-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
-.pz-top h4{font-family:var(--serif);font-weight:600;font-size:1.16rem;color:var(--ink);display:flex;align-items:center;gap:8px}
-.pz-top .free{font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:var(--sage);font-weight:600;background:rgba(157,174,164,.16);padding:5px 11px;border-radius:100px}
-.pz-row{margin-bottom:16px}.pz-row:last-child{margin-bottom:0}
-.pz-row .rlbl{display:flex;justify-content:space-between;align-items:baseline;font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:11px}
-.pz-row .rlbl b{color:var(--ink);font-weight:500;font-size:.82rem;letter-spacing:.01em;text-transform:none;font-family:var(--serif)}
+/* PERSONALIZACIÓN (módulo full-width) */
+.pdp-config{grid-column:1/-1;background:var(--surface);border:1px solid var(--line);border-radius:22px;padding:28px 32px 30px;margin-top:10px}
+.pc-head{display:flex;align-items:center;gap:14px;margin-bottom:24px}
+.pc-head h3{font-family:var(--serif);font-weight:600;font-size:1.4rem}
+.pc-head .free{font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:var(--sage);font-weight:600;background:rgba(157,174,164,.16);padding:6px 12px;border-radius:100px}
+.pz-grid{display:grid;grid-template-columns:auto minmax(170px,.9fr) minmax(230px,1.3fr);gap:34px;align-items:start}
+.pz-cell .rlbl{display:flex;justify-content:space-between;align-items:baseline;font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:13px}
+.pz-cell .rlbl b{color:var(--ink);font-weight:500;font-size:.82rem;letter-spacing:.01em;text-transform:none;font-family:var(--serif)}
+.pz-cell .rlbl b.opt{color:var(--ink-faint);font-weight:400;font-family:var(--sans);font-size:.64rem}
 .swatches{display:flex;gap:13px;flex-wrap:wrap}
 .sw-dot{width:32px;height:32px;border-radius:50%;cursor:pointer;position:relative;box-shadow:inset 0 0 0 1px rgba(56,49,60,.14);transition:.2s;background:var(--surface2)}
 .sw-dot:hover{transform:scale(1.12)}
 .sw-dot.on{box-shadow:0 0 0 2px var(--surface),0 0 0 4px var(--ink)}
 .sw-dot.any{background:conic-gradient(from 20deg,#B98E86,#BFA06B,#9DAEA4,#A991A6,#B98E86)}
 .sw-dot.any::after{content:"✎";position:absolute;inset:0;display:grid;place-items:center;font-size:.72rem;color:#fff;text-shadow:0 1px 2px rgba(0,0,0,.45)}
-.aromas{display:flex;gap:8px;flex-wrap:wrap}
-.apill{border:1px solid var(--line);background:var(--bg);border-radius:100px;padding:7px 14px;font-size:.8rem;color:var(--ink-soft);cursor:pointer;transition:.2s}
-.apill:hover{border-color:var(--rosa);color:var(--ink)}
-.apill.on{background:var(--ink);border-color:var(--ink);color:var(--bg)}
-.pz .ded{width:100%;font-family:var(--sans);font-size:.92rem;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:12px 14px;font-weight:300}
-.pz .ded:focus{outline:none;border-color:var(--rosa);background:#fff}
-.pz .ded::placeholder{color:var(--ink-faint)}
+.pz-cell .ded{width:100%;font-family:var(--sans);font-size:.92rem;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:12px 14px;font-weight:300}
+.pz-cell .ded:focus{outline:none;border-color:var(--rosa);background:#fff}
+.pz-cell .ded::placeholder{color:var(--ink-faint)}
+select.sel{appearance:none;-webkit-appearance:none;cursor:pointer;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'><path d='M1 1l5 5 5-5' fill='none' stroke='%23B98E86' stroke-width='1.6'/></svg>");background-repeat:no-repeat;background-position:right 14px center;padding-right:36px}
 .citem .ci-note{font-size:.7rem;color:var(--champ);margin-top:4px;font-style:italic;line-height:1.3}
 /* QUIZ */
 .quiz{position:fixed;inset:0;z-index:85;display:none;align-items:center;justify-content:center;padding:20px;background:rgba(36,31,42,.55)}
@@ -277,6 +276,7 @@ footer .cop{font-size:.74rem;color:#7C7480;margin-top:10px}
  .nos blockquote{border-left:0;border-top:2px solid var(--rosa);padding:20px 0 0}
  .grid{grid-template-columns:repeat(2,1fr)}.vals,.occ{grid-template-columns:repeat(2,1fr)}.pasos,.info3,.testi{grid-template-columns:1fr}
  .pdp{grid-template-columns:1fr;gap:32px}.pdp-media{min-height:340px}.recs{grid-template-columns:repeat(2,1fr)}.pdp-buy .btn{flex:1 1 100%}
+ .pz-grid{grid-template-columns:1fr;gap:22px}
  .navlinks{display:none}.navlinks.open{display:flex;position:absolute;top:70px;right:16px;left:16px;flex-direction:column;gap:18px;background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:26px}
  .burger{display:flex}
 }
@@ -291,7 +291,7 @@ footer .cop{font-size:.74rem;color:#7C7480;margin-top:10px}
     <a data-go="colecciones">Colecciones</a>
     <a data-go="nosotros">Nosotros</a>
     <a data-go="contacto">Contacto</a>
-    <a class="btn btn-primary" data-go="colecciones">Comprar</a>
+    <a class="btn btn-rosa" data-go="colecciones">Comprar</a>
   </div>
   <div class="navright">
     <button class="cart-btn" id="cartBtn" aria-label="Carrito">
@@ -508,13 +508,14 @@ function openProduct(k){
   PSEL={color:cur.color||'A elección',aroma:cur.aroma||p.a,msg:cur.msg||''};
   const colorDots=COLORS.map(c=>`<button class="sw-dot ${c[1]?'':'any'} ${PSEL.color===c[0]?'on':''}" data-czc="${c[0]}" title="${c[0]}" aria-label="Color ${c[0]}"${c[1]?` style="background:${c[1]}"`:''}></button>`).join('');
   const aromaList=[p.a,...AROMAS.filter(a=>a.toLowerCase()!==p.a.toLowerCase())];
-  const aromaPills=aromaList.map(a=>`<button class="apill ${PSEL.aroma===a?'on':''}" data-cza="${a}">${a}</button>`).join('');
-  const pzHTML=`<div class="pz">
-    <div class="pz-top"><h4>🎨 Hazla tuya</h4><span class="free">Sin costo extra</span></div>
-    <div class="pz-row"><div class="rlbl">Color <b id="pz-colorname">${PSEL.color}</b></div><div class="swatches" id="pz-color">${colorDots}</div></div>
-    <div class="pz-row"><div class="rlbl">Aroma <b id="pz-aromaname">${PSEL.aroma}</b></div><div class="aromas" id="pz-aroma">${aromaPills}</div></div>
-    <div class="pz-row"><div class="rlbl">Dedicatoria <b style="color:var(--ink-faint);font-weight:400;font-family:var(--sans)">opcional</b></div><input class="ded" id="pz-msg" maxlength="80" placeholder="Ej. Feliz cumpleaños, mamá 🤍" value="${(PSEL.msg||'').replace(/"/g,'&quot;')}"></div>
-  </div>`;
+  const aromaOpts=aromaList.map(a=>`<option ${PSEL.aroma===a?'selected':''}>${a}</option>`).join('');
+  const configHTML=`
+    <div class="pc-head"><h3>🎨 Hazla tuya</h3><span class="free">Sin costo extra</span></div>
+    <div class="pz-grid">
+      <div class="pz-cell"><div class="rlbl">Color <b id="pz-colorname">${PSEL.color}</b></div><div class="swatches" id="pz-color">${colorDots}</div></div>
+      <div class="pz-cell"><div class="rlbl">Aroma</div><select class="ded sel" id="pz-aroma-sel">${aromaOpts}</select></div>
+      <div class="pz-cell"><div class="rlbl">Dedicatoria <b class="opt">opcional</b></div><input class="ded" id="pz-msg" maxlength="80" placeholder="Ej. Feliz cumpleaños, mamá 🤍" value="${(PSEL.msg||'').replace(/"/g,'&quot;')}"></div>
+    </div>`;
   const badge=BADGES[p.k]?`<span class="pdp-badge ${BADGES[p.k][1]}">${BADGES[p.k][0]}</span>`:'';
   const feats=[
     ['Aroma','🌸 '+p.a+' — <em>personalizable a tu gusto</em>'],
@@ -534,14 +535,14 @@ function openProduct(k){
       <div class="pdp-price">${money(p.p)}</div>
       <div class="pdp-aroma">🌸 Aroma ${p.a} · Personalizable</div>
       <p class="pdp-desc">Una vela pensada para regalar y recordar. La personalizamos en color, aroma, mensaje y empaque para que tu detalle sea único. Envíos a domicilio en Bogotá.</p>
-      ${pzHTML}
       <div class="pdp-buy">
         <div class="qty"><button data-pq="dec" aria-label="Menos">−</button><span id="pqv">1</span><button data-pq="inc" aria-label="Más">+</button></div>
         <button class="btn btn-primary" data-addq="${p.k}">Agregar al carrito</button>
       </div>
       <div class="pdp-wa">💬 ¿Dudas o quieres personalizarla aún más? <a href="${waLink('Hola Nayo 🤍 quiero más info sobre la vela '+p.n)}" target="_blank">Escríbenos por WhatsApp</a></div>
       <ul class="pdp-feats">${feats.map(f=>`<li><b>${f[0]}</b><span>${f[1]}</span></li>`).join('')}</ul>
-    </div>`;
+    </div>
+    <div class="pdp-config reveal">${configHTML}</div>`;
   let recs=PRODUCTS.filter(x=>x.cat===p.cat&&x.k!==k);
   recs=recs.concat(PRODUCTS.filter(x=>x.cat!==p.cat&&x.k!==k));
   recs=recs.slice(0,4);
@@ -583,7 +584,6 @@ function setQty(k,q){if(q<=0){delete CART[k];delete NOTES[k];saveNotes()}else CA
 document.body.addEventListener('click',e=>{
   const add=e.target.closest('[data-add]');if(add){e.stopPropagation();addToCart(add.dataset.add);bumpBadge();return}
   const czc=e.target.closest('[data-czc]');if(czc){PSEL.color=czc.dataset.czc;czc.parentElement.querySelectorAll('.sw-dot').forEach(x=>x.classList.remove('on'));czc.classList.add('on');const cn=document.getElementById('pz-colorname');if(cn)cn.textContent=PSEL.color;return}
-  const cza=e.target.closest('[data-cza]');if(cza){PSEL.aroma=cza.dataset.cza;cza.parentElement.querySelectorAll('.apill').forEach(x=>x.classList.remove('on'));cza.classList.add('on');const an=document.getElementById('pz-aromaname');if(an)an.textContent=PSEL.aroma;return}
   const pq=e.target.closest('[data-pq]');if(pq){setPQ(pq.dataset.pq==='inc'?PQTY+1:PQTY-1);return}
   const aq=e.target.closest('[data-addq]');if(aq){const k=aq.dataset.addq;
     const mi=document.getElementById('pz-msg');if(mi)PSEL.msg=mi.value.trim();
@@ -596,6 +596,7 @@ document.body.addEventListener('click',e=>{
   const qa=e.target.closest('[data-qadd]');if(qa){addToCart(qa.dataset.qadd);bumpBadge();closeQuiz();openCart();return}
   const op=e.target.closest('[data-openp]');if(op){openProduct(op.dataset.openp)}
 });
+document.body.addEventListener('change',e=>{const s=e.target.closest('#pz-aroma-sel');if(s)PSEL.aroma=s.value});
 function renderCart(){
   const keys=Object.keys(CART);const badge=document.getElementById('cartBadge');
   const count=keys.reduce((s,k)=>s+CART[k],0);badge.textContent=count;badge.classList.toggle('show',count>0);
