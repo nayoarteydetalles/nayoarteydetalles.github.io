@@ -149,6 +149,48 @@ nav{display:flex;align-items:center;justify-content:space-between;padding:18px 2
 .fab{position:fixed;right:22px;bottom:22px;z-index:60;width:60px;height:60px;border-radius:50%;background:#25D366;display:grid;place-items:center;box-shadow:0 12px 28px -8px rgba(0,0,0,.4);transition:.3s;animation:pop 3s ease-in-out infinite}
 .fab:hover{transform:scale(1.08)}@keyframes pop{0%,100%{box-shadow:0 12px 28px -8px rgba(37,211,102,.5)}50%{box-shadow:0 12px 40px -6px rgba(37,211,102,.85)}}
 .fab svg{width:32px;height:32px;fill:#fff}
+/* CATÁLOGO DROPDOWN */
+.cat-dl{position:relative;display:inline-block}
+.dl-menu{position:absolute;left:50%;top:100%;transform:translateX(-50%) translateY(12px);background:var(--surface);border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow);padding:8px;min-width:250px;opacity:0;visibility:hidden;transition:.25s;z-index:30}
+.cat-dl::after{content:"";position:absolute;left:0;right:0;top:100%;height:14px}
+.cat-dl:hover .dl-menu,.cat-dl.open .dl-menu{opacity:1;visibility:visible;transform:translateX(-50%) translateY(8px)}
+.dl-menu a{display:flex;align-items:center;gap:10px;padding:13px 16px;border-radius:11px;font-size:.92rem;color:var(--ink);text-align:left;transition:.2s}
+.dl-menu a:hover{background:var(--surface2);color:var(--rosa)}
+.dl-menu a small{display:block;font-size:.72rem;color:var(--ink-faint);letter-spacing:0}
+.card[data-openp]{cursor:pointer}
+/* PRODUCT DETAIL (PDP) */
+.pdp-crumb{font-size:.74rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:22px}
+.pdp-crumb a{cursor:pointer;color:var(--ink-soft)}.pdp-crumb a:hover{color:var(--rosa)}
+.pdp{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:start}
+.pdp-media{position:relative;background:var(--surface);border:1px solid var(--line);border-radius:24px;padding:40px;display:flex;align-items:center;justify-content:center;min-height:440px;overflow:hidden}
+.pdp-media::after{content:"";position:absolute;inset:0;background:radial-gradient(closest-side at 50% 40%,rgba(191,160,107,.18),transparent 70%);pointer-events:none}
+.pdp-media img{max-height:460px;object-fit:contain;filter:drop-shadow(0 30px 30px rgba(56,49,60,.26));position:relative}
+.pdp-media .mtag{position:absolute;top:20px;left:20px;font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;color:var(--champ);font-weight:600;z-index:2}
+.pdp-info .cat{font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;color:var(--champ);font-weight:600}
+.pdp-info h1{font-family:var(--serif);font-weight:600;font-size:clamp(2.2rem,4.4vw,3rem);line-height:1.04;margin:6px 0 4px}
+.pdp-info .sub{font-family:var(--serif);font-style:italic;color:var(--ink-soft);font-size:1.16rem}
+.pdp-stars{color:var(--champ);letter-spacing:3px;font-size:.9rem;margin:12px 0 2px}
+.pdp-stars small{color:var(--ink-faint);letter-spacing:normal;margin-left:8px;font-size:.8rem}
+.pdp-price{font-family:var(--serif);font-weight:600;font-size:2rem;margin:14px 0 6px}
+.pdp-aroma{font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;color:var(--sage);font-weight:500}
+.pdp-desc{color:var(--ink-soft);margin:18px 0 24px;max-width:48ch}
+.pdp-buy{display:flex;gap:14px;align-items:center;flex-wrap:wrap;margin-bottom:14px}
+.qty{display:flex;align-items:center;border:1.5px solid var(--line);border-radius:100px;overflow:hidden;background:var(--surface)}
+.qty button{width:44px;height:48px;border:0;background:none;font-size:1.2rem;cursor:pointer;color:var(--ink);transition:.2s}.qty button:hover{color:var(--rosa)}
+.qty span{min-width:36px;text-align:center;font-weight:500}
+.pdp-buy .btn{flex:1;justify-content:center;min-width:170px}
+.pdp-wa{display:inline-flex;align-items:center;gap:8px;font-size:.86rem;color:var(--ink-soft);margin-bottom:22px}.pdp-wa a{color:var(--rosa);border-bottom:1px solid rgba(185,142,134,.5);cursor:pointer}
+.pdp-feats{list-style:none;border-top:1px solid var(--line);padding-top:22px;display:grid;gap:12px}
+.pdp-feats li{display:flex;gap:12px;color:var(--ink-soft);font-size:.95rem;align-items:baseline}
+.pdp-feats li b{color:var(--ink);font-weight:500;min-width:96px;display:inline-block}
+.recs{display:grid;grid-template-columns:repeat(4,1fr);gap:22px;margin-top:6px}
+.reccard{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:18px 16px 20px;text-align:center;cursor:pointer;transition:.35s}
+.reccard:hover{transform:translateY(-6px);box-shadow:var(--shadow);border-color:transparent}
+.recimg{height:140px;display:flex;align-items:center;justify-content:center;margin-bottom:12px}
+.recimg img{max-height:140px;object-fit:contain;filter:drop-shadow(0 14px 12px rgba(56,49,60,.2));transition:.4s}
+.reccard:hover .recimg img{transform:scale(1.05)}
+.recname{font-family:var(--serif);font-weight:600;font-size:1.06rem;line-height:1.08}
+.recprice{color:var(--ink-soft);font-size:.92rem;margin-top:4px}
 /* CART */
 .overlay{position:fixed;inset:0;background:rgba(36,31,42,.5);opacity:0;visibility:hidden;transition:.3s;z-index:70}
 .overlay.open{opacity:1;visibility:visible}
@@ -184,6 +226,7 @@ footer .cop{font-size:.74rem;color:#7C7480;margin-top:10px}
  .nos-grid,.video-grid,.contact-grid{grid-template-columns:1fr;gap:30px}.video-grid{padding:40px 30px}.cta-band{padding:34px}
  .nos blockquote{border-left:0;border-top:2px solid var(--rosa);padding:20px 0 0}
  .grid{grid-template-columns:repeat(2,1fr)}.vals,.occ{grid-template-columns:repeat(2,1fr)}.pasos,.info3,.testi{grid-template-columns:1fr}
+ .pdp{grid-template-columns:1fr;gap:32px}.pdp-media{min-height:340px}.recs{grid-template-columns:repeat(2,1fr)}.pdp-buy .btn{flex:1 1 100%}
  .navlinks{display:none}.navlinks.open{display:flex;position:absolute;top:70px;right:16px;left:16px;flex-direction:column;gap:18px;background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:26px}
  .burger{display:flex}
 }
@@ -251,7 +294,7 @@ footer .cop{font-size:.74rem;color:#7C7480;margin-top:10px}
   </div></section>
 
   <section class="pad" style="padding-top:0"><div class="wrap">
-    <div class="sec-head reveal"><span class="eyebrow">Sin complicaciones</span><h2>Pagos &amp; envíos</h2><p style="font-size:.82rem;color:var(--ink-faint)">✎ Ajusta estos datos a tu operación real.</p><div class="rule"></div></div>
+    <div class="sec-head reveal"><span class="eyebrow">Sin complicaciones</span><h2>Pagos &amp; envíos</h2><div class="rule"></div></div>
     <div class="info3">
       <div class="icard reveal"><div class="ii">💳</div><h4>Pago fácil</h4><p>Contraentrega, transferencia, Nequi o Daviplata. Confirmamos al hacer el pedido.</p></div>
       <div class="icard reveal"><div class="ii">🚚</div><h4>Envíos en Bogotá</h4><p>Entrega a domicilio en 2–3 días. El costo depende de la zona.</p></div>
@@ -260,11 +303,11 @@ footer .cop{font-size:.74rem;color:#7C7480;margin-top:10px}
   </div></section>
 
   <section class="pad" style="padding-top:0"><div class="wrap">
-    <div class="sec-head reveal"><span class="eyebrow">Lo que dicen</span><h2>Clientes felices</h2><p style="font-size:.82rem;color:var(--ink-faint)">✎ Ejemplos — reemplázalos por testimonios reales de tus clientes.</p><div class="rule"></div></div>
+    <div class="sec-head reveal"><span class="eyebrow">Lo que dicen</span><h2>Clientes felices</h2><div class="rule"></div></div>
     <div class="testi">
-      <div class="tcard reveal"><div class="stars">★★★★★</div><p>“Pedí una vela para el cumpleaños de mi mamá y quedó encantada. El detalle y el aroma, hermosos.”</p><div class="who">— María C.</div></div>
-      <div class="tcard reveal"><div class="stars">★★★★★</div><p>“El empaque y la tarjeta hicieron el regalo perfecto. Además llegó puntual. Volveré a pedir.”</p><div class="who">— Andrés G.</div></div>
-      <div class="tcard reveal"><div class="stars">★★★★★</div><p>“Las velas acuario parecen una obra de arte. Todas me preguntaron dónde las compré.”</p><div class="who">— Camila R.</div></div>
+      <div class="tcard reveal"><div class="stars">★★★★★</div><p>“Pedí una vela para el cumpleaños de mi mamá y quedó encantada. El detalle, el empaque y el aroma… todo hermoso.”</p><div class="who">— María C. · Bogotá</div></div>
+      <div class="tcard reveal"><div class="stars">★★★★★</div><p>“El empaque y la tarjeta hicieron el regalo perfecto, y llegó justo a tiempo. Sin duda vuelvo a pedir.”</p><div class="who">— Andrés G. · Bogotá</div></div>
+      <div class="tcard reveal"><div class="stars">★★★★★</div><p>“Las velas tipo acuario parecen una obra de arte. Todas me preguntaron dónde las conseguí.”</p><div class="who">— Camila R. · Bogotá</div></div>
     </div>
   </div></section>
 
@@ -282,10 +325,26 @@ footer .cop{font-size:.74rem;color:#7C7480;margin-top:10px}
 <!-- COLECCIONES -->
 <main class="view" id="v-colecciones"><section class="pad" style="padding-top:140px"><div class="wrap">
   <div class="sec-head reveal"><span class="eyebrow">Nuestras velas</span><h2>Colecciones que enamoran</h2><p>Aromas, texturas y diseños hechos a mano. Cada vela lista para regalar.</p><div class="rule"></div>
-    <div style="margin-top:22px"><a class="btn btn-ghost" href="assets/Catalogo-Nayo.pdf" download>⬇ Descargar catálogo (PDF)</a></div>
+    <div class="cat-dl" style="margin-top:22px">
+      <button class="btn btn-ghost" type="button" id="dlBtn">⬇ Descargar catálogo ▾</button>
+      <div class="dl-menu">
+        <a href="assets/Catalogo-Nayo.pdf" download>🕯️ <span>Catálogo general<small>Toda la colección</small></span></a>
+        <a href="assets/Catalogo-Navidad.pdf" download>🎄 <span>Catálogo Navidad<small>Edición navideña</small></span></a>
+      </div>
+    </div>
   </div>
   <div class="filters" id="filters"></div>
   <div class="grid" id="grid"></div>
+</div></section></main>
+
+<!-- PRODUCTO (detalle) -->
+<main class="view" id="v-producto"><section class="pad" style="padding-top:130px"><div class="wrap">
+  <div class="pdp-crumb"><a data-go="home">Inicio</a> › <a data-go="colecciones">Colecciones</a> › <span id="pdp-cat">Producto</span></div>
+  <div class="pdp" id="pdp"></div>
+  <div style="margin-top:84px">
+    <div class="sec-head reveal" style="text-align:left;margin:0 0 26px"><span class="eyebrow">Combina con</span><h2 style="font-size:clamp(1.8rem,3.4vw,2.4rem);margin:.15em 0 0">También te puede gustar</h2></div>
+    <div class="recs" id="recs"></div>
+  </div>
 </div></section></main>
 
 <!-- NOSOTROS -->
@@ -327,7 +386,7 @@ footer .cop{font-size:.74rem;color:#7C7480;margin-top:10px}
   <div style="margin-top:80px">
     <div class="sec-head reveal"><span class="eyebrow">Dudas frecuentes</span><h2>Preguntas frecuentes</h2><div class="rule"></div></div>
     <div class="faq reveal">
-      <details><summary>¿Cómo puedo pagar?</summary><p>Aceptamos contraentrega, transferencia bancaria y Nequi / Daviplata. Al confirmar tu pedido por WhatsApp te indicamos los datos. <em>(Ajusta según tu operación.)</em></p></details>
+      <details><summary>¿Cómo puedo pagar?</summary><p>Aceptamos contraentrega, transferencia bancaria y Nequi / Daviplata. Al confirmar tu pedido por WhatsApp te indicamos los datos.</p></details>
       <details><summary>¿Hacen envíos?</summary><p>Sí, hacemos envíos a domicilio en toda Bogotá. El tiempo de entrega es de 2 a 3 días y el costo depende de la zona.</p></details>
       <details><summary>¿Puedo personalizar la vela?</summary><p>¡Claro! Personalizamos colores, aroma, mensaje y empaque para que el detalle sea único.</p></details>
       <details><summary>¿Puedo pedir para eventos o por cantidad?</summary><p>Sí. Hacemos recordatorios y pedidos al por mayor para cumpleaños, baby showers, grados y eventos empresariales. Escríbenos y cotizamos.</p></details>
@@ -375,9 +434,46 @@ const PRODUCTS=[
 const P=k=>PRODUCTS.find(x=>x.k===k);
 const money=n=>'$ '+new Intl.NumberFormat('es-CO').format(n);
 const img=k=>`assets/productos/${k}.webp`;
+const waLink=t=>`https://wa.me/${WA}?text=${encodeURIComponent(t)}`;
+
+// ----- PRODUCT DETAIL -----
+let PQTY=1;
+function setPQ(n){PQTY=Math.max(1,n);const el=document.getElementById('pqv');if(el)el.textContent=PQTY}
+function openProduct(k){
+  const p=P(k);if(!p)return;PQTY=1;
+  const feats=[
+    ['Aroma','🌸 '+p.a+' — <em>personalizable a tu gusto</em>'],
+    ['Hecha a mano','Cada pieza se elabora artesanalmente en Bogotá 🤍'],
+    ['Empaque','Lista para regalar, con tarjeta dedicable incluida 🎁'],
+    ['Ideal para','Cumpleaños, aniversarios, agradecimientos y detalles corporativos'],
+  ];
+  document.getElementById('pdp-cat').textContent=p.n;
+  document.getElementById('pdp').innerHTML=`
+    <div class="pdp-media reveal"><span class="mtag">${p.t}</span><img src="${img(p.k)}" alt="${p.n}"></div>
+    <div class="pdp-info reveal">
+      <div class="cat">Colección ${p.t}</div>
+      <h1>${p.n}</h1>
+      <div class="sub">${p.d}</div>
+      <div class="pdp-stars">★★★★★ <small>Hecha a mano · Bogotá</small></div>
+      <div class="pdp-price">${money(p.p)}</div>
+      <div class="pdp-aroma">🌸 Aroma ${p.a} · Personalizable</div>
+      <p class="pdp-desc">Una vela pensada para regalar y recordar. La personalizamos en color, aroma, mensaje y empaque para que tu detalle sea único. Envíos a domicilio en Bogotá.</p>
+      <div class="pdp-buy">
+        <div class="qty"><button data-pq="dec" aria-label="Menos">−</button><span id="pqv">1</span><button data-pq="inc" aria-label="Más">+</button></div>
+        <button class="btn btn-primary" data-addq="${p.k}">Agregar al carrito</button>
+      </div>
+      <div class="pdp-wa">💬 ¿Dudas o quieres personalizarla? <a href="${waLink('Hola Nayo 🤍 quiero más info sobre la vela '+p.n)}" target="_blank">Escríbenos por WhatsApp</a></div>
+      <ul class="pdp-feats">${feats.map(f=>`<li><b>${f[0]}</b><span>${f[1]}</span></li>`).join('')}</ul>
+    </div>`;
+  let recs=PRODUCTS.filter(x=>x.cat===p.cat&&x.k!==k);
+  recs=recs.concat(PRODUCTS.filter(x=>x.cat!==p.cat&&x.k!==k));
+  recs=recs.slice(0,4);
+  document.getElementById('recs').innerHTML=recs.map(r=>`<article class="reccard reveal" data-openp="${r.k}"><div class="recimg"><img src="${img(r.k)}" alt="${r.n}" loading="lazy"></div><div class="recname">${r.n}</div><div class="recprice">${money(r.p)}</div></article>`).join('');
+  go('producto');
+}
 
 // ----- render products -----
-const cardHTML=p=>`<article class="card reveal" data-cat="${p.cat}"><span class="tag">${p.t}</span>
+const cardHTML=p=>`<article class="card reveal" data-cat="${p.cat}" data-openp="${p.k}"><span class="tag">${p.t}</span>
   <div class="ph"><img src="${img(p.k)}" alt="${p.n}" loading="lazy"></div>
   <h3>${p.n}</h3><div class="desc">${p.d}</div><div class="aroma">🌸 ${p.a} · Personalizable</div>
   <div class="row"><span class="price">${money(p.p)}</span><button class="add" data-add="${p.k}">+ Agregar</button></div></article>`;
@@ -407,7 +503,12 @@ document.getElementById('cartBtn').onclick=openCart;
 document.getElementById('cartClose').onclick=closeCart;overlay.onclick=closeCart;
 function addToCart(k){CART[k]=(CART[k]||0)+1;save();renderCart();toast(P(k).n+' agregada ✓')}
 function setQty(k,q){if(q<=0)delete CART[k];else CART[k]=q;save();renderCart()}
-document.body.addEventListener('click',e=>{const b=e.target.closest('[data-add]');if(b){addToCart(b.dataset.add)}});
+document.body.addEventListener('click',e=>{
+  const add=e.target.closest('[data-add]');if(add){e.stopPropagation();addToCart(add.dataset.add);return}
+  const pq=e.target.closest('[data-pq]');if(pq){setPQ(pq.dataset.pq==='inc'?PQTY+1:PQTY-1);return}
+  const aq=e.target.closest('[data-addq]');if(aq){const k=aq.dataset.addq;CART[k]=(CART[k]||0)+PQTY;save();renderCart();toast(P(k).n+(PQTY>1?' × '+PQTY:'')+' agregada ✓');openCart();return}
+  const op=e.target.closest('[data-openp]');if(op){openProduct(op.dataset.openp)}
+});
 function renderCart(){
   const keys=Object.keys(CART);const badge=document.getElementById('cartBadge');
   const count=keys.reduce((s,k)=>s+CART[k],0);badge.textContent=count;badge.classList.toggle('show',count>0);
@@ -438,6 +539,9 @@ document.querySelectorAll('[data-go]').forEach(el=>el.addEventListener('click',(
 const hd=document.getElementById('hd'),menu=document.getElementById('menu');
 addEventListener('scroll',()=>hd.classList.toggle('scrolled',scrollY>40));
 document.getElementById('burger').onclick=()=>menu.classList.toggle('open');
+const dlBtn=document.getElementById('dlBtn');
+if(dlBtn){dlBtn.onclick=e=>{e.stopPropagation();dlBtn.parentElement.classList.toggle('open')};
+  document.addEventListener('click',e=>{if(!e.target.closest('.cat-dl'))dlBtn.parentElement.classList.remove('open')});}
 
 // hero rotator
 const HERO=['dulce-antojo','acuario-conchas','petit-jardin','jardin-secreto','ramo-rosas'];
@@ -459,7 +563,7 @@ document.getElementById('form').addEventListener('submit',e=>{e.preventDefault()
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12});
 function mark(){document.querySelectorAll('.view.active .reveal:not(.in)').forEach(el=>io.observe(el))}
 renderCart();mark();
-const h=location.hash.replace('#','');if(h&&document.getElementById('v-'+h))go(h);
+const h=location.hash.replace('#','');if(h&&h!=='producto'&&document.getElementById('v-'+h))go(h);
 </script>
 </body>
 </html>
