@@ -3,10 +3,23 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Nayo · Arte & Detalles — Velas artesanales</title>
+<title>Nayo · Arte & Detalles</title>
 <meta name="description" content="Velas aromáticas artesanales hechas a mano en Bogotá. Detalles que se recuerdan.">
-<meta property="og:title" content="Nayo · Arte & Detalles">
-<meta property="og:description" content="Velas artesanales que se recuerdan. Bogotá.">
+<link rel="canonical" href="https://nayoarteydetalles.netlify.app/">
+<meta name="theme-color" content="#241F2A">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="assets/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="assets/favicon-180.png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Nayo · Arte & Detalles">
+<meta property="og:title" content="Nayo · Arte & Detalles — Velas artesanales">
+<meta property="og:description" content="Velas artesanales que se recuerdan. Hechas a mano en Bogotá.">
+<meta property="og:url" content="https://nayoarteydetalles.netlify.app/">
+<meta property="og:image" content="https://nayoarteydetalles.netlify.app/assets/og.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Nayo · Arte & Detalles">
+<meta name="twitter:description" content="Velas artesanales que se recuerdan. Bogotá.">
+<meta name="twitter:image" content="https://nayoarteydetalles.netlify.app/assets/og.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=Jost:wght@300;400;500;600&display=swap">
@@ -96,6 +109,14 @@ nav{display:flex;align-items:center;justify-content:space-between;padding:20px 2
 .card .pedir{font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;font-weight:500;color:var(--rosa);border:1px solid var(--rosa);border-radius:100px;padding:8px 16px;transition:.25s}
 .card .pedir:hover{background:var(--rosa);color:#fff}
 .card .tag{position:absolute;top:16px;left:16px;font-size:.6rem;letter-spacing:.16em;text-transform:uppercase;color:var(--champ);font-weight:600}
+.card .aroma{font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--sage);font-weight:500;margin-top:8px}
+/* testimonios */
+.testi{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.tcard{background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:30px 26px;transition:.35s}
+.tcard:hover{transform:translateY(-6px);box-shadow:var(--shadow);border-color:transparent}
+.tcard .stars{color:var(--champ);letter-spacing:4px;margin-bottom:14px;font-size:.9rem}
+.tcard p{font-family:var(--serif);font-style:italic;font-size:1.18rem;color:var(--ink);line-height:1.42}
+.tcard .who{margin-top:16px;font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft);font-weight:500}
 
 /* FILTER TABS */
 .filters{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-bottom:40px}
@@ -170,7 +191,7 @@ footer .cop{font-size:.74rem;color:#7C7480;margin-top:10px}
   .nos-grid,.video-grid,.contact-grid{grid-template-columns:1fr;gap:30px}
   .video-grid{padding:40px 30px}.cta-band{padding:34px}
   .nos blockquote{border-left:0;border-top:2px solid var(--rosa);padding:20px 0 0}
-  .grid,.grid.feat{grid-template-columns:repeat(2,1fr)}.vals{grid-template-columns:repeat(2,1fr)}.pasos{grid-template-columns:1fr}
+  .grid,.grid.feat{grid-template-columns:repeat(2,1fr)}.vals{grid-template-columns:repeat(2,1fr)}.pasos{grid-template-columns:1fr}.testi{grid-template-columns:1fr}
   .navlinks{display:none}.navlinks.open{display:flex;position:absolute;top:70px;right:16px;left:16px;flex-direction:column;gap:18px;background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:26px}
   .burger{display:flex}
 }
@@ -260,6 +281,22 @@ footer .cop{font-size:.74rem;color:#7C7480;margin-top:10px}
       </div>
     </div>
   </section>
+
+  <section class="pad" style="padding-top:0">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <span class="eyebrow">Lo que dicen</span>
+        <h2>Clientes felices</h2>
+        <p style="font-size:.82rem;color:var(--ink-faint)">✎ Ejemplos — reemplázalos por testimonios reales de tus clientes.</p>
+        <div class="rule"></div>
+      </div>
+      <div class="testi">
+        <div class="tcard reveal"><div class="stars">★★★★★</div><p>“Pedí una vela para el cumpleaños de mi mamá y quedó encantada. El detalle y el aroma, hermosos.”</p><div class="who">— María C.</div></div>
+        <div class="tcard reveal"><div class="stars">★★★★★</div><p>“El empaque y la tarjeta hicieron el regalo perfecto. Además llegó puntual. Volveré a pedir.”</p><div class="who">— Andrés G.</div></div>
+        <div class="tcard reveal"><div class="stars">★★★★★</div><p>“Las velas acuario parecen una obra de arte. Todas me preguntaron dónde las compré.”</p><div class="who">— Camila R.</div></div>
+      </div>
+    </div>
+  </section>
 </main>
 
 <!-- ============ COLECCIONES ============ -->
@@ -339,27 +376,31 @@ footer .cop{font-size:.74rem;color:#7C7480;margin-top:10px}
   </div>
 </footer>
 
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Store","name":"Nayo · Arte & Detalles","description":"Velas aromáticas artesanales hechas a mano en Bogotá. Detalles que se recuerdan.","url":"https://nayoarteydetalles.netlify.app/","image":"https://nayoarteydetalles.netlify.app/assets/og.jpg","telephone":"+573052352324","areaServed":"Bogotá, Colombia","address":{"@type":"PostalAddress","addressLocality":"Bogotá","addressCountry":"CO"}}
+</script>
+
 <a class="fab" id="fab" href="https://wa.me/573052352324?text=Hola%20Nayo%2C%20quiero%20hacer%20un%20pedido" target="_blank" aria-label="WhatsApp">
   <svg viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163a11.867 11.867 0 01-1.587-5.945C.16 5.335 5.495 0 12.05 0a11.817 11.817 0 018.413 3.488 11.824 11.824 0 013.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 01-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884a9.86 9.86 0 001.51 5.26l-.999 3.648 3.978-1.315zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
 </a>
 
 <script>
 const PRODUCTS=[
- {k:'acuario-rubi',n:'Acuario · Rubí',d:'El océano en tono rubí',p:'36.000',t:'Acuario',cat:'acuario'},
- {k:'acuario-conchas',n:'Acuario · Conchas',d:'Un pedacito de océano en casa',p:'36.000',t:'Acuario',cat:'acuario'},
- {k:'acuario-piedritas',n:'Acuario · Piedritas',d:'Tesoros del fondo del mar',p:'36.000',t:'Acuario',cat:'acuario'},
- {k:'dulce-antojo',n:'Dulce Antojo',d:'Un capricho dulce para consentirte',p:'30.000',t:'Dulces',cat:'dulces'},
- {k:'dulce-encanto',n:'Dulce Encanto',d:'Flores que perfuman y enamoran',p:'30.000',t:'Dulces',cat:'dulces'},
- {k:'frambuesa',n:'Frambuesa Silvestre',d:'El dulce aroma de la frambuesa',p:'17.000',t:'Dulces',cat:'dulces'},
- {k:'jardin-secreto',n:'Jardín Secreto',d:'Un jardín que perfuma tus momentos',p:'38.000',t:'Jardín',cat:'jardin'},
- {k:'petit-jardin',n:'Petit Jardin',d:'Un pequeño jardín para regalar',p:'50.000',t:'Jardín',cat:'jardin'},
- {k:'ramo-rosas',n:'Ramo de Rosas',d:'Un ramo que nunca se marchita',p:'42.000',t:'Jardín',cat:'jardin'},
- {k:'cerveza',n:'Cerveza',d:'Un brindis que se enciende',p:'45.000',t:'Especial',cat:'especial'},
+ {k:'acuario-rubi',n:'Acuario · Rubí',d:'El océano en tono rubí',p:'36.000',t:'Acuario',cat:'acuario',a:'Frutos rojos'},
+ {k:'acuario-conchas',n:'Acuario · Conchas',d:'Un pedacito de océano en casa',p:'36.000',t:'Acuario',cat:'acuario',a:'Brisa marina'},
+ {k:'acuario-piedritas',n:'Acuario · Piedritas',d:'Tesoros del fondo del mar',p:'36.000',t:'Acuario',cat:'acuario',a:'Océano fresco'},
+ {k:'dulce-antojo',n:'Dulce Antojo',d:'Un capricho dulce para consentirte',p:'30.000',t:'Dulces',cat:'dulces',a:'Vainilla dulce'},
+ {k:'dulce-encanto',n:'Dulce Encanto',d:'Flores que perfuman y enamoran',p:'30.000',t:'Dulces',cat:'dulces',a:'Floral suave'},
+ {k:'frambuesa',n:'Frambuesa Silvestre',d:'El dulce aroma de la frambuesa',p:'17.000',t:'Dulces',cat:'dulces',a:'Frambuesa'},
+ {k:'jardin-secreto',n:'Jardín Secreto',d:'Un jardín que perfuma tus momentos',p:'38.000',t:'Jardín',cat:'jardin',a:'Jardín floral'},
+ {k:'petit-jardin',n:'Petit Jardin',d:'Un pequeño jardín para regalar',p:'50.000',t:'Jardín',cat:'jardin',a:'Flores frescas'},
+ {k:'ramo-rosas',n:'Ramo de Rosas',d:'Un ramo que nunca se marchita',p:'42.000',t:'Jardín',cat:'jardin',a:'Rosas'},
+ {k:'cerveza',n:'Cerveza',d:'Un brindis que se enciende',p:'45.000',t:'Especial',cat:'especial',a:'Cítricos y cebada'},
 ];
 const wa=n=>`https://wa.me/573052352324?text=${encodeURIComponent('Hola Nayo 🤍 me interesa la vela '+n)}`;
 const cardHTML=p=>`<article class="card reveal" data-cat="${p.cat}"><span class="tag">${p.t}</span>
   <div class="ph"><img src="assets/productos/${p.k}.png" alt="${p.n}" loading="lazy"></div>
-  <h3>${p.n}</h3><div class="desc">${p.d}</div>
+  <h3>${p.n}</h3><div class="desc">${p.d}</div><div class="aroma">🌸 ${p.a}</div>
   <div class="row"><span class="price">$ ${p.p}</span><a class="pedir" href="${wa(p.n)}" target="_blank">Pedir</a></div></article>`;
 
 // featured (4) + full grid
