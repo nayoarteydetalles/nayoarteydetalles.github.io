@@ -164,7 +164,7 @@ nav{display:flex;align-items:center;justify-content:space-between;padding:18px 2
 .pdp-crumb a{cursor:pointer;color:var(--ink-soft)}.pdp-crumb a:hover{color:var(--rosa)}
 .pdp{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:start}
 .pdp-media{position:relative;background:var(--surface);border:1px solid var(--line);border-radius:24px;padding:22px;display:flex;align-items:center;justify-content:center;min-height:400px;overflow:hidden}
-.pdp-media::after{content:"";position:absolute;inset:0;background:radial-gradient(closest-side at 50% 40%,rgba(191,160,107,.18),transparent 70%);pointer-events:none}
+.pdp-media::after{content:"";position:absolute;inset:0;background:radial-gradient(closest-side at 50% 44%,rgba(255,255,255,.55),rgba(191,160,107,.12) 52%,transparent 74%);pointer-events:none}
 .pdp-media img{max-height:510px;width:100%;object-fit:contain;filter:drop-shadow(0 30px 30px rgba(56,49,60,.26));position:relative}
 .pdp-media .mtag{position:absolute;top:20px;left:20px;font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;color:var(--champ);font-weight:600;z-index:2}
 .pdp-info .cat{font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;color:var(--champ);font-weight:600}
@@ -198,7 +198,7 @@ nav{display:flex;align-items:center;justify-content:space-between;padding:18px 2
 .pdp-badge{display:inline-block;font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;font-weight:600;color:#fff;background:var(--rosa);border-radius:100px;padding:6px 13px;margin-bottom:10px}
 .pdp-badge.new{background:var(--sage)}.pdp-badge.nav{background:var(--champ);color:var(--dark)}
 /* PERSONALIZACIÓN (módulo full-width) */
-.pdp-config{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:20px 22px 22px;margin:10px 0 22px}
+.pdp-config{background:transparent;border:0;border-top:1px solid var(--line);border-radius:0;padding:22px 0 0;margin:22px 0 0}
 .pc-head{display:flex;align-items:center;gap:12px;margin-bottom:18px}
 .pc-head h3{font-family:var(--serif);font-weight:600;font-size:1.18rem}
 .pc-head .opc{font-size:.72rem;font-style:italic;color:var(--ink-faint)}
@@ -210,13 +210,13 @@ nav{display:flex;align-items:center;justify-content:space-between;padding:18px 2
 .swatches{display:flex;gap:13px;flex-wrap:wrap}
 .sw-dot{width:32px;height:32px;border-radius:50%;cursor:pointer;position:relative;box-shadow:inset 0 0 0 1px rgba(56,49,60,.14);transition:.2s;background:var(--surface2)}
 .sw-dot:hover{transform:scale(1.12)}
-.sw-dot.on{box-shadow:0 0 0 2px var(--surface),0 0 0 4px var(--ink)}
+.sw-dot.on{box-shadow:0 0 0 2px var(--bg),0 0 0 4px var(--ink)}
 .sw-dot.any{background:conic-gradient(from 20deg,#B98E86,#BFA06B,#9DAEA4,#A991A6,#B98E86)}
 .sw-dot.any::after{content:"✎";position:absolute;inset:0;display:grid;place-items:center;font-size:.72rem;color:#fff;text-shadow:0 1px 2px rgba(0,0,0,.45)}
-.pz-cell .ded{width:100%;font-family:var(--sans);font-size:.92rem;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:12px 14px;font-weight:300}
-.pz-cell .ded:focus{outline:none;border-color:var(--rosa);background:#fff}
+.pz-cell .ded{width:100%;font-family:var(--sans);font-size:.95rem;color:var(--ink);background:transparent;border:0;border-bottom:1.5px solid var(--line);border-radius:0;padding:9px 2px;font-weight:300;transition:border-color .2s}
+.pz-cell .ded:focus{outline:none;border-bottom-color:var(--rosa)}
 .pz-cell .ded::placeholder{color:var(--ink-faint)}
-select.sel{appearance:none;-webkit-appearance:none;cursor:pointer;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'><path d='M1 1l5 5 5-5' fill='none' stroke='%23B98E86' stroke-width='1.6'/></svg>");background-repeat:no-repeat;background-position:right 14px center;padding-right:36px}
+select.sel{appearance:none;-webkit-appearance:none;cursor:pointer;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'><path d='M1 1l5 5 5-5' fill='none' stroke='%23B98E86' stroke-width='1.6'/></svg>");background-repeat:no-repeat;background-position:right 2px center;padding-right:26px}
 .citem .ci-note{font-size:.7rem;color:var(--champ);margin-top:4px;font-style:italic;line-height:1.3}
 /* QUIZ */
 .quiz{position:fixed;inset:0;z-index:85;display:none;align-items:center;justify-content:center;padding:20px;background:rgba(36,31,42,.55)}
