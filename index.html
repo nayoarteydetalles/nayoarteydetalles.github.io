@@ -123,6 +123,21 @@ nav{display:flex;align-items:center;justify-content:space-between;padding:18px 2
 .porto{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-top:8px}
 .porto a{border:1px solid var(--line);border-radius:100px;padding:12px 24px;font-size:.9rem;color:var(--ink-soft);background:var(--surface);transition:.25s}
 .porto a:hover{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+/* GALERIA EMPAQUE + FIGURAS */
+.gallery{display:grid;grid-template-columns:repeat(6,1fr);gap:14px}
+.gitem{border-radius:16px;overflow:hidden;border:1px solid var(--line);background:var(--surface);aspect-ratio:4/5;display:block;position:relative}
+.gitem img{width:100%;height:100%;object-fit:cover;transition:.55s cubic-bezier(.2,.7,.3,1)}
+.gitem:hover img{transform:scale(1.07)}
+.gitem::after{content:"🤍";position:absolute;top:10px;right:12px;font-size:.9rem;opacity:0;transition:.3s}
+.gitem:hover::after{opacity:1}
+.figuras{display:grid;grid-template-columns:repeat(6,1fr);gap:18px}
+.figcard{text-align:center;display:block}
+.figcard .fimg{aspect-ratio:1;border-radius:18px;overflow:hidden;border:1px solid var(--line);background:var(--surface);margin-bottom:11px;transition:.35s}
+.figcard .fimg img{width:100%;height:100%;object-fit:cover;transition:.55s cubic-bezier(.2,.7,.3,1)}
+.figcard:hover .fimg{box-shadow:var(--shadow);border-color:transparent}
+.figcard:hover .fimg img{transform:scale(1.07)}
+.figcard h4{font-family:var(--serif);font-weight:600;font-size:1.12rem;line-height:1.05}
+.figcard .occ-tag{font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--sage);font-weight:600;margin-top:2px}
 .nos-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
 .nos blockquote{font-family:var(--serif);font-style:italic;font-weight:500;font-size:clamp(1.7rem,3.4vw,2.4rem);line-height:1.28;border-left:2px solid var(--rosa);padding-left:26px}
 .nos p{color:var(--ink-soft);margin-bottom:1em;max-width:52ch}
@@ -277,12 +292,13 @@ footer .cop{font-size:.74rem;color:#7C7480;margin-top:10px}
  .nos-grid,.video-grid,.contact-grid{grid-template-columns:1fr;gap:30px}.video-grid{padding:40px 30px}.cta-band{padding:34px}
  .nos blockquote{border-left:0;border-top:2px solid var(--rosa);padding:20px 0 0}
  .grid{grid-template-columns:repeat(2,1fr)}.vals,.occ{grid-template-columns:repeat(2,1fr)}.pasos,.info3,.testi{grid-template-columns:1fr}
+ .gallery{grid-template-columns:repeat(3,1fr)}.figuras{grid-template-columns:repeat(3,1fr)}
  .pdp{grid-template-columns:1fr;gap:32px}.pdp-media{min-height:340px}.recs{grid-template-columns:repeat(2,1fr)}.pdp-buy .btn{flex:1 1 100%}
  .pz-grid{grid-template-columns:1fr;gap:22px}
  .navlinks{display:none}.navlinks.open{display:flex;position:absolute;top:70px;right:16px;left:16px;flex-direction:column;gap:18px;background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:26px}
  .burger{display:flex}
 }
-@media (max-width:540px){.grid{grid-template-columns:1fr}.occ{grid-template-columns:1fr}.pad{padding:70px 0}}
+@media (max-width:540px){.grid{grid-template-columns:1fr}.occ{grid-template-columns:1fr}.pad{padding:70px 0}.gallery{grid-template-columns:repeat(2,1fr)}.figuras{grid-template-columns:repeat(2,1fr)}}
 </style>
 </head>
 <body>
@@ -332,6 +348,11 @@ footer .cop{font-size:.74rem;color:#7C7480;margin-top:10px}
     <div class="occ" id="occ"></div>
   </div></section>
 
+  <section class="pad" style="padding-top:0"><div class="wrap">
+    <div class="sec-head reveal"><span class="eyebrow">Listas para regalar</span><h2>Con empaque que enamora</h2><p>Cada vela va en caja transparente con moño, lista para entregar y sorprender.</p><div class="rule"></div></div>
+    <div class="gallery" id="gallery"></div>
+  </div></section>
+
   <section class="pad" style="padding-top:0"><div class="wrap"><div class="video"><div class="video-grid">
     <div class="reveal"><span class="eyebrow">En movimiento</span><h2>Míralas <em>cobrar vida</em></h2><p>Nuestras velas tipo acuario son pequeñas obras: gel cristalino con figuras que parecen flotar, como un pedacito de océano en calma.</p><a class="btn btn-champ" data-go="colecciones">Ver la colección Acuario</a></div>
     <div class="phone reveal"><video src="assets/acuario-video.mp4" autoplay muted loop playsinline></video></div>
@@ -365,7 +386,9 @@ footer .cop{font-size:.74rem;color:#7C7480;margin-top:10px}
   </div></section>
 
   <section class="pad" style="padding-top:0"><div class="wrap">
-    <div class="sec-head reveal"><span class="eyebrow">No solo velas</span><h2>También hacemos</h2><p>Detalles para cada sorpresa. Escríbenos y lo armamos a tu gusto.</p><div class="rule"></div></div>
+    <div class="sec-head reveal"><span class="eyebrow">No solo velas</span><h2>Figuras para cada ocasión</h2><p>Velas artesanales con forma: baby shower, quince años, grados y más. Se personalizan a tu gusto.</p><div class="rule"></div></div>
+    <div class="figuras" id="figuras" style="margin-bottom:52px"></div>
+    <div class="sec-head reveal" style="margin-bottom:26px"><h2 style="font-size:clamp(1.7rem,3.2vw,2.2rem)">También hacemos</h2></div>
     <div class="porto reveal">
       <a href="https://wa.me/573052352324?text=Hola%20Nayo%2C%20me%20interesan%20las%20velas%20arom%C3%A1ticas" target="_blank">🕯️ Velas aromáticas</a>
       <a href="https://wa.me/573052352324?text=Hola%20Nayo%2C%20me%20interesa%20resina%20(esferos%2Fllaveros)" target="_blank">✨ Resina (esferos, llaveros)</a>
@@ -562,6 +585,11 @@ document.querySelectorAll('#filters button').forEach(b=>b.onclick=()=>{
 // occasions
 const OCC=[['🎂','Cumpleaños'],['💞','Aniversario'],['🌻','Amor y Amistad'],['🤍','Solo porque sí'],['🏢','Empresarial']];
 document.getElementById('occ').innerHTML=OCC.map(o=>`<a class="ocard reveal" href="https://wa.me/${WA}?text=${encodeURIComponent('Hola Nayo 🤍 quiero un regalo para '+o[1])}" target="_blank"><div class="oi">${o[0]}</div><h4>${o[1]}</h4></a>`).join('');
+// galería con empaque + figuras
+const EMP=['emp-frambuesa','emp-dulce-oro','emp-jardin-plata','emp-acuario-plata','emp-encanto-plata','emp-rubi-plata'];
+document.getElementById('gallery').innerHTML=EMP.map(k=>`<a class="gitem reveal" href="https://wa.me/${WA}?text=${encodeURIComponent('Hola Nayo 🤍 me encantan las velas con empaque de regalo')}" target="_blank"><img src="assets/galeria/${k}.webp" alt="Vela artesanal con empaque de regalo" loading="lazy"></a>`).join('');
+const FIGS=[['fig-osito','Osito','Baby shower'],['fig-piecitos','Piecitos','Baby shower'],['fig-conejo','Conejito','Bebé · Pascua'],['fig-vestido','Vestido','Quince años'],['fig-grado','Birrete','Grados'],['fig-leon','León','Bebé · Niños']];
+document.getElementById('figuras').innerHTML=FIGS.map(f=>`<a class="figcard reveal" href="https://wa.me/${WA}?text=${encodeURIComponent('Hola Nayo 🤍 quiero una figura para '+f[2])}" target="_blank"><div class="fimg"><img src="assets/galeria/${f[0]}.webp" alt="Figura ${f[1]}" loading="lazy"></div><h4>${f[1]}</h4><div class="occ-tag">${f[2]}</div></a>`).join('');
 // form select
 document.getElementById('f-prod').innerHTML='<option value="">No estoy segura/o — ayúdenme a elegir</option>'+PRODUCTS.map(p=>`<option>${p.n} — ${money(p.p)}</option>`).join('');
 
