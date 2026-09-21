@@ -554,7 +554,7 @@ const GALLERY={
  'dulce-antojo':['dulce-antojo','dulce-emp-oro','dulce-emp-plata'],
  'dulce-encanto':['dulce-encanto','encanto-glass','encanto-emp'],
  'jardin-secreto':['jardin-secreto','jardin-glass','jardin-emp'],
- 'frambuesa':['frambuesa','frambuesa-emp'],
+ 'frambuesa':['frambuesa','frambuesa-emp','frambuesa-emp2'],
 };
 let GAL=[],GIDX=0,GTIMER=null;
 function setGal(i){if(GAL.length<2)return;GIDX=(i+GAL.length)%GAL.length;const m=document.getElementById('pdp-main');if(m)m.src=img(GAL[GIDX]);document.querySelectorAll('#pdp-thumbs .thumb').forEach((t,j)=>t.classList.toggle('active',j===GIDX))}
