@@ -317,6 +317,7 @@ footer .cop{font-size:.74rem;color:#7C7480;margin-top:10px}
   <div class="logo" data-go="home">Nayo<small>Arte &amp; Detalles</small></div>
   <div class="navlinks" id="menu">
     <a data-go="colecciones">Colecciones</a>
+    <a data-fig>Figuras</a>
     <a data-go="nosotros">Nosotros</a>
     <a data-go="contacto">Contacto</a>
     <a class="btn btn-rosa" data-go="colecciones">Comprar</a>
@@ -545,8 +546,9 @@ const GALLERY={
  'jardin-secreto':['jardin-secreto','jardin-glass','jardin-emp'],
  'frambuesa':['frambuesa','frambuesa-emp'],
 };
-let GAL=[],GIDX=0;
+let GAL=[],GIDX=0,GTIMER=null;
 function setGal(i){if(GAL.length<2)return;GIDX=(i+GAL.length)%GAL.length;const m=document.getElementById('pdp-main');if(m)m.src=img(GAL[GIDX]);document.querySelectorAll('#pdp-thumbs .thumb').forEach((t,j)=>t.classList.toggle('active',j===GIDX))}
+function startGal(){clearInterval(GTIMER);if(GAL.length>1)GTIMER=setInterval(()=>setGal(GIDX+1),3500)}
 function setPQ(n){PQTY=Math.max(1,n);const el=document.getElementById('pqv');if(el)el.textContent=PQTY}
 function openProduct(k){
   const p=P(k);if(!p)return;PQTY=1;
@@ -589,7 +591,7 @@ function openProduct(k){
   recs=recs.concat(PRODUCTS.filter(x=>x.cat!==p.cat&&x.k!==k));
   recs=recs.slice(0,4);
   document.getElementById('recs').innerHTML=recs.map(r=>`<article class="reccard reveal" data-openp="${r.k}"><div class="recimg"><img src="${img(r.k)}" alt="${r.n}" loading="lazy"></div><div class="recname">${r.n}</div><div class="recprice">${money(r.p)}</div></article>`).join('');
-  go('producto');
+  go('producto');startGal();
 }
 
 // ----- render products -----
@@ -641,8 +643,8 @@ document.body.addEventListener('click',e=>{
   const qo=e.target.closest('[data-qo]');if(qo){answerQuiz(qo.dataset.qo);return}
   const qv=e.target.closest('[data-qview]');if(qv){closeQuiz();openProduct(qv.dataset.qview);return}
   const qa=e.target.closest('[data-qadd]');if(qa){addToCart(qa.dataset.qadd);bumpBadge();closeQuiz();openCart();return}
-  const gn=e.target.closest('[data-gnav]');if(gn){setGal(GIDX+ +gn.dataset.gnav);return}
-  const gth=e.target.closest('[data-gth]');if(gth){setGal(+gth.dataset.gth);return}
+  const gn=e.target.closest('[data-gnav]');if(gn){setGal(GIDX+ +gn.dataset.gnav);startGal();return}
+  const gth=e.target.closest('[data-gth]');if(gth){setGal(+gth.dataset.gth);startGal();return}
   const op=e.target.closest('[data-openp]');if(op){openProduct(op.dataset.openp)}
 });
 document.body.addEventListener('change',e=>{const s=e.target.closest('#pz-aroma-sel');if(s)PSEL.aroma=s.value});
@@ -667,12 +669,14 @@ let tT;function toast(m){const t=document.getElementById('toast');t.textContent=
 
 // ----- router -----
 function go(name){
+  if(name!=='producto')clearInterval(GTIMER);
   document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));
   document.getElementById('v-'+name).classList.add('active');
   document.querySelectorAll('.navlinks a').forEach(a=>a.classList.toggle('active',a.dataset.go===name));
   history.replaceState(null,'',name==='home'?'#':'#'+name);window.scrollTo(0,0);menu.classList.remove('open');requestAnimationFrame(mark);
 }
 document.querySelectorAll('[data-go]').forEach(el=>el.addEventListener('click',()=>go(el.dataset.go)));
+document.querySelectorAll('[data-fig]').forEach(el=>el.addEventListener('click',()=>{go('home');setTimeout(()=>{const f=document.getElementById('figuras');if(f){const y=f.getBoundingClientRect().top+scrollY-150;scrollTo({top:y,behavior:'smooth'})}menu.classList.remove('open')},80)}));
 const hd=document.getElementById('hd'),menu=document.getElementById('menu');
 addEventListener('scroll',()=>hd.classList.toggle('scrolled',scrollY>40));
 document.getElementById('burger').onclick=()=>menu.classList.toggle('open');
