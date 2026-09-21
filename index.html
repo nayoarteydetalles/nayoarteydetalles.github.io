@@ -183,6 +183,16 @@ nav{display:flex;align-items:center;justify-content:space-between;padding:18px 2
 .pdp-media::after{content:"";position:absolute;inset:0;background:radial-gradient(closest-side at 50% 44%,rgba(255,255,255,.55),rgba(191,160,107,.12) 52%,transparent 74%);pointer-events:none}
 .pdp-media img{max-height:500px;max-width:92%;width:auto;object-fit:contain;filter:drop-shadow(0 26px 26px rgba(56,49,60,.24));position:relative}
 .pdp-media .mtag{position:absolute;top:20px;left:20px;font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;color:var(--champ);font-weight:600;z-index:2}
+.pdp-gallery{display:flex;flex-direction:column}
+.pdp-gallery .pdp-media{flex:1}
+.pdp-media .navbtn{position:absolute;top:50%;transform:translateY(-50%);width:42px;height:42px;border-radius:50%;background:rgba(255,255,255,.82);border:1px solid var(--line);cursor:pointer;display:grid;place-items:center;z-index:3;font-size:1.3rem;line-height:1;color:var(--ink);transition:.2s;backdrop-filter:blur(4px)}
+.pdp-media .navbtn:hover{background:#fff;color:var(--rosa)}
+.pdp-media .prev{left:14px}.pdp-media .next{right:14px}
+.pdp-thumbs{display:flex;gap:10px;margin-top:12px;flex-wrap:wrap}
+.thumb{width:72px;height:72px;border-radius:13px;overflow:hidden;border:1.5px solid var(--line);background:var(--surface);cursor:pointer;padding:7px;transition:.2s}
+.thumb.active{border-color:var(--ink)}
+.thumb:hover{border-color:var(--rosa)}
+.thumb img{width:100%;height:100%;object-fit:contain}
 .pdp-info .cat{font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;color:var(--champ);font-weight:600}
 .pdp-info h1{font-family:var(--serif);font-weight:600;font-size:clamp(2rem,3.8vw,2.6rem);line-height:1.02;margin:3px 0 2px}
 .pdp-info .sub{font-family:var(--serif);font-style:italic;color:var(--ink-soft);font-size:1.08rem}
@@ -526,9 +536,21 @@ let PSEL={color:'A elección',aroma:'',msg:''};
 
 // ----- PRODUCT DETAIL -----
 let PQTY=1;
+const GALLERY={
+ 'acuario-piedritas':['acuario-piedritas','acuario-emp'],
+ 'acuario-conchas':['acuario-conchas','acuario-emp'],
+ 'acuario-rubi':['acuario-rubi','rubi-glass','rubi-emp'],
+ 'dulce-antojo':['dulce-antojo','dulce-emp-oro','dulce-emp-plata'],
+ 'dulce-encanto':['dulce-encanto','encanto-glass','encanto-emp'],
+ 'jardin-secreto':['jardin-secreto','jardin-glass','jardin-emp'],
+ 'frambuesa':['frambuesa','frambuesa-emp'],
+};
+let GAL=[],GIDX=0;
+function setGal(i){if(GAL.length<2)return;GIDX=(i+GAL.length)%GAL.length;const m=document.getElementById('pdp-main');if(m)m.src=img(GAL[GIDX]);document.querySelectorAll('#pdp-thumbs .thumb').forEach((t,j)=>t.classList.toggle('active',j===GIDX))}
 function setPQ(n){PQTY=Math.max(1,n);const el=document.getElementById('pqv');if(el)el.textContent=PQTY}
 function openProduct(k){
   const p=P(k);if(!p)return;PQTY=1;
+  const gal=GALLERY[p.k]||[p.k];GAL=gal;GIDX=0;
   const cur=NOTES[p.k]||{};
   PSEL={color:cur.color||'A elección',aroma:cur.aroma||p.a,msg:cur.msg||''};
   const colorDots=COLORS.map(c=>`<button class="sw-dot ${c[1]?'':'any'} ${PSEL.color===c[0]?'on':''}" data-czc="${c[0]}" title="${c[0]}" aria-label="Color ${c[0]}"${c[1]?` style="background:${c[1]}"`:''}></button>`).join('');
@@ -544,7 +566,10 @@ function openProduct(k){
   const badge=BADGES[p.k]?`<span class="pdp-badge ${BADGES[p.k][1]}">${BADGES[p.k][0]}</span>`:'';
   document.getElementById('pdp-cat').textContent=p.n;
   document.getElementById('pdp').innerHTML=`
-    <div class="pdp-media reveal"><span class="mtag">${p.t}</span><img src="${img(p.k)}" alt="${p.n}"></div>
+    <div class="pdp-gallery reveal">
+      <div class="pdp-media"><span class="mtag">${p.t}</span>${gal.length>1?'<button class="navbtn prev" data-gnav="-1" aria-label="Anterior">‹</button><button class="navbtn next" data-gnav="1" aria-label="Siguiente">›</button>':''}<img id="pdp-main" src="${img(gal[0])}" alt="${p.n}"></div>
+      ${gal.length>1?`<div class="pdp-thumbs" id="pdp-thumbs">${gal.map((g,i)=>`<button class="thumb ${i===0?'active':''}" data-gth="${i}"><img src="${img(g)}" alt=""></button>`).join('')}</div>`:''}
+    </div>
     <div class="pdp-info reveal">
       ${badge?badge+'<br>':''}
       <div class="cat">Colección ${p.t}</div>
@@ -616,6 +641,8 @@ document.body.addEventListener('click',e=>{
   const qo=e.target.closest('[data-qo]');if(qo){answerQuiz(qo.dataset.qo);return}
   const qv=e.target.closest('[data-qview]');if(qv){closeQuiz();openProduct(qv.dataset.qview);return}
   const qa=e.target.closest('[data-qadd]');if(qa){addToCart(qa.dataset.qadd);bumpBadge();closeQuiz();openCart();return}
+  const gn=e.target.closest('[data-gnav]');if(gn){setGal(GIDX+ +gn.dataset.gnav);return}
+  const gth=e.target.closest('[data-gth]');if(gth){setGal(+gth.dataset.gth);return}
   const op=e.target.closest('[data-openp]');if(op){openProduct(op.dataset.openp)}
 });
 document.body.addEventListener('change',e=>{const s=e.target.closest('#pz-aroma-sel');if(s)PSEL.aroma=s.value});
