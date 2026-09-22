@@ -317,7 +317,7 @@ footer .cop{font-size:.74rem;color:#7C7480;margin-top:10px}
   <div class="logo" data-go="home">Nayo<small>Arte &amp; Detalles</small></div>
   <div class="navlinks" id="menu">
     <a data-go="colecciones">Colecciones</a>
-    <a data-go="figuras">Figuras</a>
+    <a data-go="figuras">Recordatorios</a>
     <a data-go="nosotros">Nosotros</a>
     <a data-go="contacto">Contacto</a>
     <a class="btn btn-rosa" data-go="colecciones">Comprar</a>
@@ -424,7 +424,7 @@ footer .cop{font-size:.74rem;color:#7C7480;margin-top:10px}
 
 <!-- FIGURAS -->
 <main class="view" id="v-figuras"><section class="pad" style="padding-top:140px"><div class="wrap">
-  <div class="sec-head reveal"><span class="eyebrow">Velas con forma</span><h2>Figuras para cada ocasión</h2><p>Baby shower, quince años, grados y más. Hechas a mano y personalizables. Toca una para ver el detalle.</p><div class="rule"></div></div>
+  <div class="sec-head reveal"><span class="eyebrow">Recordatorios</span><h2>Recordatorios para cada ocasión</h2><p>Baby shower, matrimonio, quince años, grados y más. Hechos a mano y personalizables. Toca uno para ver el detalle.</p><div class="rule"></div></div>
   <div class="grid" id="gridFiguras"></div>
 </div></section></main>
 
@@ -525,12 +525,12 @@ const PRODUCTS=[
  {k:'petit-jardin',n:'Petit Jardin',d:'Un pequeño jardín para regalar',p:50000,t:'Jardín',cat:'jardin',a:'Flores frescas'},
  {k:'ramo-rosas',n:'Ramo de Rosas',d:'Un ramo que nunca se marchita',p:42000,t:'Jardín',cat:'jardin',a:'Rosas'},
  {k:'cerveza',n:'Cerveza',d:'Un brindis que se enciende',p:45000,t:'Especial',cat:'especial',a:'Cítricos y cebada'},
- {k:'fig-osito',n:'Osito',d:'Una figura tierna, ideal para baby shower',p:25000,t:'Figura',cat:'figuras',a:'Baby shower'},
+ {k:'fig-osito',n:'Osito',d:'Un recordatorio tierno, ideal para baby shower',p:25000,t:'Recordatorio',cat:'figuras',a:'Baby shower'},
  {k:'fig-piecitos',n:'Pedida de mano',d:'El recordatorio perfecto para una pedida de mano',p:25000,t:'Recordatorio',cat:'figuras',a:'Matrimonio'},
- {k:'fig-conejo',n:'Conejito',d:'Pura ternura para bebé o Pascua',p:25000,t:'Figura',cat:'figuras',a:'Bebé · Pascua'},
- {k:'fig-vestido',n:'Vestido de XV',d:'Para celebrar unos quince años inolvidables',p:25000,t:'Figura',cat:'figuras',a:'Quince años'},
- {k:'fig-grado',n:'Birrete',d:'El detalle perfecto para festejar los grados',p:25000,t:'Figura',cat:'figuras',a:'Grados'},
- {k:'fig-leon',n:'León',d:'Adorable para bebé o niños',p:25000,t:'Figura',cat:'figuras',a:'Bebé · Niños'},
+ {k:'fig-conejo',n:'Conejito',d:'Pura ternura para bebé o Pascua',p:25000,t:'Recordatorio',cat:'figuras',a:'Bebé · Pascua'},
+ {k:'fig-vestido',n:'Vestido de XV',d:'Para celebrar unos quince años inolvidables',p:25000,t:'Recordatorio',cat:'figuras',a:'Quince años'},
+ {k:'fig-grado',n:'Birrete',d:'El detalle perfecto para festejar los grados',p:25000,t:'Recordatorio',cat:'figuras',a:'Grados'},
+ {k:'fig-leon',n:'León',d:'Adorable para bebé o niños',p:25000,t:'Recordatorio',cat:'figuras',a:'Bebé · Niños'},
 ];
 const P=k=>PRODUCTS.find(x=>x.k===k);
 const money=n=>'$ '+new Intl.NumberFormat('es-CO').format(n);
@@ -548,13 +548,13 @@ let PSEL={color:'A elección',aroma:'',msg:''};
 // ----- PRODUCT DETAIL -----
 let PQTY=1;
 const GALLERY={
- 'acuario-piedritas':['acuario-piedritas','acuario-emp'],
- 'acuario-conchas':['acuario-conchas','acuario-emp'],
- 'acuario-rubi':['acuario-rubi','rubi-glass','rubi-emp'],
- 'dulce-antojo':['dulce-antojo','dulce-emp-oro','dulce-emp-plata'],
- 'dulce-encanto':['dulce-encanto','encanto-glass','encanto-emp'],
- 'jardin-secreto':['jardin-secreto','jardin-glass','jardin-emp'],
- 'frambuesa':['frambuesa','frambuesa-emp','frambuesa-emp2'],
+ 'acuario-piedritas':['acuario-piedritas'],
+ 'acuario-conchas':['acuario-conchas'],
+ 'acuario-rubi':['acuario-rubi','rubi-glass'],
+ 'dulce-antojo':['dulce-antojo'],
+ 'dulce-encanto':['encanto-glass','encanto-b2','encanto-b3'],
+ 'jardin-secreto':['jardin-secreto','jardin-glass','jardin-b2'],
+ 'frambuesa':['frambuesa'],
 };
 let GAL=[],GIDX=0,GTIMER=null;
 function setGal(i){if(GAL.length<2)return;GIDX=(i+GAL.length)%GAL.length;const m=document.getElementById('pdp-main');if(m)m.src=img(GAL[GIDX]);document.querySelectorAll('#pdp-thumbs .thumb').forEach((t,j)=>t.classList.toggle('active',j===GIDX))}
