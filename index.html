@@ -548,13 +548,13 @@ let PSEL={color:'A elección',aroma:'',msg:''};
 // ----- PRODUCT DETAIL -----
 let PQTY=1;
 const GALLERY={
- 'acuario-piedritas':['acuario-piedritas'],
- 'acuario-conchas':['acuario-conchas'],
- 'acuario-rubi':['acuario-rubi','rubi-glass'],
- 'dulce-antojo':['dulce-antojo'],
- 'dulce-encanto':['encanto-glass','encanto-b2','encanto-b3'],
- 'jardin-secreto':['jardin-secreto','jardin-glass','jardin-b2'],
- 'frambuesa':['frambuesa'],
+ 'acuario-piedritas':['acuario-piedritas','acuario-emp'],
+ 'acuario-conchas':['acuario-conchas','acuario-emp'],
+ 'acuario-rubi':['acuario-rubi','rubi-glass','rubi-emp'],
+ 'dulce-antojo':['dulce-antojo','dulce-emp-oro','dulce-emp-plata'],
+ 'dulce-encanto':['dulce-encanto','encanto-b2','encanto-b3','encanto-emp'],
+ 'jardin-secreto':['jardin-secreto','jardin-glass','jardin-b2','jardin-emp'],
+ 'frambuesa':['frambuesa','frambuesa-emp','frambuesa-emp2'],
 };
 let GAL=[],GIDX=0,GTIMER=null;
 function setGal(i){if(GAL.length<2)return;GIDX=(i+GAL.length)%GAL.length;const m=document.getElementById('pdp-main');if(m)m.src=img(GAL[GIDX]);document.querySelectorAll('#pdp-thumbs .thumb').forEach((t,j)=>t.classList.toggle('active',j===GIDX))}
