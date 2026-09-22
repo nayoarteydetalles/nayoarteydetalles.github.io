@@ -130,8 +130,9 @@ nav{display:flex;align-items:center;justify-content:space-between;padding:18px 2
 .porto a:hover{background:var(--ink);color:var(--bg);border-color:var(--ink)}
 /* GALERIA EMPAQUE + FIGURAS */
 .gallery{display:grid;grid-template-columns:repeat(6,1fr);gap:14px}
-.gitem{border-radius:16px;overflow:hidden;border:1px solid var(--line);background:radial-gradient(closest-side at 50% 46%,#fff,var(--surface));aspect-ratio:4/5;display:block;position:relative}
-.gitem img{width:100%;height:100%;object-fit:cover;transition:.55s cubic-bezier(.2,.7,.3,1)}
+.gitem{border-radius:16px;overflow:hidden;border:1px solid var(--line);aspect-ratio:4/5;display:flex;align-items:center;justify-content:center;padding:14px;position:relative;
+ background:radial-gradient(60% 44% at 50% 40%,rgba(255,252,246,.72),rgba(255,252,246,0) 62%),linear-gradient(180deg,#F0E8DC 0%,#EADECB 56%,#E4D6C0 63%,#D7C4AA 64%,#E1D2BB 78%,#DBCBB2 100%)}
+.gitem img{max-width:100%;max-height:100%;object-fit:contain;filter:drop-shadow(0 13px 15px rgba(56,49,60,.26));transition:.55s cubic-bezier(.2,.7,.3,1)}
 .gitem:hover img{transform:scale(1.06)}
 .gitem::after{content:"🤍";position:absolute;top:10px;right:12px;font-size:.9rem;opacity:0;transition:.3s}
 .gitem:hover::after{opacity:1}
@@ -631,7 +632,7 @@ document.querySelectorAll('#filters button').forEach(b=>b.onclick=()=>{
 const OCC=[['🎂','Cumpleaños'],['💞','Aniversario'],['🌻','Amor y Amistad'],['🤍','Solo porque sí'],['🏢','Empresarial']];
 document.getElementById('occ').innerHTML=OCC.map(o=>`<a class="ocard reveal" href="https://wa.me/${WA}?text=${encodeURIComponent('Hola Nayo 🤍 quiero un regalo para '+o[1])}" target="_blank"><div class="oi">${o[0]}</div><h4>${o[1]}</h4></a>`).join('');
 // galería con empaque + figuras
-const EMP=['box-frambuesa','box-dulce-oro','box-jardin','box-acuario','box-encanto','box-rubi'];
+const EMP=['frambuesa-emp','dulce-emp-oro','jardin-emp','acuario-emp','encanto-emp','rubi-emp'];
 document.getElementById('gallery').innerHTML=EMP.map(k=>`<a class="gitem reveal" href="https://wa.me/${WA}?text=${encodeURIComponent('Hola Nayo 🤍 me encantan las velas con empaque de regalo')}" target="_blank"><img src="assets/productos/${k}.webp" alt="Vela artesanal con empaque de regalo" loading="lazy"></a>`).join('');
 // form select
 document.getElementById('f-prod').innerHTML='<option value="">No estoy segura/o — ayúdenme a elegir</option>'+PRODUCTS.filter(p=>p.cat!=='figuras').map(p=>`<option>${p.n} — ${money(p.p)}</option>`).join('');
