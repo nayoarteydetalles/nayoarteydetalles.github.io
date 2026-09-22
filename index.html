@@ -189,9 +189,6 @@ nav{display:flex;align-items:center;justify-content:space-between;padding:18px 2
  linear-gradient(180deg,#F1E9DC 0%,#EADDCA 60%,#E4D6C0 66%,#D6C3A9 67%,#E2D3BB 82%,#DACAB1 100%)}
 .pdp-media::after{content:"";position:absolute;left:50%;bottom:30px;transform:translateX(-50%);width:52%;height:22px;background:radial-gradient(closest-side,rgba(88,63,44,.30),transparent 74%);filter:blur(4px);border-radius:50%;pointer-events:none;z-index:0}
 .pdp-media img{max-height:500px;max-width:92%;width:auto;object-fit:contain;filter:drop-shadow(0 28px 26px rgba(56,49,60,.32));position:relative;z-index:2}
-.pdp-media.photofill{background:linear-gradient(180deg,#CDCBC9 0%,#D4D2CF 40%,#DEDDD9 70%,#E4E3DF 100%)}
-.pdp-media.photofill::after{display:none}
-.pdp-media.photofill img{max-height:460px;max-width:90%;width:auto;height:auto;object-fit:contain;filter:none;border-radius:0}
 .pdp-media .mtag{position:absolute;top:20px;left:20px;font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;color:var(--champ);font-weight:600;z-index:2}
 .pdp-gallery{display:flex;flex-direction:column}
 .pdp-gallery .pdp-media{flex:1}
@@ -558,13 +555,13 @@ let PSEL={color:'A elección',aroma:'',msg:''};
 // ----- PRODUCT DETAIL -----
 let PQTY=1;
 const GALLERY={
- 'acuario-piedritas':['acuario-piedritas','box-acuario'],
- 'acuario-conchas':['acuario-conchas','box-acuario'],
- 'acuario-rubi':['acuario-rubi','rubi-glass','box-rubi'],
- 'dulce-antojo':['dulce-antojo','box-dulce-oro','box-dulce-plata'],
- 'dulce-encanto':['dulce-encanto','encanto-b2','encanto-b3','box-encanto'],
- 'jardin-secreto':['jardin-secreto','jardin-glass','jardin-b2','box-jardin'],
- 'frambuesa':['frambuesa','box-frambuesa'],
+ 'acuario-piedritas':['acuario-piedritas','acuario-emp'],
+ 'acuario-conchas':['acuario-conchas','acuario-emp'],
+ 'acuario-rubi':['acuario-rubi','rubi-glass','rubi-emp'],
+ 'dulce-antojo':['dulce-antojo','dulce-emp-oro','dulce-emp-plata'],
+ 'dulce-encanto':['dulce-encanto','encanto-glass','encanto-emp'],
+ 'jardin-secreto':['jardin-secreto','jardin-glass','jardin-emp'],
+ 'frambuesa':['frambuesa','frambuesa-emp','frambuesa-emp2'],
 };
 let GAL=[],GIDX=0,GTIMER=null;
 function setGal(i){if(GAL.length<2)return;GIDX=(i+GAL.length)%GAL.length;const m=document.getElementById('pdp-main');if(m){m.src=img(GAL[GIDX]);const pm=m.closest('.pdp-media');if(pm)pm.classList.toggle('photofill',String(GAL[GIDX]).startsWith('box-'))}document.querySelectorAll('#pdp-thumbs .thumb').forEach((t,j)=>t.classList.toggle('active',j===GIDX))}
