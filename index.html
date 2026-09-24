@@ -305,6 +305,28 @@ footer .flinks{display:flex;gap:26px;justify-content:center;margin:24px 0;font-s
 footer .flinks a{cursor:pointer}footer .flinks a:hover{color:#EFEAE9}
 footer .cop{font-size:.74rem;color:#7C7480;margin-top:10px}
 .reveal{opacity:0;transform:translateY(24px);transition:.9s cubic-bezier(.2,.7,.3,1)}.reveal.in{opacity:1;transform:none}
+/* ---- INTRO / CORTINA DE APERTURA ---- */
+#intro{position:fixed;inset:0;z-index:9999;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:20px;
+ background:radial-gradient(120% 90% at 50% 32%,#3a323f 0%,#2a2430 52%,#211c27 100%);color:#F4EEEB;
+ transition:transform 1.05s cubic-bezier(.76,0,.24,1),opacity .7s ease .35s}
+#intro.hide{transform:translateY(-102%);opacity:0;pointer-events:none}
+#intro .imono{opacity:0;transform:scale(.82);animation:introPop .9s cubic-bezier(.2,.8,.3,1) .15s forwards}
+#intro .ibrand{font-family:var(--sans);font-weight:600;letter-spacing:.42em;font-size:1.05rem;color:#F4EEEB;opacity:0;animation:introUp .8s ease .5s forwards}
+#intro .itag{font-family:var(--serif);font-style:italic;font-size:1.7rem;color:#CDB08A;opacity:0;animation:introUp .8s ease .72s forwards}
+#intro .iline{width:0;height:1px;background:linear-gradient(90deg,transparent,#BFA06B,transparent);animation:introLine 1s ease .6s forwards}
+@keyframes introPop{to{opacity:1;transform:scale(1)}}
+@keyframes introUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+@keyframes introLine{to{width:210px}}
+/* entrada escalonada del hero al abrir la cortina */
+.hero .anim{opacity:0;transform:translateY(30px)}
+body.loaded .hero .anim{animation:heroIn 1s cubic-bezier(.2,.75,.3,1) forwards}
+body.loaded .hero .anim.d1{animation-delay:.06s}
+body.loaded .hero .anim.d2{animation-delay:.18s}
+body.loaded .hero .anim.d3{animation-delay:.30s}
+body.loaded .hero .anim.d4{animation-delay:.42s}
+body.loaded .hero .anim.d5{animation-delay:.16s}
+@keyframes heroIn{to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){#intro .imono,#intro .ibrand,#intro .itag,#intro .iline,.hero .anim{animation:none!important;opacity:1!important;transform:none!important;width:210px}}
 @media (max-width:900px){
  .hero-grid{grid-template-columns:1fr;text-align:center}.hero-cta{justify-content:center}.hero p.lead{margin-inline:auto}.hero-visual{order:-1;height:44vh}
  .nos-grid,.video-grid,.contact-grid{grid-template-columns:1fr;gap:30px}.video-grid{padding:40px 30px}.cta-band{padding:34px}
@@ -320,6 +342,12 @@ footer .cop{font-size:.74rem;color:#7C7480;margin-top:10px}
 </style>
 </head>
 <body>
+<div id="intro" aria-hidden="true">
+  <svg class="imono" width="92" height="92" viewBox="0 0 92 92"><circle cx="46" cy="46" r="42" fill="none" stroke="#CDB08A" stroke-width="2.4"/><text x="46" y="61" text-anchor="middle" font-family="Cormorant,serif" font-weight="500" font-size="54" fill="#F4EEEB">N</text></svg>
+  <div class="ibrand">NAYO · ARTE &amp; DETALLES</div>
+  <div class="iline"></div>
+  <div class="itag">Detalles que se recuerdan.</div>
+</div>
 
 <header id="hd"><nav>
   <div class="logo" data-go="home">Nayo<small>Arte &amp; Detalles</small></div>
@@ -343,12 +371,12 @@ footer .cop{font-size:.74rem;color:#7C7480;margin-top:10px}
 <main class="view active" id="v-home">
   <section class="hero"><div class="wrap hero-grid">
     <div>
-      <span class="eyebrow reveal">Velas aromáticas artesanales · Bogotá</span>
-      <h1 class="reveal">Detalles que se <em>recuerdan.</em></h1>
-      <p class="lead reveal">Velas hechas a mano, pensadas para un momento: un regalo, un “gracias”, un “estoy pensando en ti”. No vendemos objetos, entregamos la emoción de sorprender.</p>
-      <div class="hero-cta reveal"><a class="btn btn-primary" data-go="colecciones">Ver colecciones</a><a class="btn btn-ghost" data-quiz>✨ Ayúdame a elegir</a></div>
+      <span class="eyebrow anim d1">Velas aromáticas artesanales · Bogotá</span>
+      <h1 class="anim d2">Detalles que se <em>recuerdan.</em></h1>
+      <p class="lead anim d3">Velas hechas a mano, pensadas para un momento: un regalo, un “gracias”, un “estoy pensando en ti”. No vendemos objetos, entregamos la emoción de sorprender.</p>
+      <div class="hero-cta anim d4"><a class="btn btn-primary" data-go="colecciones">Ver colecciones</a><a class="btn btn-ghost" data-quiz>✨ Ayúdame a elegir</a></div>
     </div>
-    <div class="hero-visual reveal"><div class="glow"></div><div class="hero-stage" id="stage"></div><div class="dots" id="dots"></div></div>
+    <div class="hero-visual anim d5"><div class="glow"></div><div class="hero-stage" id="stage"></div><div class="dots" id="dots"></div></div>
   </div></section>
 
   <section class="trust"><div class="wrap">
@@ -755,6 +783,15 @@ const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.targ
 function mark(){document.querySelectorAll('.view.active .reveal:not(.in)').forEach(el=>io.observe(el))}
 renderCart();mark();
 const h=location.hash.replace('#','');if(h&&h!=='producto'&&document.getElementById('v-'+h))go(h);
+/* Intro de apertura (cortina) — solo la primera vez por sesión */
+(function(){
+  const intro=document.getElementById('intro'); if(!intro)return;
+  if(sessionStorage.getItem('nayoIntro')){intro.remove();document.body.classList.add('loaded');return;}
+  document.body.style.overflow='hidden';
+  const finish=()=>{intro.classList.add('hide');document.body.classList.add('loaded');document.body.style.overflow='';
+    try{sessionStorage.setItem('nayoIntro','1')}catch(e){}; setTimeout(()=>intro.remove(),1300);};
+  setTimeout(finish,1900);
+})();
 </script>
 </body>
 </html>
