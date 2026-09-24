@@ -310,13 +310,24 @@ footer .cop{font-size:.74rem;color:#7C7480;margin-top:10px}
  background:radial-gradient(120% 90% at 50% 32%,#3a323f 0%,#2a2430 52%,#211c27 100%);color:#F4EEEB;
  transition:transform 1.05s cubic-bezier(.76,0,.24,1),opacity .7s ease .35s}
 #intro.hide{transform:translateY(-102%);opacity:0;pointer-events:none}
-#intro .imono{opacity:0;transform:scale(.82);animation:introPop .9s cubic-bezier(.2,.8,.3,1) .15s forwards}
-#intro .ibrand{font-family:var(--sans);font-weight:600;letter-spacing:.42em;font-size:1.05rem;color:#F4EEEB;opacity:0;animation:introUp .8s ease .5s forwards}
-#intro .itag{font-family:var(--serif);font-style:italic;font-size:1.7rem;color:#CDB08A;opacity:0;animation:introUp .8s ease .72s forwards}
-#intro .iline{width:0;height:1px;background:linear-gradient(90deg,transparent,#BFA06B,transparent);animation:introLine 1s ease .6s forwards}
+#intro .iglow{position:absolute;width:min(560px,80vw);height:min(560px,80vw);border-radius:50%;background:radial-gradient(closest-side,rgba(205,176,138,.30),transparent 70%);filter:blur(22px);opacity:0;animation:iglowIn 1.2s ease .2s forwards,iglowPulse 3.4s ease-in-out 1.4s infinite}
+#intro .iparts{position:absolute;inset:0;overflow:hidden;pointer-events:none}
+#intro .iparts i{position:absolute;bottom:-12px;width:5px;height:5px;border-radius:50%;background:radial-gradient(circle,#EBD6A8,rgba(235,214,168,0) 70%);opacity:0;animation:ipart linear infinite}
+#intro .imono{position:relative;z-index:2;opacity:0;transform:scale(.84);animation:introPop 1s cubic-bezier(.2,.8,.3,1) .35s forwards}
+#intro .iring{stroke-dasharray:277;stroke-dashoffset:277;animation:iringDraw 1.4s cubic-bezier(.5,0,.2,1) .2s forwards}
+#intro .ibrand{position:relative;z-index:2;font-family:var(--sans);font-weight:600;letter-spacing:.42em;font-size:1.05rem;opacity:0;
+ background:linear-gradient(100deg,#F4EEEB 34%,#F8E6BE 50%,#F4EEEB 66%);background-size:220% 100%;background-position:120% 0;
+ -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent;
+ animation:introUp .85s ease .75s forwards,ishimmer 3s ease 1.7s infinite}
+#intro .itag{position:relative;z-index:2;font-family:var(--serif);font-style:italic;font-size:1.75rem;color:#CDB08A;opacity:0;animation:introUp .85s ease 1s forwards}
+#intro .iline{position:relative;z-index:2;width:0;height:1px;background:linear-gradient(90deg,transparent,#BFA06B,transparent);animation:introLine 1.1s ease .85s forwards}
 @keyframes introPop{to{opacity:1;transform:scale(1)}}
 @keyframes introUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
-@keyframes introLine{to{width:210px}}
+@keyframes introLine{to{width:230px}}
+@keyframes iringDraw{to{stroke-dashoffset:0}}
+@keyframes iglowIn{to{opacity:1}}
+@keyframes iglowPulse{0%,100%{transform:scale(.96);opacity:.7}50%{transform:scale(1.08);opacity:1}}
+@keyframes ipart{0%{transform:translateY(0) scale(.5);opacity:0}14%{opacity:.9}70%{opacity:.7}100%{transform:translateY(-78vh) scale(1.1);opacity:0}}
 /* entrada escalonada del hero al abrir la cortina */
 .hero .anim{opacity:0;transform:translateY(30px)}
 body.loaded .hero .anim{animation:heroIn 1s cubic-bezier(.2,.75,.3,1) forwards}
@@ -326,7 +337,7 @@ body.loaded .hero .anim.d3{animation-delay:.30s}
 body.loaded .hero .anim.d4{animation-delay:.42s}
 body.loaded .hero .anim.d5{animation-delay:.16s}
 @keyframes heroIn{to{opacity:1;transform:none}}
-@media (prefers-reduced-motion:reduce){#intro .imono,#intro .ibrand,#intro .itag,#intro .iline,.hero .anim{animation:none!important;opacity:1!important;transform:none!important;width:210px}}
+@media (prefers-reduced-motion:reduce){#intro .imono,#intro .ibrand,#intro .itag,#intro .iline,.hero .anim{animation:none!important;opacity:1!important;transform:none!important;width:210px}#intro .ibrand{-webkit-text-fill-color:#F4EEEB;color:#F4EEEB}#intro .iparts,#intro .iglow{display:none}#intro .iring{stroke-dashoffset:0}}
 /* 3) header que se encoge al bajar */
 .logo{transition:font-size .3s ease}.logo small{transition:.3s ease}
 header.scrolled nav{padding-top:10px;padding-bottom:10px}
@@ -377,7 +388,9 @@ body.scrolled .scrollcue{opacity:0!important;transition-delay:0s}
 </head>
 <body>
 <div id="intro" aria-hidden="true">
-  <svg class="imono" width="92" height="92" viewBox="0 0 92 92"><circle cx="46" cy="46" r="42" fill="none" stroke="#CDB08A" stroke-width="2.4"/><text x="46" y="61" text-anchor="middle" font-family="Cormorant,serif" font-weight="500" font-size="54" fill="#F4EEEB">N</text></svg>
+  <div class="iglow"></div>
+  <div class="iparts"></div>
+  <svg class="imono" width="100" height="100" viewBox="0 0 100 100"><circle class="iring" cx="50" cy="50" r="44" fill="none" stroke="#CDB08A" stroke-width="2.2"/><text x="50" y="66" text-anchor="middle" font-family="Cormorant,serif" font-weight="500" font-size="56" fill="#F4EEEB">N</text></svg>
   <div class="ibrand">NAYO · ARTE &amp; DETALLES</div>
   <div class="iline"></div>
   <div class="itag">Detalles que se recuerdan.</div>
@@ -823,10 +836,16 @@ const h=location.hash.replace('#','');if(h&&h!=='producto'&&document.getElementB
 (function(){
   const intro=document.getElementById('intro'); if(!intro)return;
   if(sessionStorage.getItem('nayoIntro')){intro.remove();document.body.classList.add('loaded');return;}
+  const parts=intro.querySelector('.iparts');
+  if(parts&&!matchMedia('(prefers-reduced-motion:reduce)').matches){
+    for(let i=0;i<16;i++){const s=document.createElement('i');const sc=.6+Math.random()*1.2;
+      s.style.left=(Math.random()*100)+'%';s.style.width=s.style.height=(4*sc).toFixed(1)+'px';
+      s.style.animationDuration=(4+Math.random()*4).toFixed(1)+'s';s.style.animationDelay=(Math.random()*3).toFixed(1)+'s';
+      parts.appendChild(s);}}
   document.body.style.overflow='hidden';
   const finish=()=>{intro.classList.add('hide');document.body.classList.add('loaded');document.body.style.overflow='';
     try{sessionStorage.setItem('nayoIntro','1')}catch(e){}; setTimeout(()=>intro.remove(),1300);};
-  setTimeout(finish,3200);
+  setTimeout(finish,3400);
 })();
 </script>
 </body>
