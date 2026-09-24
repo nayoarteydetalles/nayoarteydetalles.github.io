@@ -70,6 +70,13 @@ nav{display:flex;align-items:center;justify-content:space-between;padding:18px 2
 .dots{position:absolute;bottom:6px;left:50%;transform:translateX(-50%);display:flex;gap:9px}
 .dots i{width:8px;height:8px;border-radius:50%;background:var(--line);transition:.3s;cursor:pointer}
 .dots i.on{background:var(--rosa);width:22px;border-radius:6px}
+/* hero cinematografico: glow que respira + particulas doradas sutiles */
+.hero-visual .glow{animation:glowbreath 5.5s ease-in-out infinite}
+@keyframes glowbreath{0%,100%{opacity:.7;transform:scale(.97)}50%{opacity:1;transform:scale(1.07)}}
+.hparts{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:0}
+.hparts i{position:absolute;bottom:-8px;width:5px;height:5px;border-radius:50%;background:radial-gradient(circle,rgba(191,160,107,.55),rgba(191,160,107,0) 70%);opacity:0;animation:hpart linear infinite}
+@keyframes hpart{0%{transform:translateY(0) scale(.5);opacity:0}16%{opacity:.65}72%{opacity:.45}100%{transform:translateY(-62vh) scale(1.1);opacity:0}}
+@media(prefers-reduced-motion:reduce){.hero-visual .glow{animation:none}.hparts{display:none}}
 .trust{border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--surface2)}
 .trust .wrap{display:flex;justify-content:space-around;flex-wrap:wrap;gap:14px;padding:22px 28px}
 .trust span{font-size:.86rem;color:var(--ink-soft);display:flex;align-items:center;gap:9px}.trust b{font-size:1.05rem}
@@ -423,7 +430,7 @@ body.scrolled .scrollcue{opacity:0!important;transition-delay:0s}
       <p class="lead anim d3">Velas hechas a mano, pensadas para un momento: un regalo, un “gracias”, un “estoy pensando en ti”. No vendemos objetos, entregamos la emoción de sorprender.</p>
       <div class="hero-cta anim d4"><a class="btn btn-primary" data-go="colecciones">Ver colecciones</a><a class="btn btn-ghost" data-quiz>✨ Ayúdame a elegir</a></div>
     </div>
-    <div class="hero-visual anim d5"><div class="glow"></div><div class="hero-stage" id="stage"></div><div class="dots" id="dots"></div></div>
+    <div class="hero-visual anim d5"><div class="glow"></div><div class="hparts" id="hparts"></div><div class="hero-stage" id="stage"></div><div class="dots" id="dots"></div></div>
   </div>
   <div class="scrollcue"><span>Desliza</span><div class="ch"></div></div>
   </section>
@@ -847,6 +854,11 @@ const h=location.hash.replace('#','');if(h&&h!=='producto'&&document.getElementB
     try{sessionStorage.setItem('nayoIntro','1')}catch(e){}; setTimeout(()=>intro.remove(),1300);};
   setTimeout(finish,3400);
 })();
+/* partículas doradas sutiles del hero */
+(function(){const hp=document.getElementById('hparts');if(!hp||matchMedia('(prefers-reduced-motion:reduce)').matches)return;
+ for(let i=0;i<9;i++){const s=document.createElement('i');const sc=.6+Math.random()*1;
+  s.style.left=(8+Math.random()*84)+'%';s.style.width=s.style.height=(4*sc).toFixed(1)+'px';
+  s.style.animationDuration=(7+Math.random()*6).toFixed(1)+'s';s.style.animationDelay=(Math.random()*7).toFixed(1)+'s';hp.appendChild(s);}})();
 </script>
 </body>
 </html>
