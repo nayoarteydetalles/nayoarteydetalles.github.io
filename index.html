@@ -826,7 +826,7 @@ const h=location.hash.replace('#','');if(h&&h!=='producto'&&document.getElementB
   document.body.style.overflow='hidden';
   const finish=()=>{intro.classList.add('hide');document.body.classList.add('loaded');document.body.style.overflow='';
     try{sessionStorage.setItem('nayoIntro','1')}catch(e){}; setTimeout(()=>intro.remove(),1300);};
-  setTimeout(finish,1900);
+  setTimeout(finish,3200);
 })();
 </script>
 </body>
