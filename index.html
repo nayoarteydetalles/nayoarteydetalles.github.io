@@ -327,6 +327,28 @@ body.loaded .hero .anim.d4{animation-delay:.42s}
 body.loaded .hero .anim.d5{animation-delay:.16s}
 @keyframes heroIn{to{opacity:1;transform:none}}
 @media (prefers-reduced-motion:reduce){#intro .imono,#intro .ibrand,#intro .itag,#intro .iline,.hero .anim{animation:none!important;opacity:1!important;transform:none!important;width:210px}}
+/* 3) header que se encoge al bajar */
+.logo{transition:font-size .3s ease}.logo small{transition:.3s ease}
+header.scrolled nav{padding-top:10px;padding-bottom:10px}
+header.scrolled .logo{font-size:1.55rem}
+header.scrolled .logo small{opacity:0;max-height:0;margin-top:0;overflow:hidden}
+/* 1) indicador de scroll en el hero */
+.scrollcue{position:absolute;left:50%;bottom:24px;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:8px;color:var(--ink-faint);font-size:.6rem;letter-spacing:.3em;text-transform:uppercase;z-index:4;pointer-events:none;opacity:0;transition:opacity .6s ease}
+body.loaded .scrollcue{opacity:1;transition-delay:1.1s}
+body.scrolled .scrollcue{opacity:0!important;transition-delay:0s}
+.scrollcue .ch{width:16px;height:16px;border-right:1.6px solid var(--rosa);border-bottom:1.6px solid var(--rosa);transform:rotate(45deg);animation:cuebounce 1.8s ease-in-out infinite}
+@keyframes cuebounce{0%,100%{transform:rotate(45deg) translate(-2px,-2px);opacity:.45}50%{transform:rotate(45deg) translate(2px,2px);opacity:1}}
+/* 2) banda de credibilidad ejecutiva */
+.trust .wrap{gap:0;padding:20px 28px}
+.trust span{position:relative;padding:6px 30px;font-size:.8rem;letter-spacing:.03em}
+.trust span+span::before{content:"";position:absolute;left:0;top:50%;transform:translateY(-50%);height:24px;width:1px;background:var(--line)}
+.trust b{color:var(--champ)}
+/* 4) reseñas: carrusel en móvil, grid ejecutivo en desktop */
+@media(max-width:900px){.testi{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:16px;scrollbar-width:none;padding-bottom:6px}.testi::-webkit-scrollbar{display:none}.testi .tcard{flex:0 0 84%;scroll-snap-align:center}}
+/* 5) brillo (shine) al pasar el mouse por las colecciones */
+.card .ph::before{content:"";position:absolute;top:0;left:-70%;width:55%;height:100%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.4),transparent);transform:skewX(-18deg);opacity:0;z-index:2;pointer-events:none}
+.card:hover .ph::before{animation:shine .85s ease}
+@keyframes shine{0%{left:-70%;opacity:0}18%{opacity:1}100%{left:130%;opacity:0}}
 @media (max-width:900px){
  .hero-grid{grid-template-columns:1fr;text-align:center}.hero-cta{justify-content:center}.hero p.lead{margin-inline:auto}.hero-visual{order:-1;height:44vh}
  .nos-grid,.video-grid,.contact-grid{grid-template-columns:1fr;gap:30px}.video-grid{padding:40px 30px}.cta-band{padding:34px}
@@ -377,7 +399,9 @@ body.loaded .hero .anim.d5{animation-delay:.16s}
       <div class="hero-cta anim d4"><a class="btn btn-primary" data-go="colecciones">Ver colecciones</a><a class="btn btn-ghost" data-quiz>✨ Ayúdame a elegir</a></div>
     </div>
     <div class="hero-visual anim d5"><div class="glow"></div><div class="hero-stage" id="stage"></div><div class="dots" id="dots"></div></div>
-  </div></section>
+  </div>
+  <div class="scrollcue"><span>Desliza</span><div class="ch"></div></div>
+  </section>
 
   <section class="trust"><div class="wrap">
     <span><b>🤍</b> Hecho a mano</span><span><b>🎁</b> Personalizado</span><span><b>🚚</b> Envíos en Bogotá</span><span><b>⏱️</b> Entrega puntual</span>
@@ -722,7 +746,7 @@ function go(name){
 }
 document.querySelectorAll('[data-go]').forEach(el=>el.addEventListener('click',()=>go(el.dataset.go)));
 const hd=document.getElementById('hd'),menu=document.getElementById('menu');
-addEventListener('scroll',()=>hd.classList.toggle('scrolled',scrollY>40));
+addEventListener('scroll',()=>{const s=scrollY>40;hd.classList.toggle('scrolled',s);document.body.classList.toggle('scrolled',scrollY>20)});
 document.getElementById('burger').onclick=()=>menu.classList.toggle('open');
 const dlBtn=document.getElementById('dlBtn');
 if(dlBtn){dlBtn.onclick=e=>{e.stopPropagation();dlBtn.parentElement.classList.toggle('open')};
