@@ -349,6 +349,18 @@ body.scrolled .scrollcue{opacity:0!important;transition-delay:0s}
 .card .ph::before{content:"";position:absolute;top:0;left:-70%;width:55%;height:100%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.4),transparent);transform:skewX(-18deg);opacity:0;z-index:2;pointer-events:none}
 .card:hover .ph::before{animation:shine .85s ease}
 @keyframes shine{0%{left:-70%;opacity:0}18%{opacity:1}100%{left:130%;opacity:0}}
+/* PULIDO INICIO — tarjetas de ocasión mas elegantes */
+.ocard{padding:24px 14px 22px;position:relative;overflow:hidden}
+.ocard .oi{font-size:1.55rem;display:inline-grid;place-items:center;width:58px;height:58px;border-radius:50%;background:var(--surface2);border:1px solid var(--line);margin:0 auto 4px;transition:.3s}
+.ocard:hover .oi{background:#fff;border-color:var(--champ);transform:scale(1.08)}
+.ocard::after{content:"";position:absolute;left:50%;bottom:0;width:0;height:2px;background:var(--champ);transform:translateX(-50%);transition:width .35s ease}
+.ocard:hover::after{width:56%}
+/* pasos conectados 01-02-03 */
+.pasos{position:relative}
+.pasos::before{content:"";position:absolute;top:52px;left:17%;right:17%;height:1px;background:linear-gradient(90deg,transparent,var(--line) 14%,var(--line) 86%,transparent);z-index:0}
+.paso{position:relative;z-index:1;padding:6px 20px}
+.paso .num{display:inline-grid;place-items:center;width:70px;height:70px;border-radius:50%;background:var(--surface);border:1px solid var(--line);margin:0 auto 14px;font-size:1.7rem;box-shadow:0 8px 22px -14px rgba(56,49,60,.4)}
+@media(max-width:900px){.pasos::before{display:none}}
 @media (max-width:900px){
  .hero-grid{grid-template-columns:1fr;text-align:center}.hero-cta{justify-content:center}.hero p.lead{margin-inline:auto}.hero-visual{order:-1;height:44vh}
  .nos-grid,.video-grid,.contact-grid{grid-template-columns:1fr;gap:30px}.video-grid{padding:40px 30px}.cta-band{padding:34px}
