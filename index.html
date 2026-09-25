@@ -76,7 +76,7 @@ nav{display:flex;align-items:center;justify-content:space-between;padding:18px 2
 .hero-visual{position:relative;height:78vh;max-height:640px}
 .hero-visual .glow{position:absolute;inset:8% 12%;background:radial-gradient(closest-side,rgba(191,160,107,.34),transparent 72%);filter:blur(6px)}
 .hero-stage{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;animation:float 6s ease-in-out infinite}
-.hero-img{position:absolute;max-height:100%;max-width:100%;object-fit:contain;filter:drop-shadow(0 40px 40px rgba(56,49,60,.32));opacity:0;transition:opacity 1.1s ease}
+.hero-img{position:absolute;max-height:100%;max-width:100%;object-fit:contain;filter:drop-shadow(0 40px 40px rgba(56,49,60,.32));opacity:0;transition:opacity 1.1s ease;-webkit-box-reflect:below 3px linear-gradient(transparent 56%,rgba(255,255,255,.34))}
 .hero-img.show{opacity:1;animation:kenburns 9s ease-in-out infinite alternate}
 @keyframes kenburns{0%{transform:scale(1)}100%{transform:scale(1.1)}}
 @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-16px)}}
