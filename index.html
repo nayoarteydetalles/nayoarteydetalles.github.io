@@ -65,8 +65,8 @@ nav{display:flex;align-items:center;justify-content:space-between;padding:18px 2
 .hero .aurora span:nth-child(3){width:34vw;height:34vw;left:38vw;top:22vh;background:rgba(169,145,166,.42);animation-delay:-9s}
 @keyframes auroraMove{0%,100%{transform:translate(0,0) scale(1)}33%{transform:translate(5vw,4vh) scale(1.12)}66%{transform:translate(-4vw,-3vh) scale(.94)}}
 .hero .hlights{position:absolute;inset:0;z-index:1;overflow:hidden;pointer-events:none}
-.hero .hlights i{position:absolute;width:6px;height:6px;border-radius:50%;background:radial-gradient(circle,#fff 0%,rgba(214,183,132,.9) 40%,rgba(214,183,132,0) 72%);box-shadow:0 0 8px 2px rgba(214,183,132,.5);opacity:0;animation:twinkle ease-in-out infinite}
-@keyframes twinkle{0%,100%{opacity:0;transform:scale(.6)}50%{opacity:.95;transform:scale(1)}}
+.hero .hlights i{position:absolute;width:9px;height:9px;border-radius:50%;background:radial-gradient(circle,#fff 0%,rgba(214,183,132,.95) 42%,rgba(214,183,132,0) 74%);box-shadow:0 0 16px 5px rgba(214,183,132,.65);opacity:0;animation:twinkle ease-in-out infinite}
+@keyframes twinkle{0%,100%{opacity:0;transform:scale(.55)}50%{opacity:1;transform:scale(1.2)}}
 .hero .wrap{position:relative;z-index:2}
 @media(prefers-reduced-motion:reduce){.hero .aurora span{animation:none}.hero .hlights{display:none}}
 .hero h1{font-family:var(--serif);font-weight:500;font-size:clamp(3.2rem,7vw,6rem);line-height:.98;margin:.24em 0 .28em}
@@ -873,8 +873,8 @@ const h=location.hash.replace('#','');if(h&&h!=='producto'&&document.getElementB
 })();
 /* lucecitas del hero */
 (function(){const hl=document.getElementById('hlights');if(!hl||matchMedia('(prefers-reduced-motion:reduce)').matches)return;
- for(let i=0;i<16;i++){const s=document.createElement('i');s.style.left=(2+Math.random()*94)+'%';s.style.top=(4+Math.random()*84)+'%';
-  const px=(4+Math.random()*5).toFixed(1);s.style.width=s.style.height=px+'px';
+ for(let i=0;i<20;i++){const s=document.createElement('i');s.style.left=(2+Math.random()*94)+'%';s.style.top=(4+Math.random()*84)+'%';
+  const px=(7+Math.random()*9).toFixed(1);s.style.width=s.style.height=px+'px';
   s.style.animationDuration=(2.6+Math.random()*3.4).toFixed(1)+'s';s.style.animationDelay=(Math.random()*4).toFixed(1)+'s';hl.appendChild(s);}})();
 </script>
 </body>
