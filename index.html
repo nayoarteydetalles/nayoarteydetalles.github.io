@@ -86,10 +86,6 @@ nav{display:flex;align-items:center;justify-content:space-between;padding:18px 2
 /* hero cinematografico: glow que respira (mas visible) + destello que cruza el producto */
 .hero-visual .glow{background:radial-gradient(closest-side,rgba(200,166,112,.65),transparent 70%);animation:glowbreath 4s ease-in-out infinite}
 @keyframes glowbreath{0%,100%{opacity:.4;transform:scale(.82)}50%{opacity:1;transform:scale(1.2)}}
-.hero-visual::before{content:"";position:absolute;top:4%;bottom:4%;left:-45%;width:42%;z-index:3;pointer-events:none;
- background:linear-gradient(100deg,transparent 10%,rgba(255,255,255,.85) 50%,transparent 90%);transform:skewX(-13deg);
- animation:herosweep 4.6s ease-in-out 1.4s infinite}
-@keyframes herosweep{0%{left:-45%;opacity:0}18%{opacity:1}50%{opacity:1}70%{opacity:0}100%{left:130%;opacity:0}}
 @media(prefers-reduced-motion:reduce){.hero-visual .glow,.hero-visual::before,.hero-img.show{animation:none}}
 .trust{border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--surface2)}
 .trust .wrap{display:flex;justify-content:space-around;flex-wrap:wrap;gap:14px;padding:22px 28px}
@@ -859,7 +855,6 @@ const h=location.hash.replace('#','');if(h&&h!=='producto'&&document.getElementB
 /* Intro de apertura (cortina) — solo la primera vez por sesión */
 (function(){
   const intro=document.getElementById('intro'); if(!intro)return;
-  if(sessionStorage.getItem('nayoIntro')){intro.remove();document.body.classList.add('loaded');return;}
   const parts=intro.querySelector('.iparts');
   if(parts&&!matchMedia('(prefers-reduced-motion:reduce)').matches){
     for(let i=0;i<16;i++){const s=document.createElement('i');const sc=.6+Math.random()*1.2;
@@ -868,7 +863,7 @@ const h=location.hash.replace('#','');if(h&&h!=='producto'&&document.getElementB
       parts.appendChild(s);}}
   document.body.style.overflow='hidden';
   const finish=()=>{intro.classList.add('hide');document.body.classList.add('loaded');document.body.style.overflow='';
-    try{sessionStorage.setItem('nayoIntro','1')}catch(e){}; setTimeout(()=>intro.remove(),1300);};
+    setTimeout(()=>intro.remove(),1300);};
   setTimeout(finish,3400);
 })();
 /* lucecitas del hero */
