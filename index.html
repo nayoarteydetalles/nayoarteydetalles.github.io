@@ -329,7 +329,7 @@ footer .cop{font-size:.74rem;color:#7C7480;margin-top:10px}
 #intro.hide{transform:translateY(-102%);opacity:0;pointer-events:none}
 #intro .iglow{position:absolute;width:min(560px,80vw);height:min(560px,80vw);border-radius:50%;background:radial-gradient(closest-side,rgba(205,176,138,.30),transparent 70%);filter:blur(22px);opacity:0;animation:iglowIn 1.2s ease .2s forwards,iglowPulse 3.4s ease-in-out 1.4s infinite}
 #intro .iparts{position:absolute;inset:0;overflow:hidden;pointer-events:none}
-#intro .iparts i{position:absolute;bottom:-12px;width:5px;height:5px;border-radius:50%;background:radial-gradient(circle,#EBD6A8,rgba(235,214,168,0) 70%);opacity:0;animation:ipart linear infinite}
+#intro .iparts i{position:absolute;bottom:-14px;width:9px;height:9px;border-radius:50%;background:radial-gradient(circle,#fff 0%,#EBD6A8 45%,rgba(235,214,168,0) 74%);box-shadow:0 0 12px 3px rgba(235,214,168,.55);opacity:0;animation:ipart linear infinite}
 #intro .imono{position:relative;z-index:2;opacity:0;transform:scale(.84);animation:introPop 1s cubic-bezier(.2,.8,.3,1) .35s forwards}
 #intro .iring{stroke-dasharray:277;stroke-dashoffset:277;animation:iringDraw 1.4s cubic-bezier(.5,0,.2,1) .2s forwards}
 #intro .ibrand{position:relative;z-index:2;font-family:var(--sans);font-weight:600;letter-spacing:.42em;font-size:1.05rem;opacity:0;
@@ -857,8 +857,8 @@ const h=location.hash.replace('#','');if(h&&h!=='producto'&&document.getElementB
   const intro=document.getElementById('intro'); if(!intro)return;
   const parts=intro.querySelector('.iparts');
   if(parts&&!matchMedia('(prefers-reduced-motion:reduce)').matches){
-    for(let i=0;i<16;i++){const s=document.createElement('i');const sc=.6+Math.random()*1.2;
-      s.style.left=(Math.random()*100)+'%';s.style.width=s.style.height=(4*sc).toFixed(1)+'px';
+    for(let i=0;i<22;i++){const s=document.createElement('i');
+      s.style.left=(Math.random()*100)+'%';s.style.width=s.style.height=(7+Math.random()*9).toFixed(1)+'px';
       s.style.animationDuration=(4+Math.random()*4).toFixed(1)+'s';s.style.animationDelay=(Math.random()*3).toFixed(1)+'s';
       parts.appendChild(s);}}
   document.body.style.overflow='hidden';
