@@ -775,11 +775,24 @@ function updateRecsNav(){
 (function(){
   const rc=document.getElementById('recs'),rp=document.getElementById('recsPrev'),rn=document.getElementById('recsNext');
   if(!rc||!rp||!rn)return;
-  const step=()=>{const c=rc.querySelector('.reccard');return (c?c.offsetWidth+22:236)*2};
+  const one=()=>{const c=rc.querySelector('.reccard');return (c?c.offsetWidth+22:236)};
+  const step=()=>one()*2;
   rp.addEventListener('click',()=>rc.scrollBy({left:-step(),behavior:'smooth'}));
   rn.addEventListener('click',()=>rc.scrollBy({left:step(),behavior:'smooth'}));
   rc.addEventListener('scroll',updateRecsNav,{passive:true});
   addEventListener('resize',updateRecsNav);
+  // auto-play (solo este carrusel): avanza solo y vuelve al inicio; pausa al interactuar
+  let timer=null;
+  const auto=()=>{ if(rc.scrollLeft>=rc.scrollWidth-rc.clientWidth-4){rc.scrollTo({left:0,behavior:'smooth'})} else {rc.scrollBy({left:one(),behavior:'smooth'})} };
+  const start=()=>{ if(timer||matchMedia('(prefers-reduced-motion:reduce)').matches||rc.scrollWidth-rc.clientWidth<=4)return; timer=setInterval(auto,3200) };
+  const stop=()=>{ clearInterval(timer);timer=null };
+  const pauseAwhile=()=>{ stop();clearTimeout(rc._rt);rc._rt=setTimeout(start,7000) };
+  rc.addEventListener('pointerenter',stop);
+  rc.addEventListener('pointerleave',start);
+  rc.addEventListener('pointerdown',pauseAwhile);
+  rp.addEventListener('click',pauseAwhile);
+  rn.addEventListener('click',pauseAwhile);
+  new IntersectionObserver(es=>es.forEach(e=>e.isIntersecting?start():stop()),{threshold:.35}).observe(rc);
 })();
 // ----- render products -----
 const cardHTML=p=>`<article class="card reveal" data-cat="${p.cat}" data-openp="${p.k}"><span class="tag">${p.t}</span>${BADGES[p.k]?`<span class="badge ${BADGES[p.k][1]}">${BADGES[p.k][0]}</span>`:''}
