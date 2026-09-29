@@ -206,6 +206,8 @@ nav{display:flex;align-items:center;justify-content:space-between;padding:18px 2
  background:radial-gradient(56% 44% at 50% 38%,rgba(255,252,246,.82),rgba(255,252,246,0) 62%),
  linear-gradient(180deg,#F1E9DC 0%,#EADDCA 60%,#E4D6C0 66%,#D6C3A9 67%,#E2D3BB 82%,#DACAB1 100%)}
 .pdp-media::after{content:"";position:absolute;left:50%;bottom:30px;transform:translateX(-50%);width:52%;height:22px;background:radial-gradient(closest-side,rgba(88,63,44,.30),transparent 74%);filter:blur(4px);border-radius:50%;pointer-events:none;z-index:0}
+.pdp-media .caura{position:absolute;inset:0;background:radial-gradient(66% 60% at 50% 40%,var(--sel,rgba(191,160,107,.4)),transparent 80%);z-index:1;pointer-events:none;transition:background .5s ease;mix-blend-mode:multiply}
+.pdp-media.photofill .caura{display:none}
 .pdp-media img{max-height:500px;max-width:92%;width:auto;object-fit:contain;filter:drop-shadow(0 28px 26px rgba(56,49,60,.32));position:relative;z-index:2}
 .pdp-media .mtag{position:absolute;top:20px;left:20px;font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;color:var(--champ);font-weight:600;z-index:2}
 .pdp-gallery{display:flex;flex-direction:column}
@@ -249,25 +251,28 @@ nav{display:flex;align-items:center;justify-content:space-between;padding:18px 2
 .pdp-badge{display:inline-block;font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;font-weight:600;color:#fff;background:var(--rosa);border-radius:100px;padding:6px 13px;margin-bottom:10px}
 .pdp-badge.new{background:var(--sage)}.pdp-badge.nav{background:var(--champ);color:var(--dark)}
 /* PERSONALIZACIÓN (módulo full-width) */
-.pdp-config{background:transparent;border:0;border-top:1px solid var(--line);border-radius:0;padding:10px 0 0;margin:10px 0 0}
-.pc-head{display:flex;align-items:center;gap:12px;margin-bottom:9px}
+.pdp-config{background:linear-gradient(180deg,var(--surface),var(--surface2));border:1px solid var(--line);border-radius:18px;padding:20px 22px 22px;margin:20px 0 6px;box-shadow:0 20px 44px -30px rgba(56,49,60,.5)}
+.pc-head{display:flex;align-items:center;gap:12px;margin-bottom:16px}
 .pc-head h3{font-family:var(--serif);font-weight:600;font-size:1.18rem}
 .pc-head .opc{font-size:.72rem;font-style:italic;color:var(--ink-faint)}
 .pc-head .free{font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;color:var(--sage);font-weight:600;background:rgba(157,174,164,.16);padding:5px 11px;border-radius:100px;margin-left:auto}
-.pz-grid{display:flex;flex-direction:column;gap:8px}
-.pz-cell .rlbl{display:flex;justify-content:space-between;align-items:baseline;font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:13px}
-.pz-cell .rlbl b{color:var(--ink);font-weight:500;font-size:.82rem;letter-spacing:.01em;text-transform:none;font-family:var(--serif)}
+.pz-grid{display:flex;flex-direction:column;gap:18px}
+.pz-cell .rlbl{display:flex;justify-content:space-between;align-items:baseline;font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:10px;font-weight:600}
+.pz-cell .rlbl b{color:var(--ink);font-weight:600;font-size:.9rem;letter-spacing:.01em;text-transform:none;font-family:var(--serif)}
 .pz-cell .rlbl b.opt{color:var(--ink-faint);font-weight:400;font-family:var(--sans);font-size:.64rem}
-.swatches{display:flex;gap:13px;flex-wrap:wrap}
-.sw-dot{width:32px;height:32px;border-radius:50%;cursor:pointer;position:relative;box-shadow:inset 0 0 0 1px rgba(56,49,60,.14);transition:.2s;background:var(--surface2)}
-.sw-dot:hover{transform:scale(1.12)}
-.sw-dot.on{box-shadow:0 0 0 2px var(--bg),0 0 0 4px var(--ink)}
+.pz-hint{font-size:.72rem;color:var(--rosa);font-style:italic;margin-top:9px;letter-spacing:.01em}
+.swatches{display:flex;gap:14px;flex-wrap:wrap}
+.sw-dot{width:42px;height:42px;border-radius:50%;cursor:pointer;position:relative;box-shadow:inset 0 0 0 1px rgba(56,49,60,.16);transition:.2s;background:var(--surface2)}
+.sw-dot:hover{transform:scale(1.1)}
+.sw-dot.on{box-shadow:0 0 0 3px var(--surface),0 0 0 5px var(--rosa)}
+.sw-dot.on::before{content:"✓";position:absolute;inset:0;display:grid;place-items:center;font-size:1rem;font-weight:700;color:#fff;text-shadow:0 1px 3px rgba(0,0,0,.5)}
 .sw-dot.any{background:conic-gradient(from 20deg,#B98E86,#BFA06B,#9DAEA4,#A991A6,#B98E86)}
-.sw-dot.any::after{content:"✎";position:absolute;inset:0;display:grid;place-items:center;font-size:.72rem;color:#fff;text-shadow:0 1px 2px rgba(0,0,0,.45)}
-.pz-cell .ded{width:100%;font-family:var(--sans);font-size:.95rem;color:var(--ink);background:transparent;border:0;border-bottom:1.5px solid var(--line);border-radius:0;padding:9px 2px;font-weight:300;transition:border-color .2s}
-.pz-cell .ded:focus{outline:none;border-bottom-color:var(--rosa)}
-.pz-cell .ded::placeholder{color:var(--ink-faint)}
-select.sel{appearance:none;-webkit-appearance:none;cursor:pointer;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'><path d='M1 1l5 5 5-5' fill='none' stroke='%23B98E86' stroke-width='1.6'/></svg>");background-repeat:no-repeat;background-position:right 2px center;padding-right:26px}
+.sw-dot.any::after{content:"✎";position:absolute;inset:0;display:grid;place-items:center;font-size:.86rem;color:#fff;text-shadow:0 1px 2px rgba(0,0,0,.45)}
+.sw-dot.any.on::before{display:none}
+.pz-cell .ded{width:100%;font-family:var(--sans);font-size:.95rem;color:var(--ink);background:var(--surface);border:1.5px solid var(--line);border-radius:12px;padding:13px 14px;font-weight:400;transition:border-color .2s,box-shadow .2s}
+.pz-cell .ded:focus{outline:none;border-color:var(--rosa);box-shadow:0 0 0 3px rgba(185,142,134,.15)}
+.pz-cell .ded::placeholder{color:var(--ink-faint);font-weight:300}
+select.sel{appearance:none;-webkit-appearance:none;cursor:pointer;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'><path d='M1 1l5 5 5-5' fill='none' stroke='%23B98E86' stroke-width='1.6'/></svg>");background-repeat:no-repeat;background-position:right 13px center;padding-right:34px}
 .citem .ci-note{font-size:.7rem;color:var(--champ);margin-top:4px;font-style:italic;line-height:1.3}
 /* QUIZ */
 .quiz{position:fixed;inset:0;z-index:85;display:none;align-items:center;justify-content:center;padding:20px;background:rgba(36,31,42,.55)}
@@ -660,6 +665,7 @@ const img=k=>`assets/productos/${k}.webp`;
 const waLink=t=>`https://wa.me/${WA}?text=${encodeURIComponent(t)}`;
 const BADGES={'acuario-rubi':['Más vendida',''],'petit-jardin':['Nueva','new'],'ramo-rosas':['Edición Navidad','nav']};
 const COLORS=[['A elección',''],['Rosa arcilla','#B98E86'],['Verde sage','#9DAEA4'],['Malva','#A991A6'],['Champán','#BFA06B'],['Blanco','#F3EFE9']];
+const hexA=(h,a)=>{const x=h.replace('#','');const n=parseInt(x.length===3?x.split('').map(c=>c+c).join(''):x,16);return `rgba(${(n>>16)&255},${(n>>8)&255},${n&255},${a})`};
 const AROMAS=['Vainilla','Frutos rojos','Floral','Cítricos','Lavanda','Coco','Canela'];
 let NOTES={};try{NOTES=JSON.parse(localStorage.getItem('nayo_notes'))||{}}catch(e){NOTES={}}
 const saveNotes=()=>localStorage.setItem('nayo_notes',JSON.stringify(NOTES));
@@ -687,13 +693,15 @@ function openProduct(k){
   const gal=GALLERY[p.k]||[p.k];GAL=gal;GIDX=0;
   const cur=NOTES[p.k]||{};
   PSEL={color:cur.color||'A elección',aroma:cur.aroma||p.a,msg:cur.msg||''};
-  const colorDots=COLORS.map(c=>`<button class="sw-dot ${c[1]?'':'any'} ${PSEL.color===c[0]?'on':''}" data-czc="${c[0]}" title="${c[0]}" aria-label="Color ${c[0]}"${c[1]?` style="background:${c[1]}"`:''}></button>`).join('');
+  const colorDots=COLORS.map(c=>`<button class="sw-dot ${c[1]?'':'any'} ${PSEL.color===c[0]?'on':''}" data-czc="${c[0]}" data-hex="${c[1]||''}" title="${c[0]}" aria-label="Color ${c[0]}"${c[1]?` style="background:${c[1]}"`:''}></button>`).join('');
+  const _ch=(COLORS.find(c=>c[0]===PSEL.color)||[])[1]||'';
+  const initGlow=_ch?hexA(_ch,.62):'rgba(191,160,107,.4)';
   const aromaList=[p.a,...AROMAS.filter(a=>a.toLowerCase()!==p.a.toLowerCase())];
   const aromaOpts=aromaList.map(a=>`<option ${PSEL.aroma===a?'selected':''}>${a}</option>`).join('');
   const configHTML=`
-    <div class="pc-head"><h3>🎨 Hazla tuya</h3><span class="opc">opcional</span><span class="free">Sin costo extra</span></div>
+    <div class="pc-head"><h3>🎨 Personalízala a tu gusto</h3><span class="free">Sin costo extra</span></div>
     <div class="pz-grid">
-      <div class="pz-cell"><div class="rlbl">Color <b id="pz-colorname">${PSEL.color}</b></div><div class="swatches" id="pz-color">${colorDots}</div></div>
+      <div class="pz-cell"><div class="rlbl">Color de la vela <b id="pz-colorname">${PSEL.color}</b></div><div class="swatches" id="pz-color">${colorDots}</div><div class="pz-hint">👆 Toca un color y mira cómo cambia el detalle</div></div>
       <div class="pz-cell"><div class="rlbl">Aroma</div><select class="ded sel" id="pz-aroma-sel">${aromaOpts}</select></div>
       <div class="pz-cell"><div class="rlbl">Dedicatoria <b class="opt">opcional</b></div><input class="ded" id="pz-msg" maxlength="80" placeholder="Ej. Feliz cumpleaños, mamá 🤍" value="${(PSEL.msg||'').replace(/"/g,'&quot;')}"></div>
     </div>`;
@@ -701,7 +709,7 @@ function openProduct(k){
   document.getElementById('pdp-cat').textContent=p.n;
   document.getElementById('pdp').innerHTML=`
     <div class="pdp-gallery reveal">
-      <div class="pdp-media"><span class="mtag">${p.t}</span>${gal.length>1?'<button class="navbtn prev" data-gnav="-1" aria-label="Anterior">‹</button><button class="navbtn next" data-gnav="1" aria-label="Siguiente">›</button>':''}<img id="pdp-main" src="${img(gal[0])}" alt="${p.n}"></div>
+      <div class="pdp-media" style="--sel:${initGlow}"><span class="mtag">${p.t}</span><div class="caura" id="pdp-caura"></div>${gal.length>1?'<button class="navbtn prev" data-gnav="-1" aria-label="Anterior">‹</button><button class="navbtn next" data-gnav="1" aria-label="Siguiente">›</button>':''}<img id="pdp-main" src="${img(gal[0])}" alt="${p.n}"></div>
       ${gal.length>1?`<div class="pdp-thumbs" id="pdp-thumbs">${gal.map((g,i)=>`<button class="thumb ${i===0?'active':''}" data-gth="${i}"><img src="${img(g)}" alt=""></button>`).join('')}</div>`:''}
     </div>
     <div class="pdp-info reveal">
@@ -763,7 +771,7 @@ function addToCart(k){CART[k]=(CART[k]||0)+1;save();renderCart();toast(P(k).n+' 
 function setQty(k,q){if(q<=0){delete CART[k];delete NOTES[k];saveNotes()}else CART[k]=q;save();renderCart()}
 document.body.addEventListener('click',e=>{
   const add=e.target.closest('[data-add]');if(add){e.stopPropagation();addToCart(add.dataset.add);bumpBadge();return}
-  const czc=e.target.closest('[data-czc]');if(czc){PSEL.color=czc.dataset.czc;czc.parentElement.querySelectorAll('.sw-dot').forEach(x=>x.classList.remove('on'));czc.classList.add('on');const cn=document.getElementById('pz-colorname');if(cn)cn.textContent=PSEL.color;return}
+  const czc=e.target.closest('[data-czc]');if(czc){PSEL.color=czc.dataset.czc;czc.parentElement.querySelectorAll('.sw-dot').forEach(x=>x.classList.remove('on'));czc.classList.add('on');const cn=document.getElementById('pz-colorname');if(cn)cn.textContent=PSEL.color;const pm=document.querySelector('#pdp .pdp-media');if(pm){const hx=czc.dataset.hex;pm.style.setProperty('--sel',hx?hexA(hx,.62):'rgba(191,160,107,.4)')}return}
   const pq=e.target.closest('[data-pq]');if(pq){setPQ(pq.dataset.pq==='inc'?PQTY+1:PQTY-1);return}
   const aq=e.target.closest('[data-addq]');if(aq){const k=aq.dataset.addq;
     const mi=document.getElementById('pz-msg');if(mi)PSEL.msg=mi.value.trim();
