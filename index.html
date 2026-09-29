@@ -245,6 +245,11 @@ nav{display:flex;align-items:center;justify-content:space-between;padding:18px 2
 .recs-nav.prev{left:-14px}.recs-nav.next{right:-14px}
 .recs-nav[hidden]{display:none}
 @media(max-width:820px){.recs-nav.prev{left:4px}.recs-nav.next{right:4px}.recs-nav{width:40px;height:40px;font-size:1.3rem}}
+/* carrusel destacadas (home) */
+.hcar-wrap{position:relative}
+.hcar{display:flex;gap:26px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;padding:6px 2px 20px;scrollbar-width:none;-ms-overflow-style:none}
+.hcar::-webkit-scrollbar{display:none}
+.hcar>.card{flex:0 0 auto;width:clamp(228px,27vw,272px);scroll-snap-align:start}
 .reccard{flex:0 0 auto;width:clamp(200px,44vw,236px);scroll-snap-align:start;background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:18px 16px 20px;text-align:center;cursor:pointer;transition:.35s}
 .reccard:hover{transform:translateY(-6px);box-shadow:var(--shadow);border-color:transparent}
 .recimg{height:140px;display:flex;align-items:center;justify-content:center;margin-bottom:12px}
@@ -483,7 +488,7 @@ body.scrolled .scrollcue{opacity:0!important;transition-delay:0s}
 
   <section class="pad"><div class="wrap">
     <div class="sec-head reveal"><span class="eyebrow">Las más queridas</span><h2>Nuestras velas destacadas</h2><div class="rule"></div></div>
-    <div class="grid" id="featured"></div>
+    <div class="hcar-wrap"><button class="recs-nav prev" id="featPrev" aria-label="Anterior" hidden>‹</button><div class="hcar" id="featured"></div><button class="recs-nav next" id="featNext" aria-label="Siguiente" hidden>›</button></div>
     <div style="text-align:center;margin-top:44px" class="reveal"><a class="btn btn-primary" data-go="colecciones">Ver todas las colecciones</a></div>
   </div></section>
 
@@ -742,6 +747,23 @@ function openProduct(k){
   go('producto');startGal();
 }
 
+// carrusel "Nuestras velas destacadas" (home)
+function updateFeatNav(){
+  const rc=document.getElementById('featured'),rp=document.getElementById('featPrev'),rn=document.getElementById('featNext');
+  if(!rc||!rp||!rn)return;
+  const ov=rc.scrollWidth-rc.clientWidth>4;
+  rp.hidden=!ov||rc.scrollLeft<=2;
+  rn.hidden=!ov||rc.scrollLeft>=rc.scrollWidth-rc.clientWidth-2;
+}
+(function(){
+  const rc=document.getElementById('featured'),rp=document.getElementById('featPrev'),rn=document.getElementById('featNext');
+  if(!rc||!rp||!rn)return;
+  const step=()=>{const c=rc.querySelector('.card');return (c?c.offsetWidth+26:272)*2};
+  rp.addEventListener('click',()=>rc.scrollBy({left:-step(),behavior:'smooth'}));
+  rn.addEventListener('click',()=>rc.scrollBy({left:step(),behavior:'smooth'}));
+  rc.addEventListener('scroll',updateFeatNav,{passive:true});
+  addEventListener('resize',updateFeatNav);
+})();
 // carrusel "También te puede gustar"
 function updateRecsNav(){
   const rc=document.getElementById('recs'),rp=document.getElementById('recsPrev'),rn=document.getElementById('recsNext');
@@ -764,7 +786,10 @@ const cardHTML=p=>`<article class="card reveal" data-cat="${p.cat}" data-openp="
   <div class="ph"><img src="${img(p.k)}" alt="${p.n}" loading="lazy"></div>
   <h3>${p.n}</h3><div class="desc">${p.d}</div><div class="aroma">🌸 ${p.a} · Personalizable</div>
   <div class="row"><span class="price">${money(p.p)}</span><button class="add" data-add="${p.k}">+ Agregar</button></div></article>`;
-document.getElementById('featured').innerHTML=['acuario-rubi','dulce-antojo','petit-jardin','jardin-secreto'].map(k=>cardHTML(P(k))).join('');
+const featOrder=['acuario-rubi','dulce-antojo','petit-jardin','jardin-secreto'];
+const featList=[...featOrder,...PRODUCTS.filter(p=>p.cat!=='figuras'&&!featOrder.includes(p.k)).map(p=>p.k)].slice(0,8);
+document.getElementById('featured').innerHTML=featList.map(k=>cardHTML(P(k))).join('');
+updateFeatNav();
 document.getElementById('grid').innerHTML=PRODUCTS.filter(p=>p.cat!=='figuras').map(cardHTML).join('');
 const gf=document.getElementById('gridFiguras');if(gf)gf.innerHTML=PRODUCTS.filter(p=>p.cat==='figuras').map(cardHTML).join('');
 
