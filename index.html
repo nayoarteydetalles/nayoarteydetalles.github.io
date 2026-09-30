@@ -774,18 +774,19 @@ function updateRecsNav(){
 }
 // auto-play SOLO en "Tambien te puede gustar": avanza solo, vuelve al inicio; pausa al hover/tocar
 let recsAuto=null;
+function advanceRecs(){
+  const rc=document.getElementById('recs');
+  if(!rc||document.hidden||(rc.matches&&rc.matches(':hover')))return;
+  const cards=[...rc.querySelectorAll('.reccard')];if(!cards.length)return;
+  const cur=rc.scrollLeft;const next=cards.find(c=>c.offsetLeft>cur+6);
+  if(!next||cur>=rc.scrollWidth-rc.clientWidth-4){rc.scrollTo({left:0,behavior:'smooth'})}
+  else{rc.scrollTo({left:next.offsetLeft,behavior:'smooth'})}
+}
 function recsAutoStart(){
   const rc=document.getElementById('recs');
   if(!rc||recsAuto||matchMedia('(prefers-reduced-motion:reduce)').matches)return;
   if(rc.scrollWidth-rc.clientWidth<=4)return;
-  recsAuto=setInterval(()=>{
-    const rc=document.getElementById('recs');
-    if(!rc||document.hidden||(rc.matches&&rc.matches(':hover')))return;
-    const cards=[...rc.querySelectorAll('.reccard')];if(!cards.length)return;
-    const cur=rc.scrollLeft;const next=cards.find(c=>c.offsetLeft>cur+6);
-    if(!next||cur>=rc.scrollWidth-rc.clientWidth-4){rc.scrollTo({left:0,behavior:'smooth'})}
-    else{rc.scrollTo({left:next.offsetLeft,behavior:'smooth'})}
-  },2200);
+  recsAuto=setInterval(advanceRecs,2200);
 }
 function recsAutoStop(){clearInterval(recsAuto);recsAuto=null}
 (function(){
@@ -800,6 +801,8 @@ function recsAutoStop(){clearInterval(recsAuto);recsAuto=null}
   rc.addEventListener('pointerdown',pauseAwhile);
   addEventListener('resize',updateRecsNav);
   document.addEventListener('visibilitychange',()=>{if(!document.hidden)recsAutoStart()});
+  // al entrar la seccion en pantalla: arranca y da un primer avance pronto (evita la demora inicial)
+  new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){recsAutoStart();clearTimeout(rc._kick);rc._kick=setTimeout(advanceRecs,700)}}),{threshold:.3}).observe(rc);
 })();
 // ----- render products -----
 const cardHTML=p=>`<article class="card reveal" data-cat="${p.cat}" data-openp="${p.k}"><span class="tag">${p.t}</span>${BADGES[p.k]?`<span class="badge ${BADGES[p.k][1]}">${BADGES[p.k][0]}</span>`:''}
