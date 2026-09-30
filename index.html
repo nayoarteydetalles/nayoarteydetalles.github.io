@@ -747,6 +747,18 @@ function openProduct(k){
   go('producto');startGal();
 }
 
+// degradado en bordes: solo aparece del lado con mas contenido (evita "corte" duro)
+function edgeFade(rc){
+  const ov=rc.scrollWidth-rc.clientWidth>4;
+  let m='none';
+  if(ov){
+    const atStart=rc.scrollLeft<=2, atEnd=rc.scrollLeft>=rc.scrollWidth-rc.clientWidth-2;
+    const L=atStart?'#000 0':'transparent 0,#000 42px';
+    const R=atEnd?'#000 100%':'#000 calc(100% - 68px),transparent 100%';
+    m=`linear-gradient(90deg,${L},${R})`;
+  }
+  rc.style.webkitMaskImage=m; rc.style.maskImage=m;
+}
 // carrusel "Nuestras velas destacadas" (home)
 function updateFeatNav(){
   const rc=document.getElementById('featured'),rp=document.getElementById('featPrev'),rn=document.getElementById('featNext');
@@ -754,6 +766,7 @@ function updateFeatNav(){
   const ov=rc.scrollWidth-rc.clientWidth>4;
   rp.hidden=!ov||rc.scrollLeft<=2;
   rn.hidden=!ov||rc.scrollLeft>=rc.scrollWidth-rc.clientWidth-2;
+  edgeFade(rc);
 }
 (function(){
   const rc=document.getElementById('featured'),rp=document.getElementById('featPrev'),rn=document.getElementById('featNext');
@@ -771,6 +784,7 @@ function updateRecsNav(){
   const overflow=rc.scrollWidth-rc.clientWidth>4;
   rp.hidden=!overflow||rc.scrollLeft<=2;
   rn.hidden=!overflow||rc.scrollLeft>=rc.scrollWidth-rc.clientWidth-2;
+  edgeFade(rc);
 }
 // auto-play SOLO en "Tambien te puede gustar": avanza solo, vuelve al inicio; pausa al hover/tocar
 let recsAuto=null;
