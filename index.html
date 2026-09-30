@@ -785,7 +785,7 @@ function recsAutoStart(){
     const cur=rc.scrollLeft;const next=cards.find(c=>c.offsetLeft>cur+6);
     if(!next||cur>=rc.scrollWidth-rc.clientWidth-4){rc.scrollTo({left:0,behavior:'smooth'})}
     else{rc.scrollTo({left:next.offsetLeft,behavior:'smooth'})}
-  },3200);
+  },2200);
 }
 function recsAutoStop(){clearInterval(recsAuto);recsAuto=null}
 (function(){
