@@ -743,7 +743,7 @@ function openProduct(k){
   recs=recs.concat(PRODUCTS.filter(x=>x.cat!==p.cat&&x.k!==k));
   recs=recs.slice(0,8);
   document.getElementById('recs').innerHTML=recs.map(r=>`<article class="reccard reveal" data-openp="${r.k}"><div class="recimg"><img src="${img(r.k)}" alt="${r.n}" loading="lazy"></div><div class="recname">${r.n}</div><div class="recprice">${money(r.p)}</div></article>`).join('');
-  updateRecsNav();
+  updateRecsNav();recsAutoStop();setTimeout(recsAutoStart,600);
   go('producto');startGal();
 }
 
@@ -772,27 +772,34 @@ function updateRecsNav(){
   rp.hidden=!overflow||rc.scrollLeft<=2;
   rn.hidden=!overflow||rc.scrollLeft>=rc.scrollWidth-rc.clientWidth-2;
 }
+// auto-play SOLO en "Tambien te puede gustar": avanza solo, vuelve al inicio; pausa al hover/tocar
+let recsAuto=null;
+function recsAutoStart(){
+  const rc=document.getElementById('recs');
+  if(!rc||recsAuto||matchMedia('(prefers-reduced-motion:reduce)').matches)return;
+  if(rc.scrollWidth-rc.clientWidth<=4)return;
+  recsAuto=setInterval(()=>{
+    const rc=document.getElementById('recs');
+    if(!rc||document.hidden||(rc.matches&&rc.matches(':hover')))return;
+    const cards=[...rc.querySelectorAll('.reccard')];if(!cards.length)return;
+    const cur=rc.scrollLeft;const next=cards.find(c=>c.offsetLeft>cur+6);
+    if(!next||cur>=rc.scrollWidth-rc.clientWidth-4){rc.scrollTo({left:0,behavior:'smooth'})}
+    else{rc.scrollTo({left:next.offsetLeft,behavior:'smooth'})}
+  },3200);
+}
+function recsAutoStop(){clearInterval(recsAuto);recsAuto=null}
 (function(){
   const rc=document.getElementById('recs'),rp=document.getElementById('recsPrev'),rn=document.getElementById('recsNext');
   if(!rc||!rp||!rn)return;
   const one=()=>{const c=rc.querySelector('.reccard');return (c?c.offsetWidth+22:236)};
   const step=()=>one()*2;
-  rp.addEventListener('click',()=>rc.scrollBy({left:-step(),behavior:'smooth'}));
-  rn.addEventListener('click',()=>rc.scrollBy({left:step(),behavior:'smooth'}));
+  const pauseAwhile=()=>{recsAutoStop();clearTimeout(rc._rt);rc._rt=setTimeout(recsAutoStart,7000)};
+  rp.addEventListener('click',()=>{rc.scrollBy({left:-step(),behavior:'smooth'});pauseAwhile()});
+  rn.addEventListener('click',()=>{rc.scrollBy({left:step(),behavior:'smooth'});pauseAwhile()});
   rc.addEventListener('scroll',updateRecsNav,{passive:true});
-  addEventListener('resize',updateRecsNav);
-  // auto-play (solo este carrusel): avanza solo y vuelve al inicio; pausa al interactuar
-  let timer=null;
-  const auto=()=>{ if(rc.scrollLeft>=rc.scrollWidth-rc.clientWidth-4){rc.scrollTo({left:0,behavior:'smooth'})} else {rc.scrollBy({left:one(),behavior:'smooth'})} };
-  const start=()=>{ if(timer||matchMedia('(prefers-reduced-motion:reduce)').matches||rc.scrollWidth-rc.clientWidth<=4)return; timer=setInterval(auto,3200) };
-  const stop=()=>{ clearInterval(timer);timer=null };
-  const pauseAwhile=()=>{ stop();clearTimeout(rc._rt);rc._rt=setTimeout(start,7000) };
-  rc.addEventListener('pointerenter',stop);
-  rc.addEventListener('pointerleave',start);
   rc.addEventListener('pointerdown',pauseAwhile);
-  rp.addEventListener('click',pauseAwhile);
-  rn.addEventListener('click',pauseAwhile);
-  new IntersectionObserver(es=>es.forEach(e=>e.isIntersecting?start():stop()),{threshold:.35}).observe(rc);
+  addEventListener('resize',updateRecsNav);
+  document.addEventListener('visibilitychange',()=>{if(!document.hidden)recsAutoStart()});
 })();
 // ----- render products -----
 const cardHTML=p=>`<article class="card reveal" data-cat="${p.cat}" data-openp="${p.k}"><span class="tag">${p.t}</span>${BADGES[p.k]?`<span class="badge ${BADGES[p.k][1]}">${BADGES[p.k][0]}</span>`:''}
