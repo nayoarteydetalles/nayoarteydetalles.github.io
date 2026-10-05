@@ -18,9 +18,19 @@
 <meta property="og:image" content="https://nayoarteydetalles.github.io/assets/og.jpg">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://nayoarteydetalles.github.io/assets/og.jpg">
-<!-- MEDICIÓN (opcional): cuando tengas Google Analytics (G-XXXXX) o Meta Pixel, pega aquí sus scripts. -->
+<!-- MEDICIÓN (Google Analytics 4) -->
+<!-- Cuando crees tu cuenta, reemplaza "G-XXXXXXXXXX" por tu ID de Medición real -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-XXXXXXXXXX');
+</script>
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=Jost:wght@300;400;500;600&display=swap" as="style">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=Jost:wght@300;400;500;600&display=swap">
 <style>
 :root{--bg:#F0ECE6;--surface:#FAF7F2;--surface2:#F4EFE9;--ink:#38313C;--ink-soft:#6E6672;--ink-faint:#9E97A0;--rosa:#B98E86;--sage:#9DAEA4;--mauve:#A991A6;--champ:#BFA06B;--line:#E2DAD1;--dark:#241F2A;--serif:'Cormorant',Georgia,serif;--sans:'Jost',system-ui,sans-serif;--shadow:0 20px 50px -24px rgba(56,49,60,.35)}
@@ -767,7 +777,7 @@ function openProduct(k){
   recs=recs.slice(0,8);
   document.getElementById('recs').innerHTML=recs.map(r=>`<article class="reccard reveal" data-openp="${r.k}"><div class="recimg"><img src="${img(r.k)}" alt="${r.n}" loading="lazy"></div><div class="recname">${r.n}</div><div class="recprice">${money(r.p)}</div></article>`).join('');
   updateRecsNav();recsAutoStop();setTimeout(recsAutoStart,600);
-  go('producto');startGal();
+  go('producto');history.replaceState(null,'','#vela-'+k);startGal();
 }
 
 // degradado en bordes: solo aparece del lado con mas contenido (evita "corte" duro)
@@ -990,7 +1000,7 @@ if(heroSec&&heroVis&&matchMedia('(hover:hover)').matches){
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12});
 function mark(){document.querySelectorAll('.view.active .reveal:not(.in)').forEach(el=>io.observe(el))}
 renderCart();mark();
-const h=location.hash.replace('#','');if(h&&h!=='producto'&&document.getElementById('v-'+h))go(h);
+const h=location.hash.replace('#','');if(h.startsWith('vela-'))openProduct(h.replace('vela-',''));else if(h&&h!=='producto'&&document.getElementById('v-'+h))go(h);
 /* Intro de apertura (cortina) — solo la primera vez por sesión */
 (function(){
   const intro=document.getElementById('intro'); if(!intro)return;
