@@ -732,9 +732,10 @@ const GALLERY={
  'frambuesa':['frambuesa-1','frambuesa-2','frambuesa-3','frambuesa-4','frambuesa-5'],
  'petit-jardin':['petit-jardin-1','petit-jardin-2'],
  'ramo-rosas':['ramo-rosas-1','ramo-rosas-2','ramo-rosas-3','ramo-rosas-4'],
+ 'cerveza':['cerveza-1','cerveza-2','cerveza-3'],
 };
 let GAL=[],GIDX=0,GTIMER=null;
-function setGal(i){if(GAL.length<2)return;GIDX=(i+GAL.length)%GAL.length;const m=document.getElementById('pdp-main');if(m){m.src=img(GAL[GIDX]);const pm=m.closest('.pdp-media');if(pm){pm.classList.toggle('photofill',String(GAL[GIDX]).startsWith('box-'));pm.classList.toggle('no-bg',['dulce-encanto','frambuesa','acuario-rubi','acuario-piedritas','acuario-conchas','dulce-antojo','jardin-secreto','petit-jardin','ramo-rosas'].some(x=>String(GAL[GIDX]).startsWith(x)));}}document.querySelectorAll('#pdp-thumbs .thumb').forEach((t,j)=>t.classList.toggle('active',j===GIDX))}
+function setGal(i){if(GAL.length<2)return;GIDX=(i+GAL.length)%GAL.length;const m=document.getElementById('pdp-main');if(m){m.src=img(GAL[GIDX]);const pm=m.closest('.pdp-media');if(pm){pm.classList.toggle('photofill',String(GAL[GIDX]).startsWith('box-'));pm.classList.toggle('no-bg',['dulce-encanto','frambuesa','acuario-rubi','acuario-piedritas','acuario-conchas','dulce-antojo','jardin-secreto','petit-jardin','ramo-rosas','cerveza'].some(x=>String(GAL[GIDX]).startsWith(x)));}}document.querySelectorAll('#pdp-thumbs .thumb').forEach((t,j)=>t.classList.toggle('active',j===GIDX))}
 function startGal(){clearInterval(GTIMER);if(GAL.length>1)GTIMER=setInterval(()=>setGal(GIDX+1),2400)}
 function setPQ(n){PQTY=Math.max(1,n);const el=document.getElementById('pqv');if(el)el.textContent=PQTY}
 function openProduct(k){
