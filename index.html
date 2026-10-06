@@ -166,7 +166,8 @@ nav{display:flex;align-items:center;justify-content:space-between;padding:18px 2
 .porto a:hover{background:var(--ink);color:var(--bg);border-color:var(--ink)}
 /* EMPAQUE PREMIUM */
 .premium-pack { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; background: var(--surface2); border-radius: 24px; overflow: hidden; margin-top: 20px; border: 1px solid var(--line); box-shadow: 0 14px 30px -22px rgba(56,49,60,.4); }
-.premium-pack img { width: 100%; height: 100%; object-fit: cover; min-height: 440px; border-right: 1px solid var(--line); }
+.pp-gallery { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; padding: 24px; align-items: stretch; }
+.pp-gallery img { width: 100%; height: 100%; object-fit: cover; aspect-ratio: 4/5; border-radius: 12px; border: 1px solid var(--line); }
 .premium-pack-text { padding: 30px 50px 30px 10px; }
 .premium-pack-text h3 { font-family: var(--serif); font-size: clamp(1.8rem, 3.4vw, 2.2rem); font-weight: 500; font-style: italic; color: var(--ink); margin-bottom: 16px; }
 .premium-pack-text p { font-size: 1.05rem; color: var(--ink-soft); line-height: 1.6; margin-bottom: 24px; }
@@ -427,7 +428,7 @@ body.scrolled .scrollcue{opacity:0!important;transition-delay:0s}
  .nos-grid,.video-grid,.contact-grid{grid-template-columns:1fr;gap:30px}.video-grid{padding:40px 30px}.cta-band{padding:34px}
  .nos blockquote{border-left:0;border-top:2px solid var(--rosa);padding:20px 0 0}
  .grid{grid-template-columns:repeat(2,1fr)}.vals,.occ{grid-template-columns:repeat(2,1fr)}.pasos,.info3,.testi{grid-template-columns:1fr}
- .premium-pack{grid-template-columns:1fr}.premium-pack-text{padding:30px}.premium-pack img{min-height:300px;border-right:none;border-bottom:1px solid var(--line)}
+ .premium-pack{grid-template-columns:1fr}.premium-pack-text{padding:30px}.pp-gallery{padding:20px; gap:8px}
  .pdp{grid-template-columns:1fr;gap:32px}.pdp-media{min-height:340px}.recs{grid-template-columns:repeat(2,1fr)}.pdp-buy .btn{flex:1 1 100%}
  .pz-grid{grid-template-columns:1fr;gap:22px}
  .navlinks{display:none}.navlinks.open{display:flex;position:absolute;top:70px;right:16px;left:16px;flex-direction:column;gap:18px;background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:26px}
@@ -548,7 +549,12 @@ body.scrolled .scrollcue{opacity:0!important;transition-delay:0s}
   <section class="pad" style="padding-top:0"><div class="wrap">
     <div class="sec-head reveal"><span class="eyebrow">Listas para regalar</span><h2>Con empaque que enamora</h2><div class="rule"></div></div>
     <div class="premium-pack reveal">
-      <img src="assets/productos/premium_packaging.jpg" alt="Empaque premium Nayo Arte & Detalles" loading="lazy">
+      <div class="pp-gallery">
+        <img src="assets/productos/box-jardin.webp" alt="Caja transparente Vela Jardín Nayo" loading="lazy">
+        <img src="assets/productos/box-acuario.webp" alt="Caja transparente Vela Acuario Nayo" loading="lazy">
+        <img src="assets/productos/box-rubi.webp" alt="Caja transparente Vela Rubí Nayo" loading="lazy">
+        <img src="assets/productos/box-encanto.webp" alt="Caja transparente Vela Encanto Nayo" loading="lazy">
+      </div>
       <div class="premium-pack-text">
         <h3>Un detalle inolvidable</h3>
         <p>Creemos que la primera impresión lo es todo. Por eso, cada una de nuestras velas se entrega en un empaque diseñado para sorprender desde el primer instante.</p>
