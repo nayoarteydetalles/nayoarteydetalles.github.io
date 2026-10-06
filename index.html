@@ -1029,8 +1029,14 @@ function answerQuiz(v){QANS[QUIZ_Q[QI].key]=v;QI++;if(QI<QUIZ_Q.length)renderQui
 function quizResult(){
   let pool=PRODUCTS.filter(p=>p.cat===QANS.aroma);if(!pool.length)pool=PRODUCTS.slice();
   const inb=p=>QANS.budget==='low'?p.p<=20000:QANS.budget==='mid'?(p.p>20000&&p.p<=40000):p.p>40000;
-  let m=pool.filter(inb);if(!m.length)m=pool;
-  const p=m.sort((a,b)=>a.p-b.p)[QANS.budget==='high'?m.length-1:0];
+  
+  let m=pool.filter(inb);
+  if(!m.length) m=PRODUCTS.filter(inb); // Priorizar presupuesto si no hay del aroma
+  if(!m.length) m=pool; // Si definitivamente no hay del presupuesto, caer en el aroma
+  
+  m.sort((a,b)=>a.p-b.p);
+  const p=m[QANS.budget==='high'?m.length-1:Math.floor(m.length/2)];
+  
   document.getElementById('quizBody').innerHTML=`<div class="quiz-result">
     <div class="qprog">Tu match ideal 🤍</div>
     <div class="rimg"><img src="${img(p.k)}" alt="${p.n}"></div>
