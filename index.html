@@ -67,42 +67,33 @@ nav{display:flex;align-items:center;justify-content:space-between;padding:18px 2
 .hero::before{content:"";position:absolute;top:-10%;right:-5%;width:60vw;height:60vw;max-width:720px;max-height:720px;background:radial-gradient(closest-side,rgba(185,142,134,.28),transparent 70%)}
 .hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:40px;align-items:center;position:relative}
 /* HERO con luces: aurora suave + lucecitas que titilan (sin video) */
-.hero .aurora{position:absolute;inset:0;z-index:0;overflow:hidden;pointer-events:none}
-.hero .aurora span{position:absolute;border-radius:50%;filter:blur(70px);opacity:.55;animation:auroraMove 17s ease-in-out infinite}
-.hero .aurora span:nth-child(1){width:44vw;height:44vw;left:-6vw;top:-8vw;background:rgba(185,142,134,.5)}
-.hero .aurora span:nth-child(2){width:40vw;height:40vw;right:-6vw;bottom:-14vw;background:rgba(191,160,107,.45);animation-delay:-5s}
-.hero .aurora span:nth-child(3){width:34vw;height:34vw;left:38vw;top:22vh;background:rgba(169,145,166,.42);animation-delay:-9s}
-@keyframes auroraMove{0%,100%{transform:translate(0,0) scale(1)}33%{transform:translate(5vw,4vh) scale(1.12)}66%{transform:translate(-4vw,-3vh) scale(.94)}}
-.hero .hlights{position:absolute;inset:0;z-index:1;overflow:hidden;pointer-events:none}
-.hero .hlights i{position:absolute;width:9px;height:9px;border-radius:50%;background:radial-gradient(circle,#fff 0%,rgba(214,183,132,.95) 42%,rgba(214,183,132,0) 74%);box-shadow:0 0 16px 5px rgba(214,183,132,.65);opacity:0;animation:twinkle ease-in-out infinite}
-@keyframes twinkle{0%,100%{opacity:0;transform:scale(.55)}50%{opacity:1;transform:scale(1.2)}}
-.hero .wrap{position:relative;z-index:2}
-@media(prefers-reduced-motion:reduce){.hero .aurora span{animation:none}.hero .hlights{display:none}}
-.hero h1{font-family:var(--serif);font-weight:500;font-size:clamp(3.2rem,7vw,6rem);line-height:.98;margin:.24em 0 .28em}
-.hero h1 em{font-style:italic;color:var(--rosa)}
-.hero p.lead{font-size:1.16rem;color:var(--ink-soft);max-width:30ch;margin-bottom:34px}
-.hero-cta{display:flex;gap:14px;flex-wrap:wrap}
-.hero-visual{position:relative;height:78vh;max-height:640px}
-.hero-visual .glow{position:absolute;inset:8% 12%;background:radial-gradient(closest-side,rgba(191,160,107,.34),transparent 72%);filter:blur(6px)}
-.hero-stage{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;animation:float 6s ease-in-out infinite}
-.wax-sculpture{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;filter:drop-shadow(0 40px 40px rgba(56,49,60,.2));animation:float 8s ease-in-out infinite}
-
-@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-16px)}}
-@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-16px)}}
-.hs-slider{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;perspective:1000px}
-.hs-item{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:transform .8s cubic-bezier(.7,0,.3,1), opacity .8s;transform:translateY(40px) scale(.95)}
-.hs-item.active{opacity:1;pointer-events:auto;transform:translateY(0) scale(1);z-index:2;animation:float 8s ease-in-out infinite}
-.hs-item.prev-out{transform:translateY(-40px) scale(.95);opacity:0;z-index:1}
-.hs-img{width:100%;height:100%;max-width:440px;max-height:560px;object-fit:cover;border-radius:240px 240px 40px 40px;mix-blend-mode:multiply;filter:contrast(1.05) drop-shadow(0 30px 40px rgba(56,49,60,.1))}
-.hs-nav{position:absolute;bottom:-20px;left:50%;transform:translateX(-50%);display:flex;gap:12px;z-index:10}
-.hs-btn{width:46px;height:46px;border-radius:50%;background:var(--surface);border:1px solid var(--line);color:var(--ink);font-size:1.1rem;cursor:pointer;transition:.3s;display:grid;place-items:center;box-shadow:0 10px 20px rgba(56,49,60,.08)}
-.hs-btn:hover{background:var(--rosa);color:#fff;transform:scale(1.08);border-color:var(--rosa)}
+/* --- IMMERSIVE HERO --- */
+.hero{position:relative;min-height:100vh;overflow:hidden;display:flex;align-items:center;color:#fff;transition:background 1s ease;background:#3b2c2f;padding-top:80px}
+.hero::after{content:"";position:absolute;inset:0;background:radial-gradient(circle at center, transparent 30%, rgba(0,0,0,0.3) 100%);pointer-events:none;z-index:0}
+.hero-bg-text{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-family:var(--serif);font-size:clamp(8rem,22vw,26rem);font-weight:700;color:rgba(255,255,255,0.035);white-space:nowrap;pointer-events:none;z-index:1;transition:opacity .6s,transform .6s;text-transform:uppercase}
+.hero-bg-text.fade{opacity:0;transform:translate(-50%,-45%)}
+.hero .wrap{position:relative;z-index:2;display:flex;align-items:center;width:100%;gap:40px}
+.hero-content{flex:1;max-width:520px}
+.hero-content .eyebrow{color:rgba(255,255,255,0.6);margin-bottom:12px;display:inline-block}
+.hero-content h1{font-family:var(--serif);font-size:clamp(3rem,6vw,5.5rem);margin:0 0 .2em;line-height:1.05;color:#fff}
+.hero-content h1 em{font-style:italic;color:rgba(255,255,255,0.7);font-weight:300}
+.hero-content p.lead{font-size:1.15rem;color:rgba(255,255,255,0.8);margin-bottom:36px;line-height:1.5}
+.hero-content .btn-primary{background:#fff;color:#000;border:none}
+.hero-content .btn-primary:hover{background:var(--rosa);color:#fff}
+.hero-content .btn-ghost{color:#fff;border-color:rgba(255,255,255,0.3)}
+.hero-content .btn-ghost:hover{background:rgba(255,255,255,0.1);border-color:#fff}
+.hero-visual-fs{flex:1.2;height:75vh;min-height:500px;position:relative;display:flex;justify-content:center;align-items:center;perspective:1000px}
+.hfs-item{position:absolute;width:100%;height:100%;max-width:440px;max-height:580px;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:transform 1s cubic-bezier(.7,0,.3,1), opacity 1s;transform:translateY(80px) scale(.9)}
+.hfs-item.active{opacity:1;pointer-events:auto;transform:translateY(0) scale(1);z-index:2;animation:float 7s ease-in-out infinite}
+.hfs-item.prev-out{transform:translateY(-80px) scale(.9);opacity:0;z-index:1}
+.hfs-img{width:100%;height:100%;object-fit:cover;border-radius:240px 240px 40px 40px;mix-blend-mode:multiply;filter:contrast(1.1) drop-shadow(0 30px 50px rgba(0,0,0,.4))}
+.hfs-nav{position:absolute;bottom:40px;left:50%;transform:translateX(-50%);display:flex;gap:14px;z-index:10}
+.hfs-btn{width:50px;height:50px;border-radius:50%;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.2);color:#fff;font-size:1.2rem;cursor:pointer;transition:.3s;display:grid;place-items:center;backdrop-filter:blur(8px)}
+.hfs-btn:hover{background:#fff;color:#000;transform:scale(1.1)}
 .hero-text{transition:opacity .4s ease, transform .4s ease}
-.hero-text.fade{opacity:0;transform:translateY(10px)}
-/* hero cinematografico: glow que respira (mas visible) + destello que cruza el producto */
-.hero-visual .glow{background:radial-gradient(closest-side,rgba(200,166,112,.65),transparent 70%);animation:glowbreath 4s ease-in-out infinite}
-@keyframes glowbreath{0%,100%{opacity:.4;transform:scale(.82)}50%{opacity:1;transform:scale(1.2)}}
-@media(prefers-reduced-motion:reduce){.hero-visual .glow,.hero-visual::before,.hero-img.show{animation:none}}
+.hero-text.fade{opacity:0;transform:translateY(15px)}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-18px)}}
+@media (max-width:900px){.hero .wrap{flex-direction:column;text-align:center;padding-top:40px}.hero-content{max-width:100%}.hero-content .hero-cta{justify-content:center}.hero-visual-fs{height:50vh;min-height:400px}.hfs-item{max-height:400px;max-width:300px}}
 .trust{border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--surface2)}
 .trust .wrap{display:flex;justify-content:space-around;flex-wrap:wrap;gap:14px;padding:22px 28px}
 .trust span{font-size:.86rem;color:var(--ink-soft);display:flex;align-items:center;gap:9px}.trust b{font-size:1.05rem}
@@ -509,26 +500,26 @@ body.scrolled .scrollcue{opacity:0!important;transition-delay:0s}
 
 <!-- HOME -->
 <main class="view active" id="v-home">
-  <section class="hero">
-    <div class="aurora"><span></span><span></span><span></span></div>
-    <div class="hlights" id="hlights"></div>
-    <div class="wrap hero-grid">
-    <div>
-      <span class="eyebrow anim d1" id="h-eyebrow">Nayo · Colección Acuario</span>
-      <h1 class="anim d2 hero-text" id="h-title">Vela Acuario <em>Rubí.</em></h1>
-      <p class="lead anim d3 hero-text" id="h-desc">Un micromundo de gel cristalino con delicados detalles que parecen flotar en el agua. La magia del océano en tus manos.</p>
-      <div class="hero-cta anim d4"><a class="btn btn-primary" id="h-cta" data-go="colecciones">Ver esta colección</a><a class="btn btn-ghost" data-quiz>✨ Ayúdame a elegir</a></div>
-    </div>
-    <div class="hero-visual anim d5">
-      <div class="glow"></div>
-      <div class="hs-slider" id="hs-slider"></div>
-      <div class="hs-nav">
-        <button class="hs-btn" id="hsn-prev">❮</button>
-        <button class="hs-btn" id="hsn-next">❯</button>
+  <section class="hero" id="hero-sec">
+    <div class="hero-bg-text" id="fs-bg-text">ACUARIO</div>
+    
+    <div class="wrap">
+      <div class="hero-content">
+        <span class="eyebrow anim d1 hero-text" id="h-eyebrow">Nayo · Colección Acuario</span>
+        <h1 class="anim d2 hero-text" id="h-title">Acuario <em>Rubí.</em></h1>
+        <p class="lead anim d3 hero-text" id="h-desc">Un micromundo de gel cristalino con delicados detalles que parecen flotar en el agua. La magia del océano en tus manos.</p>
+        <div class="hero-cta anim d4"><a class="btn btn-primary hero-text" id="h-cta" data-go="colecciones">Ver Colección</a><a class="btn btn-ghost hero-text" data-quiz>✨ Ayúdame a elegir</a></div>
+      </div>
+      
+      <div class="hero-visual-fs anim d5">
+        <div id="fs-slider"></div>
       </div>
     </div>
-  </div>
-  <div class="scrollcue"><span>Desliza</span><div class="ch"></div></div>
+    
+    <div class="hfs-nav">
+      <button class="hfs-btn" id="hsn-prev">❮</button>
+      <button class="hfs-btn" id="hsn-next">❯</button>
+    </div>
   </section>
 
   <section class="trust"><div class="wrap">
@@ -871,61 +862,60 @@ function recsAutoStop(){clearInterval(recsAuto);recsAuto=null}
   new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){recsAutoStart();clearTimeout(rc._kick);rc._kick=setTimeout(advanceRecs,700)}}),{threshold:.3}).observe(rc);
 })();
 
-// ----- HERO PREMIUM SLIDER -----
+// ----- HERO IMMERSIVE SLIDER -----
 (function(){
   const slides = [
-    { k: 'acuario-rubi', img: 'assets/productos/acuario-rubi.webp', eye: 'Nayo · Colección Acuario', t: 'Vela Acuario <em>Rubí.</em>', d: 'Un micromundo de gel cristalino con delicados detalles que parecen flotar en el agua. La magia del océano en tus manos.' },
-    { k: 'dulce-antojo', img: 'assets/productos/dulce-antojo.webp', eye: 'Nayo · Colección Dulces', t: 'Dulce <em>Antojo.</em>', d: 'Texturas que provocan. Crema batida de cera, cerezas y galletas artesanales. Un postre que no se come, se respira.' },
-    { k: 'jardin-secreto', img: 'assets/productos/jardin-secreto.webp', eye: 'Nayo · Colección Botánica', t: 'Jardín <em>Secreto.</em>', d: 'Un bouquet floral atrapado en el tiempo. Naturaleza muerta e incrustaciones botánicas que perfuman cualquier espacio.' }
+    { bg: '#3b2c2f', bgtxt: 'ACUARIO', k: 'acuario-rubi', img: 'assets/productos/acuario-rubi.webp', eye: 'Nayo · Colección Acuario', t: 'Acuario <em>Rubí.</em>', d: 'Un micromundo de gel cristalino con delicados detalles que flotan en el agua. La magia del océano en tus manos.' },
+    { bg: '#4a3b32', bgtxt: 'ANTOJO', k: 'dulce-antojo', img: 'assets/productos/dulce-antojo.webp', eye: 'Nayo · Colección Dulces', t: 'Dulce <em>Antojo.</em>', d: 'Texturas que provocan. Crema batida de cera, cerezas y galletas artesanales. Un postre que no se come, se respira.' },
+    { bg: '#313a34', bgtxt: 'JARDÍN', k: 'jardin-secreto', img: 'assets/productos/jardin-secreto.webp', eye: 'Nayo · Colección Botánica', t: 'Jardín <em>Secreto.</em>', d: 'Un bouquet floral atrapado en el tiempo. Naturaleza muerta e incrustaciones botánicas que perfuman cualquier espacio.' }
   ];
   let cur = 0;
-  const slider = document.getElementById('hs-slider');
-  const hTitle = document.getElementById('h-title');
-  const hDesc = document.getElementById('h-desc');
-  const hEye = document.getElementById('h-eyebrow');
+  const slider = document.getElementById('fs-slider');
+  const heroSec = document.getElementById('hero-sec');
+  const bgTxt = document.getElementById('fs-bg-text');
+  
+  const texts = document.querySelectorAll('.hero-content .hero-text');
   
   if(!slider) return;
   
-  // Render images
-  slider.innerHTML = slides.map((s, i) => `<div class="hs-item ${i===0?'active':''}" data-i="${i}"><img src="${s.img}?v=1" alt="Vela ${s.t}" class="hs-img"></div>`).join('');
+  slider.innerHTML = slides.map((s, i) => `<div class="hfs-item ${i===0?'active':''}" data-i="${i}"><img src="${s.img}?v=2" alt="Vela ${s.t}" class="hfs-img"></div>`).join('');
   
-  function goSlide(nextI, dir) {
+  function goSlide(nextI) {
     if(nextI === cur) return;
-    const items = slider.querySelectorAll('.hs-item');
+    const items = slider.querySelectorAll('.hfs-item');
     const old = items[cur];
     const nxt = items[nextI];
     
-    // Animate text out
-    hTitle.classList.add('fade');
-    hDesc.classList.add('fade');
+    // Animate texts out
+    texts.forEach(el => el.classList.add('fade'));
+    bgTxt.classList.add('fade');
     
     setTimeout(() => {
-      // Update text
       const s = slides[nextI];
-      hTitle.innerHTML = s.t;
-      hDesc.innerHTML = s.d;
-      hEye.innerHTML = s.eye;
-      hTitle.classList.remove('fade');
-      hDesc.classList.remove('fade');
+      document.getElementById('h-title').innerHTML = s.t;
+      document.getElementById('h-desc').innerHTML = s.d;
+      document.getElementById('h-eyebrow').innerHTML = s.eye;
+      bgTxt.innerHTML = s.bgtxt;
+      heroSec.style.backgroundColor = s.bg;
+      
+      texts.forEach(el => el.classList.remove('fade'));
+      bgTxt.classList.remove('fade');
     }, 400);
 
-    // Animate images
-    old.className = 'hs-item prev-out';
-    nxt.className = 'hs-item';
-    // Force reflow
-    void nxt.offsetWidth;
-    nxt.className = 'hs-item active';
+    old.className = 'hfs-item prev-out';
+    nxt.className = 'hfs-item';
+    void nxt.offsetWidth; // Reflow
+    nxt.className = 'hfs-item active';
     
     cur = nextI;
   }
   
-  document.getElementById('hsn-next').onclick = () => goSlide((cur + 1) % slides.length, 1);
-  document.getElementById('hsn-prev').onclick = () => goSlide((cur - 1 + slides.length) % slides.length, -1);
+  document.getElementById('hsn-next').onclick = () => goSlide((cur + 1) % slides.length);
+  document.getElementById('hsn-prev').onclick = () => goSlide((cur - 1 + slides.length) % slides.length);
   
-  // Auto advance smoothly every 6 seconds
   setInterval(() => {
     document.getElementById('hsn-next').click();
-  }, 6000);
+  }, 7000);
 })();
 
 // ----- render products -----
