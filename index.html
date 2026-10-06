@@ -88,7 +88,17 @@ nav{display:flex;align-items:center;justify-content:space-between;padding:18px 2
 .wax-sculpture{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;filter:drop-shadow(0 40px 40px rgba(56,49,60,.2));animation:float 8s ease-in-out infinite}
 
 @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-16px)}}
-.hero-premium-img{width:100%;height:100%;max-width:440px;max-height:560px;object-fit:cover;border-radius:240px 240px 40px 40px;mix-blend-mode:multiply;filter:contrast(1.05) drop-shadow(0 30px 40px rgba(56,49,60,.1));}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-16px)}}
+.hs-slider{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;perspective:1000px}
+.hs-item{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:transform .8s cubic-bezier(.7,0,.3,1), opacity .8s;transform:translateY(40px) scale(.95)}
+.hs-item.active{opacity:1;pointer-events:auto;transform:translateY(0) scale(1);z-index:2;animation:float 8s ease-in-out infinite}
+.hs-item.prev-out{transform:translateY(-40px) scale(.95);opacity:0;z-index:1}
+.hs-img{width:100%;height:100%;max-width:440px;max-height:560px;object-fit:cover;border-radius:240px 240px 40px 40px;mix-blend-mode:multiply;filter:contrast(1.05) drop-shadow(0 30px 40px rgba(56,49,60,.1))}
+.hs-nav{position:absolute;bottom:-20px;left:50%;transform:translateX(-50%);display:flex;gap:12px;z-index:10}
+.hs-btn{width:46px;height:46px;border-radius:50%;background:var(--surface);border:1px solid var(--line);color:var(--ink);font-size:1.1rem;cursor:pointer;transition:.3s;display:grid;place-items:center;box-shadow:0 10px 20px rgba(56,49,60,.08)}
+.hs-btn:hover{background:var(--rosa);color:#fff;transform:scale(1.08);border-color:var(--rosa)}
+.hero-text{transition:opacity .4s ease, transform .4s ease}
+.hero-text.fade{opacity:0;transform:translateY(10px)}
 /* hero cinematografico: glow que respira (mas visible) + destello que cruza el producto */
 .hero-visual .glow{background:radial-gradient(closest-side,rgba(200,166,112,.65),transparent 70%);animation:glowbreath 4s ease-in-out infinite}
 @keyframes glowbreath{0%,100%{opacity:.4;transform:scale(.82)}50%{opacity:1;transform:scale(1.2)}}
@@ -504,12 +514,19 @@ body.scrolled .scrollcue{opacity:0!important;transition-delay:0s}
     <div class="hlights" id="hlights"></div>
     <div class="wrap hero-grid">
     <div>
-      <span class="eyebrow anim d1">Velas aromáticas artesanales · Bogotá</span>
-      <h1 class="anim d2"><span style="position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); border:0;">Velas aromáticas artesanales hechas a mano en Bogotá. </span>Detalles que se <em>recuerdan.</em></h1>
-      <p class="lead anim d3">Velas hechas a mano, pensadas para un momento: un regalo, un “gracias”, un “estoy pensando en ti”. No vendemos objetos, entregamos la emoción de sorprender.</p>
-      <div class="hero-cta anim d4"><a class="btn btn-primary" data-go="colecciones">Ver colecciones</a><a class="btn btn-ghost" data-quiz>✨ Ayúdame a elegir</a></div>
+      <span class="eyebrow anim d1" id="h-eyebrow">Nayo · Colección Acuario</span>
+      <h1 class="anim d2 hero-text" id="h-title">Vela Acuario <em>Rubí.</em></h1>
+      <p class="lead anim d3 hero-text" id="h-desc">Un micromundo de gel cristalino con delicados detalles que parecen flotar en el agua. La magia del océano en tus manos.</p>
+      <div class="hero-cta anim d4"><a class="btn btn-primary" id="h-cta" data-go="colecciones">Ver esta colección</a><a class="btn btn-ghost" data-quiz>✨ Ayúdame a elegir</a></div>
     </div>
-    <div class="hero-visual anim d5"><div class="glow"></div><div class="wax-sculpture"><img src="assets/hero-premium-wax.webp?v=1" alt="Vela premium derritiéndose" class="hero-premium-img"></div></div>
+    <div class="hero-visual anim d5">
+      <div class="glow"></div>
+      <div class="hs-slider" id="hs-slider"></div>
+      <div class="hs-nav">
+        <button class="hs-btn" id="hsn-prev">❮</button>
+        <button class="hs-btn" id="hsn-next">❯</button>
+      </div>
+    </div>
   </div>
   <div class="scrollcue"><span>Desliza</span><div class="ch"></div></div>
   </section>
@@ -853,6 +870,64 @@ function recsAutoStop(){clearInterval(recsAuto);recsAuto=null}
   // al entrar la seccion en pantalla: arranca y da un primer avance pronto (evita la demora inicial)
   new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){recsAutoStart();clearTimeout(rc._kick);rc._kick=setTimeout(advanceRecs,700)}}),{threshold:.3}).observe(rc);
 })();
+
+// ----- HERO PREMIUM SLIDER -----
+(function(){
+  const slides = [
+    { k: 'acuario-rubi', img: 'assets/productos/acuario-rubi.webp', eye: 'Nayo · Colección Acuario', t: 'Vela Acuario <em>Rubí.</em>', d: 'Un micromundo de gel cristalino con delicados detalles que parecen flotar en el agua. La magia del océano en tus manos.' },
+    { k: 'dulce-antojo', img: 'assets/productos/dulce-antojo.webp', eye: 'Nayo · Colección Dulces', t: 'Dulce <em>Antojo.</em>', d: 'Texturas que provocan. Crema batida de cera, cerezas y galletas artesanales. Un postre que no se come, se respira.' },
+    { k: 'jardin-secreto', img: 'assets/productos/jardin-secreto.webp', eye: 'Nayo · Colección Botánica', t: 'Jardín <em>Secreto.</em>', d: 'Un bouquet floral atrapado en el tiempo. Naturaleza muerta e incrustaciones botánicas que perfuman cualquier espacio.' }
+  ];
+  let cur = 0;
+  const slider = document.getElementById('hs-slider');
+  const hTitle = document.getElementById('h-title');
+  const hDesc = document.getElementById('h-desc');
+  const hEye = document.getElementById('h-eyebrow');
+  
+  if(!slider) return;
+  
+  // Render images
+  slider.innerHTML = slides.map((s, i) => `<div class="hs-item ${i===0?'active':''}" data-i="${i}"><img src="${s.img}?v=1" alt="Vela ${s.t}" class="hs-img"></div>`).join('');
+  
+  function goSlide(nextI, dir) {
+    if(nextI === cur) return;
+    const items = slider.querySelectorAll('.hs-item');
+    const old = items[cur];
+    const nxt = items[nextI];
+    
+    // Animate text out
+    hTitle.classList.add('fade');
+    hDesc.classList.add('fade');
+    
+    setTimeout(() => {
+      // Update text
+      const s = slides[nextI];
+      hTitle.innerHTML = s.t;
+      hDesc.innerHTML = s.d;
+      hEye.innerHTML = s.eye;
+      hTitle.classList.remove('fade');
+      hDesc.classList.remove('fade');
+    }, 400);
+
+    // Animate images
+    old.className = 'hs-item prev-out';
+    nxt.className = 'hs-item';
+    // Force reflow
+    void nxt.offsetWidth;
+    nxt.className = 'hs-item active';
+    
+    cur = nextI;
+  }
+  
+  document.getElementById('hsn-next').onclick = () => goSlide((cur + 1) % slides.length, 1);
+  document.getElementById('hsn-prev').onclick = () => goSlide((cur - 1 + slides.length) % slides.length, -1);
+  
+  // Auto advance smoothly every 6 seconds
+  setInterval(() => {
+    document.getElementById('hsn-next').click();
+  }, 6000);
+})();
+
 // ----- render products -----
 const cardHTML=p=>`<article class="card reveal" data-cat="${p.cat}" data-openp="${p.k}"><span class="tag">${p.t}</span>${BADGES[p.k]?`<span class="badge ${BADGES[p.k][1]}">${BADGES[p.k][0]}</span>`:''}
   <div class="ph"><img src="${img(p.k)}" alt="${p.n}" loading="lazy"></div>
