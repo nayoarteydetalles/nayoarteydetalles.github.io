@@ -86,17 +86,9 @@ nav{display:flex;align-items:center;justify-content:space-between;padding:18px 2
 .hero-visual .glow{position:absolute;inset:8% 12%;background:radial-gradient(closest-side,rgba(191,160,107,.34),transparent 72%);filter:blur(6px)}
 .hero-stage{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;animation:float 6s ease-in-out infinite}
 .wax-sculpture{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;filter:drop-shadow(0 40px 40px rgba(56,49,60,.2));animation:float 8s ease-in-out infinite}
-.blob{position:absolute;mix-blend-mode:multiply;opacity:.9;box-shadow:inset -20px -20px 50px rgba(56,49,60,.12),inset 20px 20px 50px rgba(255,255,255,.8);animation:wax-morph 16s infinite alternate ease-in-out}
-.blob.b1{width:60%;height:60%;background:#B98E86;border-radius:40% 60% 70% 30% / 40% 50% 60% 50%;animation-delay:0s}
-.blob.b2{width:50%;height:50%;background:#A991A6;border-radius:60% 40% 30% 70% / 60% 30% 70% 40%;animation-duration:22s;animation-delay:-5s;transform:translate(-15%, 15%)}
-.blob.b3{width:45%;height:45%;background:#9DAEA4;border-radius:50% 50% 40% 60% / 40% 60% 50% 60%;animation-duration:18s;animation-delay:-9s;transform:translate(20%, -15%)}
-@keyframes wax-morph{
-  0%{border-radius:40% 60% 70% 30% / 40% 50% 60% 50%; transform:rotate(0deg) scale(1)}
-  33%{border-radius:70% 30% 50% 50% / 30% 30% 70% 70%; transform:rotate(15deg) scale(1.05) translate(4%,-4%)}
-  66%{border-radius:100% 60% 60% 100% / 100% 100% 60% 60%; transform:rotate(-5deg) scale(.95) translate(-4%,4%)}
-  100%{border-radius:40% 60% 70% 30% / 40% 50% 60% 50%; transform:rotate(10deg) scale(1)}
-}
+
 @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-16px)}}
+.hero-premium-img{width:100%;height:100%;max-width:440px;max-height:560px;object-fit:cover;border-radius:240px 240px 40px 40px;mix-blend-mode:multiply;filter:contrast(1.05) drop-shadow(0 30px 40px rgba(56,49,60,.1));}
 /* hero cinematografico: glow que respira (mas visible) + destello que cruza el producto */
 .hero-visual .glow{background:radial-gradient(closest-side,rgba(200,166,112,.65),transparent 70%);animation:glowbreath 4s ease-in-out infinite}
 @keyframes glowbreath{0%,100%{opacity:.4;transform:scale(.82)}50%{opacity:1;transform:scale(1.2)}}
@@ -517,7 +509,7 @@ body.scrolled .scrollcue{opacity:0!important;transition-delay:0s}
       <p class="lead anim d3">Velas hechas a mano, pensadas para un momento: un regalo, un “gracias”, un “estoy pensando en ti”. No vendemos objetos, entregamos la emoción de sorprender.</p>
       <div class="hero-cta anim d4"><a class="btn btn-primary" data-go="colecciones">Ver colecciones</a><a class="btn btn-ghost" data-quiz>✨ Ayúdame a elegir</a></div>
     </div>
-    <div class="hero-visual anim d5"><div class="glow"></div><div class="wax-sculpture"><div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div></div></div>
+    <div class="hero-visual anim d5"><div class="glow"></div><div class="wax-sculpture"><img src="assets/hero-premium-wax.webp?v=1" alt="Vela premium derritiéndose" class="hero-premium-img"></div></div>
   </div>
   <div class="scrollcue"><span>Desliza</span><div class="ch"></div></div>
   </section>
