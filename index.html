@@ -29,8 +29,8 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preload" href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=Jost:wght@300;400;500;600&display=swap" as="style">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=Jost:wght@300;400;500;600&display=swap">
+<link rel="preload" href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=Jost:wght@300;400;500;600&family=Pinyon+Script&display=swap" as="style">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=Jost:wght@300;400;500;600&family=Pinyon+Script&display=swap">
 <style>
 :root{--bg:#F0ECE6;--surface:#FAF7F2;--surface2:#F4EFE9;--ink:#38313C;--ink-soft:#6E6672;--ink-faint:#9E97A0;--rosa:#B98E86;--sage:#9DAEA4;--mauve:#A991A6;--champ:#BFA06B;--line:#E2DAD1;--dark:#241F2A;--serif:'Cormorant',Georgia,serif;--sans:'Jost',system-ui,sans-serif;--shadow:0 20px 50px -24px rgba(56,49,60,.35)}
 *{margin:0;padding:0;box-sizing:border-box}
@@ -38,6 +38,7 @@ html{scroll-behavior:smooth}
 body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-weight:300;line-height:1.7;-webkit-font-smoothing:antialiased;overflow-x:hidden}
 img{max-width:100%;display:block}a{color:inherit;text-decoration:none}
 .wrap{max-width:1200px;margin:0 auto;padding:0 28px}
+.font-script{font-family:'Pinyon Script',cursive;font-size:3.2rem;color:var(--champ);line-height:1;margin-bottom:-0.8rem;text-align:center;font-weight:400}
 .eyebrow{font-size:.72rem;letter-spacing:.34em;text-transform:uppercase;font-weight:500;color:var(--rosa)}
 .btn{display:inline-flex;align-items:center;gap:10px;font-family:var(--sans);font-weight:500;font-size:.9rem;letter-spacing:.03em;padding:15px 30px;border-radius:100px;transition:.3s;cursor:pointer;border:1.5px solid transparent}
 .btn-primary{background:var(--ink);color:var(--bg)}.btn-primary:hover{background:var(--rosa);transform:translateY(-2px)}
@@ -109,7 +110,7 @@ nav{display:flex;align-items:center;justify-content:space-between;padding:18px 2
 .trust{border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--surface2)}
 .trust .wrap{display:flex;justify-content:space-around;flex-wrap:wrap;gap:14px;padding:22px 28px}
 .trust span{font-size:.86rem;color:var(--ink-soft);display:flex;align-items:center;gap:9px}.trust b{font-size:1.05rem}
-.pad{padding:100px 0}
+.pad{padding:130px 0}
 .sec-head{text-align:center;max-width:660px;margin:0 auto 52px}
 .sec-head h2{font-family:var(--serif);font-weight:500;font-size:clamp(2.2rem,4.6vw,3.4rem);line-height:1.06;margin:.24em 0 .3em}
 .sec-head p{color:var(--ink-soft);font-size:1.05rem}
@@ -435,7 +436,17 @@ body.scrolled .scrollcue{opacity:0!important;transition-delay:0s}
  .navlinks{display:none}.navlinks.open{display:flex;position:absolute;top:70px;right:16px;left:16px;flex-direction:column;gap:18px;background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:26px}
  .burger{display:flex}
 }
-@media (max-width:540px){.grid{grid-template-columns:1fr}.occ{grid-template-columns:1fr}.pad{padding:70px 0}}
+@media (max-width:540px){.occ{grid-template-columns:1fr}.pad{padding:70px 0}
+  .font-script{font-size:2.4rem}
+  .card .ph{height:160px;margin:16px 0 10px}
+  .card .ph img{max-height:130px}
+  .card{padding:16px 14px 18px}
+  .card h3{font-size:1.15rem}
+  .card .price{font-size:1.15rem}
+  .card .desc{font-size:.85rem}
+  .card .row{flex-direction:column;gap:12px;align-items:stretch}
+  .card .add{width:100%;text-align:center}
+}
 </style>
 <script type="application/ld+json">
 {
@@ -536,13 +547,13 @@ body.scrolled .scrollcue{opacity:0!important;transition-delay:0s}
   </div></section>
 
   <section class="pad"><div class="wrap">
-    <div class="sec-head reveal"><span class="eyebrow">Las más queridas</span><h2>Nuestras velas destacadas</h2><div class="rule"></div></div>
+    <div class="sec-head reveal"><p class="font-script">Hecho a mano</p><h2>Nuestras velas destacadas</h2><div class="rule"></div></div>
     <div class="hcar-wrap"><button class="recs-nav prev" id="featPrev" aria-label="Anterior" hidden>‹</button><div class="hcar" id="featured"></div><button class="recs-nav next" id="featNext" aria-label="Siguiente" hidden>›</button></div>
     <div style="text-align:center;margin-top:44px" class="reveal"><a class="btn btn-primary" data-go="colecciones">Ver todas las colecciones</a></div>
   </div></section>
 
   <section class="pad" style="padding-top:0"><div class="wrap">
-    <div class="sec-head reveal"><span class="eyebrow">Para cada momento</span><h2>Regala por ocasión</h2><p>¿No sabes cuál elegir? Responde 3 preguntas y te recomendamos la vela perfecta.</p><div class="rule"></div>
+    <div class="sec-head reveal"><p class="font-script">Para cada momento</p><h2>Regala por ocasión</h2><p>¿No sabes cuál elegir? Responde 3 preguntas y te recomendamos la vela perfecta.</p><div class="rule"></div>
       <div style="margin-top:20px"><a class="btn btn-champ" data-quiz>✨ Ayúdame a elegir mi regalo</a></div></div>
     <div class="occ" id="occ"></div>
   </div></section>
@@ -582,7 +593,7 @@ body.scrolled .scrollcue{opacity:0!important;transition-delay:0s}
   </div></section>
 
   <section class="pad" style="padding-top:0"><div class="wrap">
-    <div class="sec-head reveal"><span class="eyebrow">No solo velas</span><h2>También hacemos</h2><p>Detalles para cada sorpresa. Escríbenos y lo armamos a tu gusto.</p><div class="rule"></div></div>
+    <div class="sec-head reveal"><p class="font-script">Detalles únicos</p><h2>También hacemos</h2><p>Detalles para cada sorpresa. Escríbenos y lo armamos a tu gusto.</p><div class="rule"></div></div>
     <div class="porto reveal">
       <a href="https://wa.me/573052352324?text=Hola%20Nayo%2C%20me%20interesan%20las%20velas%20arom%C3%A1ticas" target="_blank">🕯️ Velas aromáticas</a>
       <a href="https://wa.me/573052352324?text=Hola%20Nayo%2C%20me%20interesa%20resina%20(esferos%2Fllaveros)" target="_blank">✨ Resina (esferos, llaveros)</a>
@@ -594,7 +605,7 @@ body.scrolled .scrollcue{opacity:0!important;transition-delay:0s}
 
 <!-- COLECCIONES -->
 <main class="view" id="v-colecciones"><section class="pad" style="padding-top:140px"><div class="wrap">
-  <div class="sec-head reveal"><span class="eyebrow">Nuestras velas</span><h2>Colecciones que enamoran</h2><p>Aromas, texturas y diseños hechos a mano. Cada vela lista para regalar.</p><div class="rule"></div>
+  <div class="sec-head reveal"><p class="font-script">Hecho con amor</p><h2>Colecciones que enamoran</h2><p>Aromas, texturas y diseños hechos a mano. Cada vela lista para regalar.</p><div class="rule"></div>
     <div class="cat-dl" style="margin-top:22px">
       <button class="btn btn-ghost" type="button" id="dlBtn">⬇ Descargar catálogo ▾</button>
       <div class="dl-menu">
