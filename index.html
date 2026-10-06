@@ -70,6 +70,18 @@ nav{display:flex;align-items:center;justify-content:space-between;padding:18px 2
 /* --- IMMERSIVE HERO --- */
 .hero{position:relative;min-height:100vh;overflow:hidden;display:flex;align-items:center;color:#fff;transition:background 1s ease;background:#3b2c2f;padding-top:80px}
 .hero::after{content:"";position:absolute;inset:0;background:radial-gradient(circle at center, transparent 30%, rgba(0,0,0,0.3) 100%);pointer-events:none;z-index:0}
+
+/* Luces y Aurora Restauradas */
+.hero .aurora{position:absolute;inset:0;z-index:0;overflow:hidden;pointer-events:none}
+.hero .aurora span{position:absolute;border-radius:50%;filter:blur(70px);opacity:.4;animation:auroraMove 17s ease-in-out infinite}
+.hero .aurora span:nth-child(1){width:44vw;height:44vw;left:-6vw;top:-8vw;background:rgba(255,255,255,.15)}
+.hero .aurora span:nth-child(2){width:40vw;height:40vw;right:-6vw;bottom:-14vw;background:rgba(214,183,132,.2);animation-delay:-5s}
+.hero .aurora span:nth-child(3){width:34vw;height:34vw;left:38vw;top:22vh;background:rgba(255,255,255,.1);animation-delay:-9s}
+@keyframes auroraMove{0%,100%{transform:translate(0,0) scale(1)}33%{transform:translate(5vw,4vh) scale(1.12)}66%{transform:translate(-4vw,-3vh) scale(.94)}}
+.hero .hlights{position:absolute;inset:0;z-index:1;overflow:hidden;pointer-events:none}
+.hero .hlights i{position:absolute;width:9px;height:9px;border-radius:50%;background:radial-gradient(circle,#fff 0%,rgba(214,183,132,.95) 42%,rgba(214,183,132,0) 74%);box-shadow:0 0 16px 5px rgba(214,183,132,.65);opacity:0;animation:twinkle ease-in-out infinite}
+@keyframes twinkle{0%,100%{opacity:0;transform:scale(.55)}50%{opacity:1;transform:scale(1.2)}}
+
 .hero-bg-text{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-family:var(--serif);font-size:clamp(8rem,22vw,26rem);font-weight:700;color:rgba(255,255,255,0.035);white-space:nowrap;pointer-events:none;z-index:1;transition:opacity .6s,transform .6s;text-transform:uppercase}
 .hero-bg-text.fade{opacity:0;transform:translate(-50%,-45%)}
 .hero .wrap{position:relative;z-index:2;display:flex;align-items:center;width:100%;gap:40px}
@@ -86,7 +98,7 @@ nav{display:flex;align-items:center;justify-content:space-between;padding:18px 2
 .hfs-item{position:absolute;width:100%;height:100%;max-width:440px;max-height:580px;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:transform 1s cubic-bezier(.7,0,.3,1), opacity 1s;transform:translateY(80px) scale(.9)}
 .hfs-item.active{opacity:1;pointer-events:auto;transform:translateY(0) scale(1);z-index:2;animation:float 7s ease-in-out infinite}
 .hfs-item.prev-out{transform:translateY(-80px) scale(.9);opacity:0;z-index:1}
-.hfs-img{width:100%;height:100%;object-fit:cover;border-radius:240px 240px 40px 40px;mix-blend-mode:multiply;filter:contrast(1.1) drop-shadow(0 30px 50px rgba(0,0,0,.4))}
+.hfs-img{width:100%;height:100%;object-fit:contain;mix-blend-mode:multiply;filter:contrast(1.05) drop-shadow(0 30px 40px rgba(0,0,0,.3))}
 .hfs-nav{position:absolute;bottom:40px;left:50%;transform:translateX(-50%);display:flex;gap:14px;z-index:10}
 .hfs-btn{width:50px;height:50px;border-radius:50%;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.2);color:#fff;font-size:1.2rem;cursor:pointer;transition:.3s;display:grid;place-items:center;backdrop-filter:blur(8px)}
 .hfs-btn:hover{background:#fff;color:#000;transform:scale(1.1)}
@@ -501,6 +513,8 @@ body.scrolled .scrollcue{opacity:0!important;transition-delay:0s}
 <!-- HOME -->
 <main class="view active" id="v-home">
   <section class="hero" id="hero-sec">
+    <div class="aurora"><span></span><span></span><span></span></div>
+    <div class="hlights" id="hlights"></div>
     <div class="hero-bg-text" id="fs-bg-text">ACUARIO</div>
     
     <div class="wrap">
