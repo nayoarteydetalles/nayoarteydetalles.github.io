@@ -708,7 +708,7 @@ const PRODUCTS=[
 ];
 const P=k=>PRODUCTS.find(x=>x.k===k);
 const money=n=>'$ '+new Intl.NumberFormat('es-CO').format(n);
-const img=k=>`assets/productos/${k}.webp`;
+const img=k=>`assets/productos/${k}.webp?v=${new Date().getTime()}`;
 const waLink=t=>`https://wa.me/${WA}?text=${encodeURIComponent(t)}`;
 const BADGES={'acuario-rubi':['Más vendida',''],'petit-jardin':['Nueva','new'],'ramo-rosas':['Edición Navidad','nav']};
 const COLORS=[['A elección',''],['Rosa arcilla','#B98E86'],['Verde sage','#9DAEA4'],['Malva','#A991A6'],['Champán','#BFA06B'],['Blanco','#F3EFE9']];
