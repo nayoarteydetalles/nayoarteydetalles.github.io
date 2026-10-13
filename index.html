@@ -734,6 +734,7 @@ const PRODUCTS=[
 ];
 const P=k=>PRODUCTS.find(x=>x.k===k);
 const money=n=>'$ '+new Intl.NumberFormat('es-CO').format(n);
+const priceLabel=p=>(p&&p.cat==='figuras')?'—':money(p.p);
 const img=k=>`assets/productos/${typeof GALLERY!=='undefined'&&GALLERY[k]?GALLERY[k][0]:k}.webp?v=${new Date().getTime()}`;
 const waLink=t=>`https://wa.me/${WA}?text=${encodeURIComponent(t)}`;
 const BADGES={'acuario-rubi':['Más vendida',''],'petit-jardin':['Nueva','new'],'ramo-rosas':['Edición Navidad','nav']};
@@ -794,7 +795,7 @@ function openProduct(k){
       <h1>${p.n}</h1>
       <div class="sub">${p.d}</div>
       <div class="pdp-stars">★★★★★ <small>Hecha a mano · Bogotá</small></div>
-      <div class="pdp-price">${money(p.p)}</div>
+      <div class="pdp-price">${priceLabel(p)}</div>
       <p class="pdp-desc">Hecha a mano para regalar y recordar. La personalizas en color, aroma y mensaje. Envíos a domicilio en Bogotá.</p>
       <div class="pdp-config reveal">${configHTML}</div>
       <div class="pdp-wa">💬 ¿Dudas o quieres personalizarla aún más? <a href="${waLink('Hola Nayo 🤍 quiero más info sobre la vela '+p.n)}" target="_blank">Escríbenos por WhatsApp</a></div>
@@ -806,7 +807,7 @@ function openProduct(k){
   let recs=PRODUCTS.filter(x=>x.cat===p.cat&&x.k!==k);
   recs=recs.concat(PRODUCTS.filter(x=>x.cat!==p.cat&&x.k!==k));
   recs=recs.slice(0,8);
-  document.getElementById('recs').innerHTML=recs.map(r=>`<article class="reccard reveal" data-openp="${r.k}"><div class="recimg"><img src="${img(r.k)}" alt="${r.n}" loading="lazy"></div><div class="recname">${r.n}</div><div class="recprice">${money(r.p)}</div></article>`).join('');
+  document.getElementById('recs').innerHTML=recs.map(r=>`<article class="reccard reveal" data-openp="${r.k}"><div class="recimg"><img src="${img(r.k)}" alt="${r.n}" loading="lazy"></div><div class="recname">${r.n}</div><div class="recprice">${priceLabel(r)}</div></article>`).join('');
   updateRecsNav();recsAutoStop();setTimeout(recsAutoStart,600);
   go('producto');history.replaceState(null,'','#vela-'+k);startGal();
 }
@@ -943,7 +944,7 @@ function recsAutoStop(){clearInterval(recsAuto);recsAuto=null}
 const cardHTML=p=>`<article class="card reveal" data-cat="${p.cat}" data-openp="${p.k}"><span class="tag">${p.t}</span>${BADGES[p.k]?`<span class="badge ${BADGES[p.k][1]}">${BADGES[p.k][0]}</span>`:''}
   <div class="ph"><img src="${img(p.k)}" alt="${p.n}" loading="lazy"></div>
   <h3>${p.n}</h3><div class="desc">${p.d}</div><div class="aroma">🌸 ${p.a} · Personalizable</div>
-  <div class="row"><span class="price">${money(p.p)}</span><button class="add" data-add="${p.k}">+ Agregar</button></div></article>`;
+  <div class="row"><span class="price">${priceLabel(p)}</span><button class="add" data-add="${p.k}">+ Agregar</button></div></article>`;
 const featOrder=['acuario-rubi','dulce-antojo','petit-jardin','jardin-secreto'];
 const featList=[...featOrder,...PRODUCTS.filter(p=>p.cat!=='figuras'&&!featOrder.includes(p.k)).map(p=>p.k)].slice(0,8);
 document.getElementById('featured').innerHTML=featList.map(k=>cardHTML(P(k))).join('');
@@ -961,7 +962,7 @@ document.querySelectorAll('#filters button').forEach(b=>b.onclick=()=>{
 const OCC=[['🎂','Cumpleaños'],['💞','Aniversario'],['🌻','Amor y Amistad'],['🤍','Solo porque sí'],['🏢','Empresarial']];
 document.getElementById('occ').innerHTML=OCC.map(o=>`<a class="ocard reveal" href="https://wa.me/${WA}?text=${encodeURIComponent('Hola Nayo 🤍 quiero un regalo para '+o[1])}" target="_blank"><div class="oi">${o[0]}</div><h4>${o[1]}</h4></a>`).join('');
 // form select
-document.getElementById('f-prod').innerHTML='<option value="">No estoy segura/o — ayúdenme a elegir</option>'+PRODUCTS.map(p=>`<option>${p.n} — ${money(p.p)}</option>`).join('');
+document.getElementById('f-prod').innerHTML='<option value="">No estoy segura/o — ayúdenme a elegir</option>'+PRODUCTS.map(p=>`<option>${p.n} — ${priceLabel(p)}</option>`).join('');
 
 // ----- CART -----
 let CART={};try{CART=JSON.parse(localStorage.getItem('nayo_cart'))||{}}catch(e){CART={}}
@@ -997,13 +998,13 @@ function renderCart(){
   const body=document.getElementById('cartBody');
   if(!keys.length){body.innerHTML='<div class="cart-empty">Tu carrito está vacío.<br>Agrega tus velas favoritas 🕯️</div>';document.getElementById('cartTotal').textContent=money(0);return}
   let total=0;
-  body.innerHTML=keys.map(k=>{const p=P(k),q=CART[k];total+=p.p*q;return `<div class="citem"><img src="${img(k)}" alt=""><div class="ci-info"><div class="ci-name">${p.n}</div><div class="ci-price">${money(p.p)} c/u</div>${noteStr(k)?`<div class="ci-note">✎ ${noteStr(k)}</div>`:''}<div class="ci-qty"><button data-q="${k}|${q-1}">−</button><span>${q}</span><button data-q="${k}|${q+1}">+</button></div><button class="ci-rm" data-q="${k}|0">Quitar</button></div><div style="font-family:var(--serif);font-weight:600">${money(p.p*q)}</div></div>`}).join('');
+  body.innerHTML=keys.map(k=>{const p=P(k),q=CART[k];const fig=p.cat==='figuras';total+=(fig?0:p.p)*q;return `<div class="citem"><img src="${img(k)}" alt=""><div class="ci-info"><div class="ci-name">${p.n}</div><div class="ci-price">${fig?'— precio a confirmar':money(p.p)+' c/u'}</div>${noteStr(k)?`<div class="ci-note">✎ ${noteStr(k)}</div>`:''}<div class="ci-qty"><button data-q="${k}|${q-1}">−</button><span>${q}</span><button data-q="${k}|${q+1}">+</button></div><button class="ci-rm" data-q="${k}|0">Quitar</button></div><div style="font-family:var(--serif);font-weight:600">${fig?'—':money(p.p*q)}</div></div>`}).join('');
   document.getElementById('cartTotal').textContent=money(total);
 }
 document.getElementById('cartBody').addEventListener('click',e=>{const b=e.target.closest('[data-q]');if(b){const[k,q]=b.dataset.q.split('|');setQty(k,+q)}});
 document.getElementById('checkout').onclick=()=>{
   const keys=Object.keys(CART);if(!keys.length){toast('Tu carrito está vacío');return}
-  let total=0,lines=keys.map(k=>{const p=P(k),q=CART[k];total+=p.p*q;const ns=noteStr(k);return `• ${q}× ${p.n} — ${money(p.p*q)}${ns?`\n   ↳ ${ns}`:''}`}).join('\n');
+  let total=0,lines=keys.map(k=>{const p=P(k),q=CART[k];const fig=p.cat==='figuras';total+=(fig?0:p.p)*q;const ns=noteStr(k);return `• ${q}× ${p.n} — ${fig?'(precio a confirmar)':money(p.p*q)}${ns?`\n   ↳ ${ns}`:''}`}).join('\n');
   const msg=`Hola Nayo 🤍 quiero hacer este pedido:\n\n${lines}\n\nTotal: ${money(total)}\n\n¿Me confirmas disponibilidad y el envío? 🙏`;
   window.open(`https://wa.me/${WA}?text=${encodeURIComponent(msg)}`,'_blank');
 };
@@ -1060,7 +1061,7 @@ function quizResult(){
   document.getElementById('quizBody').innerHTML=`<div class="quiz-result">
     <div class="qprog">Tu match ideal 🤍</div>
     <div class="rimg"><img src="${img(p.k)}" alt="${p.n}"></div>
-    <h3>${p.n}</h3><div class="rp">🌸 ${p.a} · Colección ${p.t}</div><div class="rprice">${money(p.p)}</div>
+    <h3>${p.n}</h3><div class="rp">🌸 ${p.a} · Colección ${p.t}</div><div class="rprice">${priceLabel(p)}</div>
     <div class="btns"><button class="btn btn-ghost" data-qview="${p.k}">Ver detalle</button><button class="btn btn-primary" data-qadd="${p.k}">Agregar al carrito 🎁</button></div>
   </div>`;
 }
