@@ -949,7 +949,10 @@ const cardHTML=p=>`<article class="card reveal" data-cat="${p.cat}" data-openp="
   <h3>${p.n}</h3><div class="desc">${p.d}</div><div class="aroma">🌸 ${p.a} · Personalizable</div>
   <div class="row"><span class="price">${priceLabel(p)}</span><button class="add" data-add="${p.k}">+ Agregar</button></div></article>`;
 const featOrder=['acuario-rubi','dulce-antojo','petit-jardin','jardin-secreto'];
-const featList=[...featOrder,...PRODUCTS.filter(p=>p.cat!=='figuras'&&!featOrder.includes(p.k)).map(p=>p.k)].slice(0,8);
+// los productos NUEVOS (badge "Nueva") salen de primeros en destacadas, para verlos al entrar
+const featNew=PRODUCTS.filter(p=>p.cat!=='figuras'&&BADGES[p.k]&&BADGES[p.k][1]==='new').map(p=>p.k);
+const _fseen=new Set();
+const featList=[...featNew,...featOrder,...PRODUCTS.filter(p=>p.cat!=='figuras').map(p=>p.k)].filter(k=>!_fseen.has(k)&&(_fseen.add(k),true)).slice(0,8);
 document.getElementById('featured').innerHTML=featList.map(k=>cardHTML(P(k))).join('');
 updateFeatNav();
 document.getElementById('grid').innerHTML=PRODUCTS.map(cardHTML).join('');
