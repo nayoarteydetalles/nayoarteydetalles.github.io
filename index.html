@@ -725,6 +725,7 @@ const PRODUCTS=[
  {k:'petit-jardin',n:'Petit Jardin',d:'Un pequeño jardín para regalar',p:50000,t:'Jardín',cat:'jardin',a:'Flores frescas'},
  {k:'ramo-rosas',n:'Ramo de Rosas',d:'Un ramo que nunca se marchita',p:42000,t:'Jardín',cat:'jardin',a:'Rosas'},
  {k:'cerveza',n:'Cerveza',d:'Un brindis que se enciende',p:45000,t:'Especial',cat:'especial',a:'Cítricos y cebada'},
+ {k:'virgen',n:'Virgen',d:'Virgen de Guadalupe hecha a mano: un detalle de fe para acompañar y regalar',p:0,t:'Especial',cat:'especial',a:'Aroma a elección'},
  {k:'fig-osito',n:'Osito',d:'Un recordatorio tierno, ideal para baby shower',p:25000,t:'Recordatorio',cat:'figuras',a:'Baby shower'},
  {k:'fig-piecitos',n:'Pedida de mano',d:'El recordatorio perfecto para una pedida de mano',p:25000,t:'Recordatorio',cat:'figuras',a:'Matrimonio'},
  {k:'fig-conejo',n:'Conejito',d:'Pura ternura para bebé o Pascua',p:25000,t:'Recordatorio',cat:'figuras',a:'Bebé · Pascua'},
@@ -734,10 +735,11 @@ const PRODUCTS=[
 ];
 const P=k=>PRODUCTS.find(x=>x.k===k);
 const money=n=>'$ '+new Intl.NumberFormat('es-CO').format(n);
-const priceLabel=p=>(p&&p.cat==='figuras')?'—':money(p.p);
+const noPrice=p=>!!p&&(p.cat==='figuras'||!p.p);
+const priceLabel=p=>noPrice(p)?'—':money(p.p);
 const img=k=>`assets/productos/${typeof GALLERY!=='undefined'&&GALLERY[k]?GALLERY[k][0]:k}.webp?v=${new Date().getTime()}`;
 const waLink=t=>`https://wa.me/${WA}?text=${encodeURIComponent(t)}`;
-const BADGES={'acuario-rubi':['Más vendida',''],'petit-jardin':['Nueva','new'],'ramo-rosas':['Edición Navidad','nav']};
+const BADGES={'acuario-rubi':['Más vendida',''],'petit-jardin':['Nueva','new'],'ramo-rosas':['Edición Navidad','nav'],'virgen':['Nueva','new']};
 const COLORS=[['A elección',''],['Rosa arcilla','#B98E86'],['Verde sage','#9DAEA4'],['Malva','#A991A6'],['Champán','#BFA06B'],['Blanco','#F3EFE9']];
 const hexA=(h,a)=>{const x=h.replace('#','');const n=parseInt(x.length===3?x.split('').map(c=>c+c).join(''):x,16);return `rgba(${(n>>16)&255},${(n>>8)&255},${n&255},${a})`};
 const AROMAS=['Vainilla','Frutos rojos','Floral','Cítricos','Lavanda','Coco','Canela'];
@@ -760,9 +762,10 @@ const GALLERY={
  'petit-jardin':['petit-jardin-1','petit-jardin-2'],
  'ramo-rosas':['ramo-rosas-1','ramo-rosas-2','ramo-rosas-3','ramo-rosas-4'],
  'cerveza':['cerveza-1','cerveza-2','cerveza-3'],
+ 'virgen':['virgen-1','virgen-2','virgen-3','virgen-4'],
 };
 let GAL=[],GIDX=0,GTIMER=null;
-function setGal(i){if(GAL.length<2)return;GIDX=(i+GAL.length)%GAL.length;const m=document.getElementById('pdp-main');if(m){m.src=img(GAL[GIDX]);const pm=m.closest('.pdp-media');if(pm){pm.classList.toggle('photofill',String(GAL[GIDX]).startsWith('box-'));pm.classList.toggle('no-bg',['dulce-encanto','frambuesa','acuario-rubi','acuario-piedritas','acuario-conchas','dulce-antojo','jardin-secreto','petit-jardin','ramo-rosas','cerveza'].some(x=>String(GAL[GIDX]).startsWith(x)));}}document.querySelectorAll('#pdp-thumbs .thumb').forEach((t,j)=>t.classList.toggle('active',j===GIDX))}
+function setGal(i){if(GAL.length<2)return;GIDX=(i+GAL.length)%GAL.length;const m=document.getElementById('pdp-main');if(m){m.src=img(GAL[GIDX]);const pm=m.closest('.pdp-media');if(pm){pm.classList.toggle('photofill',String(GAL[GIDX]).startsWith('box-'));pm.classList.toggle('no-bg',['dulce-encanto','frambuesa','acuario-rubi','acuario-piedritas','acuario-conchas','dulce-antojo','jardin-secreto','petit-jardin','ramo-rosas','cerveza','virgen'].some(x=>String(GAL[GIDX]).startsWith(x)));}}document.querySelectorAll('#pdp-thumbs .thumb').forEach((t,j)=>t.classList.toggle('active',j===GIDX))}
 function startGal(){clearInterval(GTIMER);if(GAL.length>1)GTIMER=setInterval(()=>setGal(GIDX+1),2400)}
 function setPQ(n){PQTY=Math.max(1,n);const el=document.getElementById('pqv');if(el)el.textContent=PQTY}
 function openProduct(k){
@@ -786,7 +789,7 @@ function openProduct(k){
   document.getElementById('pdp-cat').textContent=p.n;
   document.getElementById('pdp').innerHTML=`
     <div class="pdp-gallery reveal">
-      <div class="pdp-media ${String(gal[0]).startsWith('box-')?'photofill':['dulce-encanto','frambuesa','acuario-rubi','acuario-piedritas','acuario-conchas','dulce-antojo','jardin-secreto','petit-jardin','ramo-rosas'].some(x=>String(gal[0]).startsWith(x))?'no-bg':''}" style="--sel:${initGlow}"><span class="mtag">${p.t}</span><div class="caura" id="pdp-caura"></div>${gal.length>1?'<button class="navbtn prev" data-gnav="-1" aria-label="Anterior">‹</button><button class="navbtn next" data-gnav="1" aria-label="Siguiente">›</button>':''}<img id="pdp-main" src="${img(gal[0])}" alt="${p.n}"></div>
+      <div class="pdp-media ${String(gal[0]).startsWith('box-')?'photofill':['dulce-encanto','frambuesa','acuario-rubi','acuario-piedritas','acuario-conchas','dulce-antojo','jardin-secreto','petit-jardin','ramo-rosas','cerveza','virgen'].some(x=>String(gal[0]).startsWith(x))?'no-bg':''}" style="--sel:${initGlow}"><span class="mtag">${p.t}</span><div class="caura" id="pdp-caura"></div>${gal.length>1?'<button class="navbtn prev" data-gnav="-1" aria-label="Anterior">‹</button><button class="navbtn next" data-gnav="1" aria-label="Siguiente">›</button>':''}<img id="pdp-main" src="${img(gal[0])}" alt="${p.n}"></div>
       ${gal.length>1?`<div class="pdp-thumbs" id="pdp-thumbs">${gal.map((g,i)=>`<button class="thumb ${i===0?'active':''}" data-gth="${i}"><img src="${img(g)}" alt=""></button>`).join('')}</div>`:''}
     </div>
     <div class="pdp-info reveal">
@@ -998,13 +1001,13 @@ function renderCart(){
   const body=document.getElementById('cartBody');
   if(!keys.length){body.innerHTML='<div class="cart-empty">Tu carrito está vacío.<br>Agrega tus velas favoritas 🕯️</div>';document.getElementById('cartTotal').textContent=money(0);return}
   let total=0;
-  body.innerHTML=keys.map(k=>{const p=P(k),q=CART[k];const fig=p.cat==='figuras';total+=(fig?0:p.p)*q;return `<div class="citem"><img src="${img(k)}" alt=""><div class="ci-info"><div class="ci-name">${p.n}</div><div class="ci-price">${fig?'— precio a confirmar':money(p.p)+' c/u'}</div>${noteStr(k)?`<div class="ci-note">✎ ${noteStr(k)}</div>`:''}<div class="ci-qty"><button data-q="${k}|${q-1}">−</button><span>${q}</span><button data-q="${k}|${q+1}">+</button></div><button class="ci-rm" data-q="${k}|0">Quitar</button></div><div style="font-family:var(--serif);font-weight:600">${fig?'—':money(p.p*q)}</div></div>`}).join('');
+  body.innerHTML=keys.map(k=>{const p=P(k),q=CART[k];const fig=noPrice(p);total+=(fig?0:p.p)*q;return `<div class="citem"><img src="${img(k)}" alt=""><div class="ci-info"><div class="ci-name">${p.n}</div><div class="ci-price">${fig?'— precio a confirmar':money(p.p)+' c/u'}</div>${noteStr(k)?`<div class="ci-note">✎ ${noteStr(k)}</div>`:''}<div class="ci-qty"><button data-q="${k}|${q-1}">−</button><span>${q}</span><button data-q="${k}|${q+1}">+</button></div><button class="ci-rm" data-q="${k}|0">Quitar</button></div><div style="font-family:var(--serif);font-weight:600">${fig?'—':money(p.p*q)}</div></div>`}).join('');
   document.getElementById('cartTotal').textContent=money(total);
 }
 document.getElementById('cartBody').addEventListener('click',e=>{const b=e.target.closest('[data-q]');if(b){const[k,q]=b.dataset.q.split('|');setQty(k,+q)}});
 document.getElementById('checkout').onclick=()=>{
   const keys=Object.keys(CART);if(!keys.length){toast('Tu carrito está vacío');return}
-  let total=0,lines=keys.map(k=>{const p=P(k),q=CART[k];const fig=p.cat==='figuras';total+=(fig?0:p.p)*q;const ns=noteStr(k);return `• ${q}× ${p.n} — ${fig?'(precio a confirmar)':money(p.p*q)}${ns?`\n   ↳ ${ns}`:''}`}).join('\n');
+  let total=0,lines=keys.map(k=>{const p=P(k),q=CART[k];const fig=noPrice(p);total+=(fig?0:p.p)*q;const ns=noteStr(k);return `• ${q}× ${p.n} — ${fig?'(precio a confirmar)':money(p.p*q)}${ns?`\n   ↳ ${ns}`:''}`}).join('\n');
   const msg=`Hola Nayo 🤍 quiero hacer este pedido:\n\n${lines}\n\nTotal: ${money(total)}\n\n¿Me confirmas disponibilidad y el envío? 🙏`;
   window.open(`https://wa.me/${WA}?text=${encodeURIComponent(msg)}`,'_blank');
 };
