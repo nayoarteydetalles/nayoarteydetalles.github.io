@@ -950,7 +950,7 @@ const cardHTML=p=>`<article class="card reveal" data-cat="${p.cat}" data-openp="
   <div class="row"><span class="price">${priceLabel(p)}</span><button class="add" data-add="${p.k}">+ Agregar</button></div></article>`;
 const featOrder=['acuario-rubi','dulce-antojo','petit-jardin','jardin-secreto'];
 // los productos NUEVOS (badge "Nueva") salen de primeros en destacadas, para verlos al entrar
-const featNew=PRODUCTS.filter(p=>p.cat!=='figuras'&&BADGES[p.k]&&BADGES[p.k][1]==='new').map(p=>p.k);
+const featNew=PRODUCTS.filter(p=>p.cat!=='figuras'&&BADGES[p.k]&&BADGES[p.k][1]==='new').map(p=>p.k).reverse();
 const _fseen=new Set();
 const featList=[...featNew,...featOrder,...PRODUCTS.filter(p=>p.cat!=='figuras').map(p=>p.k)].filter(k=>!_fseen.has(k)&&(_fseen.add(k),true)).slice(0,8);
 document.getElementById('featured').innerHTML=featList.map(k=>cardHTML(P(k))).join('');
