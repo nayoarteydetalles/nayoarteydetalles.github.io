@@ -764,6 +764,21 @@ const GALLERY={
  'cerveza':['cerveza-1','cerveza-2','cerveza-3'],
  'virgen':['virgen-1','virgen-2','virgen-3','virgen-4','virgen-5'],
 };
+// SEO: datos estructurados de producto (auto-generados desde PRODUCTS, con precio en COP)
+(function(){try{
+  var base='https://nayoarteydetalles.github.io/assets/productos/';
+  var items=PRODUCTS.map(function(p,i){
+    var g=(typeof GALLERY!=='undefined'&&GALLERY[p.k])?GALLERY[p.k][0]:p.k;
+    var prod={"@type":"Product","name":p.n,"image":base+g+".webp","description":p.d,
+      "category":p.t,"brand":{"@type":"Brand","name":"Nayo · Arte & Detalles"}};
+    if(p.cat!=='figuras'&&p.p){prod.offers={"@type":"Offer","price":String(p.p),"priceCurrency":"COP",
+      "availability":"https://schema.org/InStock","url":"https://nayoarteydetalles.github.io/#vela-"+p.k};}
+    return {"@type":"ListItem","position":i+1,"item":prod};
+  });
+  var ld={"@context":"https://schema.org","@type":"ItemList","name":"Catálogo de velas aromáticas Nayo","itemListElement":items};
+  var s=document.createElement('script');s.type='application/ld+json';s.textContent=JSON.stringify(ld);
+  document.head.appendChild(s);
+}catch(e){}})();
 let GAL=[],GIDX=0,GTIMER=null;
 function setGal(i){if(GAL.length<2)return;GIDX=(i+GAL.length)%GAL.length;const m=document.getElementById('pdp-main');if(m){m.src=img(GAL[GIDX]);const pm=m.closest('.pdp-media');if(pm){pm.classList.toggle('photofill',String(GAL[GIDX]).startsWith('box-'));pm.classList.toggle('no-bg',['dulce-encanto','frambuesa','acuario-rubi','acuario-piedritas','acuario-conchas','dulce-antojo','jardin-secreto','petit-jardin','ramo-rosas','cerveza','virgen'].some(x=>String(GAL[GIDX]).startsWith(x)));}}document.querySelectorAll('#pdp-thumbs .thumb').forEach((t,j)=>t.classList.toggle('active',j===GIDX))}
 function startGal(){clearInterval(GTIMER);if(GAL.length>1)GTIMER=setInterval(()=>setGal(GIDX+1),2400)}
